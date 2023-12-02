@@ -2,12 +2,12 @@ import { NavLink } from 'react-router-dom';
 import { CiCircleChevLeft, CiCircleChevRight } from 'react-icons/ci';
 import { motion } from 'framer-motion';
 const routes = [
-	{ label: 'Dashboard', path: '/admin/dashboard', icon: 'dashboard' },
-	{ label: 'Profile', path: '/admin/profile', icon: 'person' },
-	{ label: 'Users', path: '/admin/users', icon: 'people' },
-	{ label: 'Courses', path: '/admin/courses', icon: 'book' },
-	{ label: 'Settings', path: '/admin/settings', icon: 'settings' },
-	{ label: 'NA', path: '/admin/na', icon: 'na' }
+	{ label: 'Dashboard', path: '/instructor/dashboard', icon: 'dashboard' },
+	{ label: 'Profile', path: '/instructor/profile', icon: 'person' },
+	{ label: 'Users', path: '/instructor/users', icon: 'people' },
+	{ label: 'Courses', path: '/instructor/courses', icon: 'book' },
+	{ label: 'Settings', path: '/instructor/settings', icon: 'settings' },
+	{ label: 'NA', path: '/instructor/na', icon: 'na' }
 ];
 
 type Props = {
