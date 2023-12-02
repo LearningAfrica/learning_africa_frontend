@@ -14,5 +14,10 @@ module.exports = {
       'warn',
       { allowConstantExport: true },
     ],
+	'template-curly-spacing':[
+		'warn',
+		'always'
+	
+	]
   },
 }

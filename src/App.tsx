@@ -1,11 +1,20 @@
-import Route from "./router/Router";
+import router from "@/router";
+import { RouterProvider } from "react-router-dom";
 
-function App() {
+// function App() {
+//   return (
+//     <>
+//       <Route />
+//     </>
+//   );
+// }
+
+// export default App;
+
+// type Props = {}
+
+export default function App() {
   return (
-    <>
-      <Route />
-    </>
-  );
+   <RouterProvider router={router}/>
+  )
 }
-
-export default App;
