@@ -14,7 +14,7 @@ type Props = {
 	isSidebarOpen: boolean;
 	setIsSidebarOpen: (sidebarState: boolean) => void;
 };
-export default function InstructorSidebar({
+export default function StudentSidebar({
 	isSidebarOpen,
 	setIsSidebarOpen
 }: Props) {
