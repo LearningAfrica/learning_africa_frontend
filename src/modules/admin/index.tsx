@@ -6,10 +6,12 @@ import AdminProfile from './pages/AdminProfile';
 import AdminUsers from './pages/AdminUsers';
 import AdminSettings from './pages/AdminSettings';
 import AdminCourses from './pages/AdminCourses';
+import AdminErrorPage from './error-pages/AdminErrorPage';
 
 const adminRouter: RouteObject = {
 	path: '/admin',
 	element: <AdminLayout />,
+	errorElement: <AdminErrorPage />,
 	children: [
 		{
 			path: '/admin',
