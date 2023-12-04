@@ -1,5 +1,6 @@
 import { RouteObject } from 'react-router-dom';
 import BaseLayout from './layouts/BaseLayout';
+import BaseHomepage from './views/BaseHomepage';
 
 const baseRoutes: RouteObject = {
 	path: '/',
@@ -8,7 +9,7 @@ const baseRoutes: RouteObject = {
 		{
 			path: '/',
 			index: true,
-			element: <h1>Homepage</h1>
+			element: <BaseHomepage />
 		},
 		{
 			path: '/login',
