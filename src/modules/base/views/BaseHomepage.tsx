@@ -127,7 +127,7 @@ export default function BaseHomepage() {
 									<div className="flex flex-col gap-4">
 										<div className="h-48 bg-gray-300 rounded-md">
 											<img
-												src="https://images.unsplash.com/photo-1515879218367-8466d910aaa4?q=80&w=2069&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+												src="https://picsum.photos/600/600"
 												alt=""
 												className="h-full w-full object-cover rounded-md"
 											/>
@@ -252,7 +252,7 @@ export default function BaseHomepage() {
 							<div className="shadow">
 								<div>
 									<img
-										src="https://images.unsplash.com/photo-1610563166150-b34df4f3bcd6?q=80&w=1976&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+										src="https://picsum.photos/400/400"
 										alt=""
 										className="h-48 w-full object-cover rounded-md"
 									/>
@@ -278,7 +278,7 @@ export default function BaseHomepage() {
 			</div>
 			{/* Stats */}
 			<div
-				className="bg-cover bg-center bg-no-repeat bg-orange-500 bg-blend-overlay bg-fixed"
+				className="bg-cover bg-center bg-no-repeat bg-orange-500 bg-blend-overlay bg-fixed py-10"
 				style={{
 					backgroundImage: `url('https://images.unsplash.com/photo-1656077217715-bdaeb06bd01f?q=80&w=1964&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')`
 				}}
