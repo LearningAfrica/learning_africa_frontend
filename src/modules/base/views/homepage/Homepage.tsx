@@ -1,4 +1,3 @@
-import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
 	faGraduationCap,
@@ -7,10 +6,12 @@ import {
 	faArrowRight,
 	faStar,
 	faBook,
-	faGlobe
-} from '@fortawesome/free-solid-svg-icons';
+	faGlobe,
+	faLocation} from '@fortawesome/free-solid-svg-icons';
+import { faUserClock } from '@fortawesome/free-solid-svg-icons/faUserClock';
+import { NavLink } from 'react-router-dom';
 
-export default function BaseHomepage() {
+export default function Homepage() {
 	const image =
 		'https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?q=80&w=1973&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D';
 	return (
@@ -18,7 +19,7 @@ export default function BaseHomepage() {
 			{/* Banner */}
 			<div
 				className="h-fit md:min-h-[50vh] bg-cover bg-center bg-no-repeat bg-orange-500 bg-blend-overlay"
-				style={{ backgroundImage: `url(${image})` }}
+				style={{ backgroundImage: `url(${ image })` }}
 			>
 				<div className="max-w-7xl h-full w-ful mx-auto grid md:grid-cols-2 items-center py-10">
 					<div className=" flex flex-col gap-2 md:gap-4 justify-start">
@@ -91,6 +92,11 @@ export default function BaseHomepage() {
 								alt=""
 							/>
 						</div>
+						<div className='py-2'>
+							<NavLink to={'/register'} className="bg-orange text-light px-4 py-2 rounded-md">
+								Enroll now <FontAwesomeIcon icon={faArrowRight} />{' '}
+							</NavLink>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -121,7 +127,7 @@ export default function BaseHomepage() {
 					</div>
 					{/* Course catalogue */}
 					<div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-						{[1, 2, 3, 4, 5, 6].map((item, index) => {
+						{[1, 2, 3, 4, 5, 6].map((_item, index) => {
 							return (
 								<div className="bg-white shadow-md rounded-md">
 									<div className="flex flex-col gap-4">
@@ -154,11 +160,15 @@ export default function BaseHomepage() {
 																// map over them
 																.map(
 																	(
-																		star,
-																		index
+																		_star,
+																		_index
 																	) => {
 																		return (
-																			<span>
+																			<span
+																				key={
+																					_index
+																				}
+																			>
 																				<FontAwesomeIcon
 																					icon={
 																						faStar
@@ -248,8 +258,10 @@ export default function BaseHomepage() {
 					</div>
 					{/* Course catalogue */}
 					<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 py-4">
-						{[1, 2, 3, 4, 5, 6].map((item, index) => (
-							<div className="shadow">
+						{[1, 2, 3, 4, 5, 6].map((_item, index) => (
+							<div className="shadow"
+								key={index}
+							>
 								<div>
 									<img
 										src="https://picsum.photos/400/400"
@@ -292,7 +304,7 @@ export default function BaseHomepage() {
 							Get started
 						</button>
 					</div>
-					<hr className='my-2'/>
+					<hr className="my-2" />
 					<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4">
 						<div>
 							<h2 className="text-3xl font-bold text-light">
@@ -319,6 +331,83 @@ export default function BaseHomepage() {
 							<p className="text-light">Reviews</p>
 						</div>
 					</div>
+				</div>
+			</div>
+			{/* Upcoming events */}
+			<div className="py-10 bg-light ">
+				<div className="max-w-7xl flex flex-col gap-4 mx-auto">
+					{/* Title */}
+					<div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+						<div className="flex flex-col gap-4">
+							<h2 className="text-3xl font-bold">
+								Upcoming{' '}
+								<span className="text-orange-500">Events</span>
+							</h2>
+							<p>
+								Lorem ipsum dolor sit amet consectetur
+								adipisicing elit. Non aliquam facere possimus
+								ipsa voluptate illo, ex at sint necessitatibus
+								magnam pariatur reiciendis cupiditate eos nisi.
+								Quibusdam, explicabo ipsum? Similique, nisi?
+							</p>
+						</div>
+						<div className="flex items-center justify-end">
+							<button className="bg-orange text-light px-4 py-2 rounded-md whitespace-nowrap">
+								View All <FontAwesomeIcon icon={faArrowRight} />{' '}
+							</button>
+						</div>
+					</div>
+					{/* Events */}
+					<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+						{[1, 2, 3].map((_item, index) => (
+							<div className="shadow"
+								key={index}
+							>
+								<div>
+									<img
+										src="https://picsum.photos/400/400"
+										alt=""
+										className="h-80 w-full object-cover rounded-md"
+									/>
+									<div className="flex flex-col gap-4 p-4">
+										<h1
+											className="text-xl font-bold"
+										>Global cyber security </h1>
+										<p
+											className="text-xs"
+										>
+											Over 100 lessons, 10 hours of video,
+											ranging from beginner to advanced.
+											Make your career in cyber security
+										</p>
+										<div className='flex flex-col text-xs'>
+											<div className='flex items-center gap-2'>
+												<FontAwesomeIcon
+													icon={faUserClock}
+													color='orange'
+												/>
+												<div>7.00pm - 9.00pm</div>
+											</div>
+											<div className='flex items-center gap-2'>
+												<FontAwesomeIcon
+													icon={faLocation}
+													color='orange'
+												/>
+												<div>Online</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						))}
+					</div>
+					
+				</div>
+			</div>
+			{/* Course Instructors */}
+			<div className='bg-white py-10'>
+				<div className='max-w-7xl mx-auto flex flex-col gap-4'>
+
 				</div>
 			</div>
 		</div>

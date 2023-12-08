@@ -1,6 +1,9 @@
 import { RouteObject } from 'react-router-dom';
 import BaseLayout from './layouts/BaseLayout';
-import BaseHomepage from './views/BaseHomepage';
+import Homepage from './views/homepage/Homepage';
+import Login from './views/login/Login';
+import CreateAccount from './views/register/CreateAccount';
+import BaseNotFoundPage from './views/404/BaseNotFoundPage';
 
 const baseRoutes: RouteObject = {
 	path: '/',
@@ -9,15 +12,15 @@ const baseRoutes: RouteObject = {
 		{
 			path: '/',
 			index: true,
-			element: <BaseHomepage />
+			element: <Homepage />
 		},
 		{
 			path: '/login',
-			element: <h1>Login</h1>
+			element: <Login/>
 		},
 		{
 			path: '/register',
-			element: <h1>Register</h1>
+			element: <CreateAccount/>
 		},
 		{
 			path: '/forgot-password',
@@ -37,7 +40,7 @@ const baseRoutes: RouteObject = {
 		},
 		{
 			path: '*',
-			element: <h1>404</h1>
+			element:<BaseNotFoundPage/>
 		}
 	]
 };

@@ -41,7 +41,8 @@ export default {
 				primary: '0px 4px 10px rgba(15, 27, 51, 0.05);'
 			},
 			fontFamily: {
-				poppins: ['Poppins', 'sans-serif']
+				poppins: ['Poppins', 'sans-serif'],
+				roboto: ['Roboto', 'sans-serif']
 			}
 		}
 	},
