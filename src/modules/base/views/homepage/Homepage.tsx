@@ -1,4 +1,5 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import heroImage from '@/assets/3.png';
 import {
 	faGraduationCap,
 	faCubesStacked,
@@ -7,9 +8,11 @@ import {
 	faStar,
 	faBook,
 	faGlobe,
-	faLocation} from '@fortawesome/free-solid-svg-icons';
+	faLocation
+} from '@fortawesome/free-solid-svg-icons';
 import { faUserClock } from '@fortawesome/free-solid-svg-icons/faUserClock';
 import { NavLink } from 'react-router-dom';
+import courseImage from '@/assets/2.png';
 
 export default function Homepage() {
 	const image =
@@ -18,8 +21,8 @@ export default function Homepage() {
 		<div>
 			{/* Banner */}
 			<div
-				className="h-fit md:min-h-[50vh] bg-cover bg-center bg-no-repeat bg-orange-500 bg-blend-overlay"
-				style={{ backgroundImage: `url(${ image })` }}
+				className="h-fit md:min-h-[50vh] bg-gradient-to-r from-cyan-500 to-blue-500bg-cover bg-center bg-no-repeat"
+				// style={{ backgroundImage: `url(${image})` }}
 			>
 				<div className="max-w-7xl h-full w-ful mx-auto grid md:grid-cols-2 items-center py-10">
 					<div className=" flex flex-col gap-2 md:gap-4 justify-start">
@@ -92,11 +95,18 @@ export default function Homepage() {
 								alt=""
 							/>
 						</div>
-						<div className='py-2'>
-							<NavLink to={'/register'} className="bg-orange text-light px-4 py-2 rounded-md">
-								Enroll now <FontAwesomeIcon icon={faArrowRight} />{' '}
+						<div className="py-2">
+							<NavLink
+								to={'/register'}
+								className="bg-orange text-light px-4 py-4 rounded-md font-bold uppercase text-lg"
+							>
+								Register today{' '}
+								<FontAwesomeIcon icon={faArrowRight} />{' '}
 							</NavLink>
 						</div>
+					</div>
+					<div>
+						<img src={heroImage} alt="" />
 					</div>
 				</div>
 			</div>
@@ -107,15 +117,16 @@ export default function Homepage() {
 					<div className="flex gap-2 items-center justify-between w-full">
 						<div className="flex flex-col gap-2 w-full flex-1">
 							<h2 className="text-3xl font-bold">
-								Featured{' '}
-								<span className="text-orange-500">Courses</span>
+								EDUCATION FOR{' '}
+								<span className="text-orange-500">
+									EVERYONE
+								</span>
 							</h2>
 							<p>
-								Lorem ipsum dolor sit amet consectetur
-								adipisicing elit. Non aliquam facere possimus
-								ipsa voluptate illo, ex at sint necessitatibus
-								magnam pariatur reiciendis cupiditate eos nisi.
-								Quibusdam, explicabo ipsum? Similique, nisi?
+								Our Learning Management System (LMS) is a
+								comprehensive digital platform that provides a
+								seamless and engaging learning experience for
+								learners and instructors alike.
 							</p>
 						</div>
 
@@ -131,9 +142,9 @@ export default function Homepage() {
 							return (
 								<div className="bg-white shadow-md rounded-md">
 									<div className="flex flex-col gap-4">
-										<div className="h-48 bg-gray-300 rounded-md">
+										<div className="h-72 bg-gray-300 rounded-md">
 											<img
-												src="https://picsum.photos/600/600"
+												src={courseImage}
 												alt=""
 												className="h-full w-full object-cover rounded-md"
 											/>
@@ -144,7 +155,7 @@ export default function Homepage() {
 											</div>
 											<div className="flex gap-2 items-center">
 												<img
-													src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+													src={courseImage}
 													alt=""
 													className="w-10 h-10 rounded-full"
 												/>
@@ -189,10 +200,10 @@ export default function Homepage() {
 											</div>
 											<div className="flex flex-col gap-2">
 												<h2 className="text-sm font-bold">
-													Modern JavaScript
+												Scorm Courses
 												</h2>
 												<p className="text-xs">
-													Mern, React, Node, Express
+												Generate your desired course content with the help of Chomoka Studio.
 												</p>
 												<hr />
 												<div className="flex gap-2">
@@ -259,12 +270,10 @@ export default function Homepage() {
 					{/* Course catalogue */}
 					<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 py-4">
 						{[1, 2, 3, 4, 5, 6].map((_item, index) => (
-							<div className="shadow"
-								key={index}
-							>
+							<div className="shadow" key={index}>
 								<div>
 									<img
-										src="https://picsum.photos/400/400"
+										src="https://64.media.tumblr.com/30e486da00f271c09d4c2dc7c2e951a0/tumblr_on2ff7iVrz1w4f49to1_1280.jpg"
 										alt=""
 										className="h-48 w-full object-cover rounded-md"
 									/>
@@ -360,9 +369,7 @@ export default function Homepage() {
 					{/* Events */}
 					<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
 						{[1, 2, 3].map((_item, index) => (
-							<div className="shadow"
-								key={index}
-							>
+							<div className="shadow" key={index}>
 								<div>
 									<img
 										src="https://picsum.photos/400/400"
@@ -370,28 +377,26 @@ export default function Homepage() {
 										className="h-80 w-full object-cover rounded-md"
 									/>
 									<div className="flex flex-col gap-4 p-4">
-										<h1
-											className="text-xl font-bold"
-										>Global cyber security </h1>
-										<p
-											className="text-xs"
-										>
+										<h1 className="text-xl font-bold">
+											Global cyber security{' '}
+										</h1>
+										<p className="text-xs">
 											Over 100 lessons, 10 hours of video,
 											ranging from beginner to advanced.
 											Make your career in cyber security
 										</p>
-										<div className='flex flex-col text-xs'>
-											<div className='flex items-center gap-2'>
+										<div className="flex flex-col text-xs">
+											<div className="flex items-center gap-2">
 												<FontAwesomeIcon
 													icon={faUserClock}
-													color='orange'
+													color="orange"
 												/>
 												<div>7.00pm - 9.00pm</div>
 											</div>
-											<div className='flex items-center gap-2'>
+											<div className="flex items-center gap-2">
 												<FontAwesomeIcon
 													icon={faLocation}
-													color='orange'
+													color="orange"
 												/>
 												<div>Online</div>
 											</div>
@@ -401,14 +406,11 @@ export default function Homepage() {
 							</div>
 						))}
 					</div>
-					
 				</div>
 			</div>
 			{/* Course Instructors */}
-			<div className='bg-white py-10'>
-				<div className='max-w-7xl mx-auto flex flex-col gap-4'>
-
-				</div>
+			<div className="bg-white py-10">
+				<div className="max-w-7xl mx-auto flex flex-col gap-4"></div>
 			</div>
 		</div>
 	);

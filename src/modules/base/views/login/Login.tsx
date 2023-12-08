@@ -44,7 +44,7 @@ export default function Login() {
 						className='text-blue-500'
 						>Forgot Password?</a>
 					</div>
-					{/* Haven't enrolled enroll today */}
+					{/* Haven't enrolled Register */}
 					<div className="flex-1 text-center">
 						<p>
 							Don't have an account? <NavLink

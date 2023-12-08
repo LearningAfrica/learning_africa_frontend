@@ -6,7 +6,7 @@ export default function BaseFooter() {
 	const year = new Date().getFullYear();
 	return (
 		<div className="">
-			<div className="w-full bg-s-blue py-10">
+			<div className="w-full bg-cyan-800 py-10">
 				<div className="max-w-7xl mx-auto flex flex-col gap-2 md:gap-4 md:flex-row items-center py-4">
 					<div className="flex-1 flex flex-col gap-2">
 						{/* Logo */}

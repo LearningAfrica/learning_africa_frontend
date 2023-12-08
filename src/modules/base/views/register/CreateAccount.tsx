@@ -7,7 +7,7 @@ export default function CreateAccount() {
 			<div className="max-w-7xl mx-auto py-4 flex flex-col items-center justify-center min-h-[70vh]">
 				<div>
 					{/* Create account title */}
-					<h1 className="text-4xl font-bold">Enroll today</h1>
+					<h1 className="text-4xl font-bold">Register</h1>
 				</div>
 				<form action="" className="flex flex-col gap-4 p-4 max-w-2xl">
 					{/* First and last name */}

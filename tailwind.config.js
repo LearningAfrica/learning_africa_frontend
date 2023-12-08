@@ -16,7 +16,7 @@ export default {
 		},
 		extend: {
 			colors: {
-				primary: '#23262F',
+				primary: 'orange',
 				's-blue': '#0D3B66',
 				's-black': '#020A12',
 				light: '#F9F9F9',
