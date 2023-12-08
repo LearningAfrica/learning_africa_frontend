@@ -1,10 +1,5 @@
-import { FaFacebook } from "react-icons/fa6";
-import { FaXTwitter } from "react-icons/fa6";
-import { FaInstagram } from "react-icons/fa6";
-import { FaLinkedinIn } from "react-icons/fa6";
-import { FaWhatsapp } from "react-icons/fa6";
-import { FaPhoneAlt } from "react-icons/fa";
-import { MdEmail } from "react-icons/md";
+import { faMessage, faPhone } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export const navigation = [
   {
@@ -123,10 +118,10 @@ export const whatsNew = {
 
 export const footer = {
   socials: [
-    { name: "facebook", icon: <FaFacebook /> },
-    { name: "twitter", icon: <FaXTwitter /> },
-    { name: "instagram", icon: <FaInstagram /> },
-    { name: "linkedin", icon: <FaLinkedinIn /> },
+    { name: "facebook", icon: '<FaFacebook />' },
+    // { name: "twitter", icon: <FaXTwitter /> },
+    // { name: "instagram", icon: <FaInstagram /> },
+    // { name: "linkedin", icon: <FaLinkedinIn /> },
   ],
   links: [
     { name: "Home", link: "/" },
@@ -138,10 +133,10 @@ export const footer = {
     },
   ],
   contacts: [
-    { icon: <FaPhoneAlt />, contact: "0712345678" },
-    { icon: <FaWhatsapp />, contact: "0712345678" },
+    { icon: <FontAwesomeIcon icon={faPhone} />, contact: "0712345678" },
+    { icon: <FontAwesomeIcon icon={faPhone} />, contact: "0712345678" },
     {
-      icon: <MdEmail />,
+      icon: <FontAwesomeIcon icon={faMessage} />,
       contact: "info@learningafrica.com",
     },
   ],
