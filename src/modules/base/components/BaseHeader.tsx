@@ -1,5 +1,3 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBars } from '@fortawesome/free-solid-svg-icons';
 import { NavLink } from 'react-router-dom';
 export default function BaseHeader() {
 	return (

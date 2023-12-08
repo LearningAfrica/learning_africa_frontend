@@ -1,9 +1,10 @@
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { CgMenuRight, CgClose } from "react-icons/cg";
 
 import NavMobile from "./NavMobile";
 import { navigation } from "../home/Data";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faClose, faCog } from "@fortawesome/free-solid-svg-icons";
 
 const Header = () => {
   const [bg, setBg] = useState(false);
@@ -35,7 +36,7 @@ const Header = () => {
             onClick={() => setMobileNav(!mobileNav)}
             className="text-2xl text-white md:hidden lg:text-xl cursor-pointer"
           >
-            {mobileNav ? <CgClose /> : <CgMenuRight />}
+            {mobileNav ? <FontAwesomeIcon icon={faClose} /> : <FontAwesomeIcon icon={faCog} />}
           </div>
 
           <nav className="hidden md:flex">

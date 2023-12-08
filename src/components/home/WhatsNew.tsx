@@ -1,6 +1,6 @@
-import { FaGraduationCap } from "react-icons/fa6";
-
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { whatsNew } from "./Data";
+import { faGraduationCap } from "@fortawesome/free-solid-svg-icons";
 
 const WhatsNew = () => {
   const { caption, image, title, subtitle, newItems } = whatsNew;
@@ -28,7 +28,7 @@ const WhatsNew = () => {
               {newItems.map((item, index) => (
                 <div key={index} className="flex items-center gap-4 border">
                   <div className="inline-block mb-2 px-[10px] py-[10px] text-xl bg-[#cad8d8] rounded-full">
-                    <FaGraduationCap />
+                    <FontAwesomeIcon icon={faGraduationCap} />
                   </div>
                   <h4 className="mb-4 text-lg text-[#18181b]">{item.title}</h4>
                 </div>

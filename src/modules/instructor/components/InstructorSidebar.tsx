@@ -1,6 +1,10 @@
 import { NavLink } from 'react-router-dom';
-import { CiCircleChevLeft, CiCircleChevRight } from 'react-icons/ci';
 import { motion } from 'framer-motion';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+	faChevronLeft,
+	faChevronRight
+} from '@fortawesome/free-solid-svg-icons';
 const routes = [
 	{ label: 'Dashboard', path: '/instructor/dashboard', icon: 'dashboard' },
 	{ label: 'Profile', path: '/instructor/profile', icon: 'person' },
@@ -20,8 +24,6 @@ export default function InstructorSidebar({
 }: Props) {
 	return (
 		<motion.div
-		
-
 			className={`flex flex-col gap-2 p-2 border-r absolute h-screen z-50 bg-slate-300 ${
 				isSidebarOpen ? 'w-60' : 'w-20'
 			}`}
@@ -33,9 +35,12 @@ export default function InstructorSidebar({
 				onClick={() => setIsSidebarOpen(!isSidebarOpen)}
 			>
 				{isSidebarOpen ? (
-					<CiCircleChevLeft className="h-5 w-5" />
+					<FontAwesomeIcon icon={faChevronLeft} className="h-5 w-5" />
 				) : (
-					<CiCircleChevRight />
+					<FontAwesomeIcon
+						icon={faChevronRight}
+						className="h-5 w-5"
+					/>
 				)}
 			</motion.button>
 			{routes.map((route) => {

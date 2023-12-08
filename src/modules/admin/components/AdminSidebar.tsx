@@ -1,6 +1,7 @@
 import { NavLink } from 'react-router-dom';
-import { CiCircleChevLeft, CiCircleChevRight } from 'react-icons/ci';
 import { motion } from 'framer-motion';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
 const routes = [
 	{ label: 'Dashboard', path: '/admin/dashboard', icon: 'dashboard' },
 	{ label: 'Profile', path: '/admin/profile', icon: 'person' },
@@ -33,9 +34,9 @@ export default function AdminSidebar({
 				onClick={() => setIsSidebarOpen(!isSidebarOpen)}
 			>
 				{isSidebarOpen ? (
-					<CiCircleChevLeft className="h-5 w-5" />
-				) : (
-					<CiCircleChevRight />
+					<FontAwesomeIcon icon={faChevronLeft} className="h-5 w-5" />
+					) : (
+						<FontAwesomeIcon icon={faChevronRight} className="h-5 w-5" />
 				)}
 			</motion.button>
 			{routes.map((route) => {

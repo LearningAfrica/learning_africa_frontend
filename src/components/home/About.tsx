@@ -1,5 +1,3 @@
-import { FaAsterisk } from "react-icons/fa";
-
 import { about } from "./Data";
 
 const About = () => {
@@ -24,7 +22,7 @@ const About = () => {
 
             <h5 className="text-2xl font-semibold mb-4">We Exist For:</h5>
 
-            <div className="mb-8">
+            {/* <div className="mb-8">
               <div className="flex items-center gap-2 text-orange-500">
                 <FaAsterisk />
                 <p className="text-base text-black font-medium">
@@ -37,7 +35,7 @@ const About = () => {
                   Individuals as SMEs
                 </p>
               </div>
-            </div>
+            </div> */}
 
             <div>
               <button className="bg-orange hover:bg-green-600 px-[35px] py-[9px] text-xl rounded-md backdrop-blur-md transition">
