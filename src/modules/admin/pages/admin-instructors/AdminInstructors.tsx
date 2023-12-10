@@ -1,8 +1,14 @@
 import { instructorsData } from '@/components/data/instructors-data';
 import { faFacebook, faTwitter } from '@fortawesome/free-brands-svg-icons';
 import { faLinkedin } from '@fortawesome/free-brands-svg-icons/faLinkedin';
-import { faChevronLeft, faChevronRight, faSearch, faStar } from '@fortawesome/free-solid-svg-icons';
+import {
+	faChevronLeft,
+	faChevronRight,
+	faSearch,
+	faStar
+} from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { NavLink } from 'react-router-dom';
 
 export default function AdminInstructors() {
 	return (
@@ -77,14 +83,16 @@ export default function AdminInstructors() {
 							<div className="p-2 flex-1 flex flex-col gap-4">
 								<div className="flex flex-col gap-4">
 									<div className="flex justify-between items-center">
-										<div>
+										<NavLink to={`/admin/instructors/${ instructor.id }`}>
 											<h2 className="text-sm text-black font-bold">
-												Mary Kilobi
+												{instructor.first_name +
+													' ' +
+													instructor.last_name}
 											</h2>
 											<p className="text-xs">
 												{instructor.qualification}
 											</p>
-										</div>
+										</NavLink>
 										<div className="flex items-center gap-1 justify-center">
 											<h2 className="text-sm">4.5</h2>
 											<FontAwesomeIcon
@@ -94,8 +102,8 @@ export default function AdminInstructors() {
 										</div>
 									</div>
 								</div>
-								<p className="text-neutral-700">
-									{instructor.about}
+								<p className="text-neutral-700 text-clip">
+									{instructor.about.slice(0, 150) + '...'}
 								</p>
 								<div className="flex items-center justify-between">
 									<div className="text-orange-600 font-bold">
@@ -136,7 +144,7 @@ export default function AdminInstructors() {
 						</button>
 					</div>
 					<div className="flex items-center gap-2 p-2">
-						<span className='whitespace-nowrap'>Page 1 of 2</span>
+						<span className="whitespace-nowrap">Page 1 of 2</span>
 						<select
 							name=""
 							id=""

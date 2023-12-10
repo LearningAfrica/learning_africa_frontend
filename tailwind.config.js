@@ -31,7 +31,7 @@ export default {
 				pink: 'pink'
 			},
 			backgroundColor: {
-				orange: '#ff581f'
+				// orange: '#ff581f'
 			},
 			backgroundImage: {
 				hero: 'url("/images/hero-bg.jpg")',

@@ -37,7 +37,7 @@ export default function AdminSidebar({
 }: Props) {
 	return (
 		<motion.div
-			className="py-8 px-2 border-r h-screen absolute top-0 left-0 bg-slate-700 z-10 flex justify-between flex-col gap-4 text-white"
+			className="py-8 px-2 border-r h-screen absolute top-0 left-0 bg-black z-10 flex justify-between flex-col gap-4 text-white"
 			style={isSidebarOpen ? { width: 250 } : { width: 80 }}
 			initial={{ x: -250 }}
 			animate={{ x: 0 }}
@@ -50,11 +50,11 @@ export default function AdminSidebar({
 				onClick={() => setIsSidebarOpen(!isSidebarOpen)}
 			>
 				{isSidebarOpen ? (
-					<FontAwesomeIcon icon={faChevronLeft} className="h-2 w-5" />
+					<FontAwesomeIcon icon={faChevronLeft} className="h-2 w-5 text-black" />
 				) : (
 					<FontAwesomeIcon
 						icon={faChevronRight}
-						className="h-2 w-5"
+						className="h-2 w-5 text-black"
 					/>
 				)}
 			</motion.button>

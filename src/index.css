@@ -18,9 +18,9 @@ font-family: 'Rubik', sans-serif; */
   .subtitle {
     @apply text-[18px] lg:text-[20px] leading-relaxed mb-5 lg:mb-9;
   }
-  .admin-card-clip{
+  /* .admin-card-clip{
 	clip-path: polygon(39% 53%, 61% 0, 100% 0, 100% 70%, 100% 100%, 30% 100%, 0 100%, 0 53%);
-  }
+  } */
   table{
 	@apply w-full border-collapse border border-grey-2;
 
