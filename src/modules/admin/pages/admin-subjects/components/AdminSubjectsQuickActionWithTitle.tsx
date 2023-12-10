@@ -9,7 +9,7 @@ export default function AdminSubjectsQuickActionWithTitle() {
 			{/* <div>
 				<NavLink
 					to="/admin/subjects"
-					className="bg-orange py-2 text-light px-4 rounded-lg"
+					className="bg-orange-500 py-2 text-light px-4 rounded-lg"
 				>
 					Create subject
 				</NavLink>

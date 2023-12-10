@@ -31,13 +31,13 @@ const Hero = () => {
 
 						<div className="flex items-center gap-20 text-base font-medium mb-8">
 							<div className="flex gap-2 items-center">
-								<div className="inline-block px-1 py-1 rounded-full bg-orange text-white">
+								<div className="inline-block px-1 py-1 rounded-full bg-orange-500 text-white">
 									<FontAwesomeIcon icon={faCheck} size="2x" />
 								</div>
 								<h4>Unlimited Courses</h4>
 							</div>
 							<div className="flex gap-2 items-center">
-								<div className="inline-block px-1 py-1 rounded-full bg-orange text-white">
+								<div className="inline-block px-1 py-1 rounded-full bg-orange-500 text-white">
 									<FontAwesomeIcon icon={faCheck} size="2x" />
 								</div>
 								<h4>24/7 Support</h4>
@@ -45,7 +45,7 @@ const Hero = () => {
 						</div>
 
 						<div className="flex gap-8">
-							<button className="bg-orange hover:bg-green-600 px-[35px] py-[9px] mb-12 text-xl rounded-md backdrop-blur-md transition lg:px-[30px] lg:py-[8px] lg:mb-20 capitalize">
+							<button className="bg-orange-500 hover:bg-green-600 px-[35px] py-[9px] mb-12 text-xl rounded-md backdrop-blur-md transition lg:px-[30px] lg:py-[8px] lg:mb-20 capitalize">
 								{buttonText}
 							</button>
 

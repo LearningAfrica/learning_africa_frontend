@@ -16,7 +16,7 @@ export default function BaseNotFoundPage() {
 				<div>
 					<NavLink
 						to={'/'}
-						className="bg-orange text-white p-2 rounded flex items-center gap-2"
+						className="bg-orange-500 text-white p-2 rounded flex items-center gap-2"
 					>
 					<FontAwesomeIcon icon={faArrowLeft}	/>Go Back
 					</NavLink>

@@ -84,7 +84,7 @@ export default function AdminSingleInstructorView() {
 									key={item + 'experience'}
 									className="flex items-center gap-4"
 								>
-									<div className="border p-4 rounded-full bg-orange-100 text-orange-900">
+									<div className="border p-4 rounded-full bg-orange-500-100 text-orange-900">
 										<FontAwesomeIcon icon={faTrophy} className=''/>
 									</div>
 									<div>
@@ -183,7 +183,7 @@ export default function AdminSingleInstructorView() {
 							</div>
 						</div>
 						<div className="flex items-center gap-4">
-							<div className="h-12 w-12 border flex items-center justify-center bg-orange-100 text-orange-900">
+							<div className="h-12 w-12 border flex items-center justify-center bg-orange-500-100 text-orange-900">
 								<FontAwesomeIcon icon={faTrophy} />
 							</div>
 							<div>

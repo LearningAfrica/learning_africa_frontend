@@ -21,7 +21,7 @@ export default function AdminCreateSubject() {
 				</div>
 				<div>
 					{/* Submit */}
-					<button className="p-2 bg-orange text-white rounded-md w-full">
+					<button className="p-2 bg-orange-500 text-white rounded-md w-full">
 						Submit
 					</button>
 				</div>

@@ -38,7 +38,7 @@ const About = () => {
             </div> */}
 
             <div>
-              <button className="bg-orange hover:bg-green-600 px-[35px] py-[9px] text-xl rounded-md backdrop-blur-md transition">
+              <button className="bg-orange-500 hover:bg-green-600 px-[35px] py-[9px] text-xl rounded-md backdrop-blur-md transition">
                 {buttonText}
               </button>
             </div>
