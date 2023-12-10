@@ -42,7 +42,8 @@ export default {
 			},
 			fontFamily: {
 				poppins: ['Poppins', 'sans-serif'],
-				roboto: ['Roboto', 'sans-serif']
+				roboto: ['Roboto', 'sans-serif'],
+				rubik: ['Rubik', 'sans-serif']
 			}
 		}
 	},
