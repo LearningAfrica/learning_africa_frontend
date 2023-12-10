@@ -10,6 +10,8 @@ import AdminSubjects from './pages/admin-subjects/AdminSubjects';
 import AdminLearners from './pages/admin-learners/AdminLearners';
 import AdminInstructors from './pages/admin-instructors/AdminInstructors';
 import AdminCreateSubject from './pages/admin-subjects/components/AdminCreateSubject';
+import AdminInstructorsCreatePage from './pages/admin-instructors/components/AdminInstructorsCreatePage';
+import AdminSingleInstructorView from './pages/admin-instructors/components/AdminSingleInstructorView';
 
 const adminRouter: RouteObject = {
 	path: '/admin',
@@ -34,7 +36,21 @@ const adminRouter: RouteObject = {
 		},
 		{
 			path: '/admin/instructors',
-			element: <AdminInstructors />
+			element: <Outlet />,
+			children: [
+				{
+					path: '/admin/instructors',
+					element: <AdminInstructors />
+				},
+				{
+					path: '/admin/instructors/create',
+					element: <AdminInstructorsCreatePage />
+				},
+				{
+					path: '/admin/instructors/:id',
+					element: <AdminSingleInstructorView />
+				}
+			]
 		},
 		{
 			path: '/admin/settings',

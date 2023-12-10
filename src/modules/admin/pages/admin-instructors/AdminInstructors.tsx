@@ -1,136 +1,155 @@
-import {
-	faDownload,
-	faPlus,
-	faChevronLeft,
-	faChevronRight,
-	faEye
-} from '@fortawesome/free-solid-svg-icons';
+import { instructorsData } from '@/components/data/instructors-data';
+import { faFacebook, faTwitter } from '@fortawesome/free-brands-svg-icons';
+import { faLinkedin } from '@fortawesome/free-brands-svg-icons/faLinkedin';
+import { faChevronLeft, faChevronRight, faSearch, faStar } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Link } from 'react-router-dom';
-
-type Instructor = {
-	id: number;
-	first_name: string;
-	last_name: string;
-	qualification: string;
-	profile_image: string;
-	skills: string;
-};
-const instructors: Instructor[] = [
-	{
-		id: 1,
-		first_name: 'John',
-		last_name: 'Doe',
-		profile_image: 'https://picsum.photos/200',
-		qualification: 'BSc. Computer Science',
-		skills: 'HTML, CSS, JavaScript'
-	},
-	{
-		id: 2,
-		first_name: 'Jane',
-		last_name: 'Smith',
-		profile_image: 'https://picsum.photos/200',
-		qualification: 'BSc. Computer Science',
-		skills: 'HTML, CSS, JavaScript, Python'
-	}
-];
 
 export default function AdminInstructors() {
 	return (
-		<div>
-			<div className="border p-2">
-				<div className="flex justify-between py-2">
-					<form action="">
-						<input
-							type="text"
-							placeholder="Search..."
-							className="border p-2"
-						/>
+		<div className="p-4 flex flex-col gap-2 max-w-7xl mx-auto">
+			<div className="p-10 border">
+				<h1 className="text-center">List of Instructors</h1>
+			</div>
+			<div className="">
+				{/* Filter section */}
+				<div className="grid grid-cols-4 place-content-center gap-4 py-2">
+					<form>
+						<div className="border-neutral-300 bg-light border-[1px] px-2 py-1 flex flex-row-reverse items-center gap-2 rounded-md">
+							<label htmlFor="search-instructor">
+								<button className="bg-orange h-10 w-10 text-light rounded-md">
+									<FontAwesomeIcon
+										icon={faSearch}
+										className="text-lg"
+									/>
+								</button>
+							</label>
+							<input
+								type="text"
+								name="search-instructor"
+								id="search-instructor"
+								autoComplete=""
+								className="border p-2 flex-1 border-none outline-none focus:ring-0 bg-transparent"
+								placeholder="Search..."
+							/>
+						</div>
 					</form>
-					<div className="flex items-center gap-2">
-						<button className="bg-neutral-300 text-orange px-4 py-1 rounded-lg border flex items-center gap-2">
-							<FontAwesomeIcon
-								icon={faDownload}
-								className="text-lg"
-							/>
-							<span>Export</span>
-						</button>
-						<Link
-							to={'/admin/subjects/create'}
-							className="bg-neutral-300 text-orange px-4 py-1 rounded-lg border flex items-center gap-2"
+					<div>
+						{/* Filter */}
+						<select
+							name=""
+							id=""
+							className="border p-2 border-neutral-300 rounded-md h-full w-full"
 						>
-							<FontAwesomeIcon
-								icon={faPlus}
-								className="text-lg"
-							/>
-							<span>Add</span>
-						</Link>
+							<option value="">Filter</option>
+							<option value="">Filter</option>
+							<option value="">Filter</option>
+						</select>
+					</div>
+					<div>
+						{/* Sort */}
+						<select
+							name=""
+							id=""
+							className="border p-2 border-neutral-300 rounded-md w-full h-full"
+						>
+							<option value="">Sort</option>
+							<option value="">Sort</option>
+							<option value="">Sort</option>
+						</select>
+					</div>
+					<div>
+						{/* Actions */}
+						<button className="bg-orange text-white py-1 rounded-md h-full px-8">
+							Export
+						</button>
 					</div>
 				</div>
-				<table className="table border w-full border-collapse p-4">
-					<thead>
-						<tr>
-							<th className="text-center">Picture</th>
-							<th className="">First name</th>
-							<th className="">Last name</th>
-							<th className="">Qualification</th>
-							<th className="">Skills</th>
-							<th className="">Actions</th>
-						</tr>
-					</thead>
-					<tbody>
-						{instructors.map((instructor) => (
-							<tr key={instructor.id}>
-								{/* <td className="">{index + 1}</td> */}
-								<td className="">
-									<div className="flex justify-center">
-										{instructor.profile_image ? (
-											<img
-												src={instructor.profile_image}
-												alt=""
-												className="w-10 h-10 rounded-full"
+				<div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+					{instructorsData.map((instructor) => (
+						<div className="p-2 shadow-sm flex border gap-4 flex-col lg:flex-row">
+							<div>
+								<img
+									src={instructor.profile_image}
+									alt=""
+									className="w-full h-64 lg:w-48 lg:h-44 object-cover rounded"
+								/>
+							</div>
+							<div className="p-2 flex-1 flex flex-col gap-4">
+								<div className="flex flex-col gap-4">
+									<div className="flex justify-between items-center">
+										<div>
+											<h2 className="text-sm text-black font-bold">
+												Mary Kilobi
+											</h2>
+											<p className="text-xs">
+												{instructor.qualification}
+											</p>
+										</div>
+										<div className="flex items-center gap-1 justify-center">
+											<h2 className="text-sm">4.5</h2>
+											<FontAwesomeIcon
+												icon={faStar}
+												className="text-sm"
 											/>
-										) : (
-											<div className="w-10 h-10 rounded-full bg-neutral-300"></div>
-										)}
+										</div>
 									</div>
-								</td>
-								<td className="">{instructor.first_name}</td>
-								<td className="">{instructor.last_name}</td>
-								<td className="">{instructor.qualification}</td>
-								<td className="">{instructor.skills}</td>
-								<td className="">
-									<div className='flex items-center'>
-										<Link to={`/admin/instructors/${ instructor.id }`} className="border px-2 gap-1 flex items-center">
-											<FontAwesomeIcon icon={faEye} />
-											<span>view</span>
-										</Link>
-										{/* <button>Edit</button>
-										<button>Delete</button> */}
+								</div>
+								<p className="text-neutral-700">
+									{instructor.about}
+								</p>
+								<div className="flex items-center justify-between">
+									<div className="text-orange-600 font-bold">
+										{/* <h2 className='text-sm font-bold'>Skills</h2> */}
+										<p className="text-sm">
+											{instructor.skills}
+										</p>
 									</div>
-								</td>
-							</tr>
-						))}
-					</tbody>
-				</table>
-				<div className="p-2">
-					<div className="flex justify-between items-center">
-						<div className="flex items-center gap-2">
-							<button className="rounded-lg">
-								<FontAwesomeIcon icon={faChevronLeft} /> Prev
-							</button>
-							{/* Splitter vertical bar */}
-							<div className="border-r h-4 border-neutral-600"></div>
-							<button className=" rounded-lg">
-								Next <FontAwesomeIcon icon={faChevronRight} />
-							</button>
+									<div className="flex gap-2 items-center text-blue-600">
+										<FontAwesomeIcon
+											icon={faFacebook}
+											className="text-sm"
+										/>
+										<FontAwesomeIcon
+											icon={faTwitter}
+											className="text-sm"
+										/>
+										<FontAwesomeIcon
+											icon={faLinkedin}
+											className="text-sm"
+										/>
+									</div>
+								</div>
+							</div>
 						</div>
-						<div>
-							<p>Showing 1 to 10 of 100 entries</p>
-						</div>
+					))}
+				</div>
+				{/* Pagination details */}
+				<div className="flex items-center justify-between">
+					<div className="flex items-center gap-2">
+						<button className="rounded-lg">
+							<FontAwesomeIcon icon={faChevronLeft} /> Prev
+						</button>
+						{/* Splitter vertical bar */}
+						<div className="border-r h-4 border-neutral-600"></div>
+						<button className=" rounded-lg">
+							Next <FontAwesomeIcon icon={faChevronRight} />
+						</button>
+					</div>
+					<div className="flex items-center gap-2 p-2">
+						<span className='whitespace-nowrap'>Page 1 of 2</span>
+						<select
+							name=""
+							id=""
+							className="border p-2 border-neutral-300 rounded-md w-full h-full"
+						>
+							<option value="">20</option>
+							<option value="">30</option>
+							<option value="">40</option>
+						</select>
 					</div>
 				</div>
 			</div>
+			<div>{/* CTAs */}</div>
 		</div>
 	);
 }

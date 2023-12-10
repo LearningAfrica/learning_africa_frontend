@@ -47,5 +47,5 @@ export default {
 			}
 		}
 	},
-	plugins: []
+	plugins: [import('@tailwindcss/forms')]
 };
