@@ -1,18 +1,21 @@
 import React from 'react';
 import AdminSidebar from './AdminSidebar';
-import { motion } from "framer-motion"
+import { motion } from 'framer-motion';
+import AdminHeader from './AdminHeader';
 
 type Props = {
 	children: React.ReactNode;
 };
 
 export default function AdminWrapper({ children }: Props) {
-	const [isSidebarOpen, setIsSidebarOpen] = React.useState(false);
+	const [isSidebarOpen, setIsSidebarOpen] = React.useState(true);
 
 	React.useEffect(() => {
 		const handleResize = () => {
 			if (window.innerWidth > 768) {
 				setIsSidebarOpen(true);
+			}else{
+				setIsSidebarOpen(false);
 			}
 		};
 		window.addEventListener('resize', handleResize);
@@ -21,17 +24,22 @@ export default function AdminWrapper({ children }: Props) {
 		};
 	}, []);
 	return (
-		<div className='relative'>
-			<AdminSidebar 
+		<div className="relative grid ">
+			<AdminSidebar
 				isSidebarOpen={isSidebarOpen}
 				setIsSidebarOpen={setIsSidebarOpen}
 			/>
 			<motion.div
-				animate={{ x: isSidebarOpen ? 60 : 20 }}
-				transition={{ ease: "easeOut", duration: 0.3 }}
-
-				className={`absolute top-0 left-0 w-full h-full  ${ isSidebarOpen ? 'ml-60' : 'ml-20' } p-2`}
-			>{children}</motion.div>
+				style={
+					isSidebarOpen
+						? { marginLeft: 250, width: 'calc(100% - 250px)' }
+						: { marginLeft: 80, width: 'calc(100% - 80px)' }
+				}
+				className='p-4 h-screen overflow-y-auto bg-light'
+			>
+				<AdminHeader />
+				{children}
+			</motion.div>
 		</div>
 	);
 }

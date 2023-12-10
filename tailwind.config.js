@@ -31,7 +31,7 @@ export default {
 				pink: 'pink'
 			},
 			backgroundColor: {
-				orange: '#ff581f'
+				// orange: '#ff581f'
 			},
 			backgroundImage: {
 				hero: 'url("/images/hero-bg.jpg")',
@@ -42,9 +42,10 @@ export default {
 			},
 			fontFamily: {
 				poppins: ['Poppins', 'sans-serif'],
-				roboto: ['Roboto', 'sans-serif']
+				roboto: ['Roboto', 'sans-serif'],
+				rubik: ['Rubik', 'sans-serif']
 			}
 		}
 	},
-	plugins: []
+	plugins: [import('@tailwindcss/forms')]
 };
