@@ -84,8 +84,8 @@ export default function AdminSingleInstructorView() {
 									key={item + 'experience'}
 									className="flex items-center gap-4"
 								>
-									<div className="border p-4 rounded-full">
-										<FontAwesomeIcon icon={faTrophy} />
+									<div className="border p-4 rounded-full bg-orange-100 text-orange-900">
+										<FontAwesomeIcon icon={faTrophy} className=''/>
 									</div>
 									<div>
 										<h1 className="text-sm font-bold">
