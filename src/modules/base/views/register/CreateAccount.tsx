@@ -74,7 +74,7 @@ export default function CreateAccount() {
 					</div>
 					{/* Submit button */}
 					<div className="flex-1">
-						<button className="bg-orange text-white px-4 py-2 rounded">
+						<button className="bg-orange-500 text-white px-4 py-2 rounded">
 							Create Account
 						</button>
 					</div>

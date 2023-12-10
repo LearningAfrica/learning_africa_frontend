@@ -22,7 +22,7 @@ export default function AdminInstructors() {
 					<form>
 						<div className="border-neutral-300 bg-light border-[1px] px-2 py-1 flex flex-row-reverse items-center gap-2 rounded-md">
 							<label htmlFor="search-instructor">
-								<button className="bg-orange h-10 w-10 text-light rounded-md">
+								<button className="bg-orange-500 h-10 w-10 text-light rounded-md">
 									<FontAwesomeIcon
 										icon={faSearch}
 										className="text-lg"
@@ -65,7 +65,7 @@ export default function AdminInstructors() {
 					</div>
 					<div>
 						{/* Actions */}
-						<button className="bg-orange text-white py-1 rounded-md h-full px-8">
+						<button className="bg-orange-500 text-white py-1 rounded-md h-full px-8">
 							Export
 						</button>
 					</div>

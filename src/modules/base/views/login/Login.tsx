@@ -33,7 +33,7 @@ export default function Login() {
 					<div className="flex-1">
 						<button
 							type="submit"
-							className="w-full bg-orange text-white p-2 rounded"
+							className="w-full bg-orange-500 text-white p-2 rounded"
 						>
 							Login
 						</button>

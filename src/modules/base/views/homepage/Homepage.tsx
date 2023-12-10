@@ -98,7 +98,7 @@ export default function Homepage() {
 						<div className="py-2">
 							<NavLink
 								to={'/register'}
-								className="bg-orange text-light px-4 py-4 rounded-md font-bold uppercase text-lg"
+								className="bg-orange-500 text-light px-4 py-4 rounded-md font-bold uppercase text-lg"
 							>
 								Register today{' '}
 								<FontAwesomeIcon icon={faArrowRight} />{' '}
@@ -131,7 +131,7 @@ export default function Homepage() {
 						</div>
 
 						<div className="flex-1 flex justify-end">
-							<button className="bg-orange text-light px-4 py-2 rounded-md whitespace-nowrap">
+							<button className="bg-orange-500 text-light px-4 py-2 rounded-md whitespace-nowrap">
 								View All <FontAwesomeIcon icon={faArrowRight} />{' '}
 							</button>
 						</div>
@@ -150,7 +150,7 @@ export default function Homepage() {
 											/>
 										</div>
 										<div className="flex flex-col gap-2 relative p-4">
-											<div className="absolute right-2 p-2 border rounded-full -top-10 bg-orange text-light font-bold">
+											<div className="absolute right-2 p-2 border rounded-full -top-10 bg-orange-500 text-light font-bold">
 												<span>${(index + 1) * 10}</span>
 											</div>
 											<div className="flex gap-2 items-center">
@@ -261,7 +261,7 @@ export default function Homepage() {
 						</div>
 
 						<div className="flex-1 flex justify-end">
-							<button className="bg-orange text-light px-4 py-2 rounded-md whitespace-nowrap">
+							<button className="bg-orange-500 text-light px-4 py-2 rounded-md whitespace-nowrap">
 								All categories{' '}
 								<FontAwesomeIcon icon={faArrowRight} />{' '}
 							</button>
@@ -299,7 +299,7 @@ export default function Homepage() {
 			</div>
 			{/* Stats */}
 			<div
-				className="bg-cover bg-center bg-no-repeat bg-orange-500 bg-blend-overlay bg-fixed py-10"
+				className="bg-cover bg-center bg-no-repeat bg-orange-500-500 bg-blend-overlay bg-fixed py-10"
 				style={{
 					backgroundImage: `url('https://images.unsplash.com/photo-1656077217715-bdaeb06bd01f?q=80&w=1964&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')`
 				}}
@@ -361,7 +361,7 @@ export default function Homepage() {
 							</p>
 						</div>
 						<div className="flex items-center justify-end">
-							<button className="bg-orange text-light px-4 py-2 rounded-md whitespace-nowrap">
+							<button className="bg-orange-500 text-light px-4 py-2 rounded-md whitespace-nowrap">
 								View All <FontAwesomeIcon icon={faArrowRight} />{' '}
 							</button>
 						</div>
