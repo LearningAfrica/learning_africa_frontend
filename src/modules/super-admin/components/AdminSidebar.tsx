@@ -16,15 +16,15 @@ import { faUserGroup } from '@fortawesome/free-solid-svg-icons/faUserGroup';
 const routes = [
 	{
 		label: 'Dashboard',
-		path: '/admin',
+		path: '/super-admin',
 		icon: faDashboard
 	},
-	{ label: 'Subjects', path: '/admin/subjects', icon: faPencil },
-	{ label: 'Instructors', path: '/admin/instructors', icon: faUserGroup },
-	{ label: 'Courses', path: '/admin/courses', icon: faBook },
-	{ label: 'Learners', path: '/admin/learners', icon: faGraduationCap },
-	{ label: 'Profile', path: '/admin/profile', icon: faUser },
-	{ label: 'Settings', path: '/admin/settings', icon: faCog },
+	{ label: 'Subjects', path: '/super-admin/subjects', icon: faPencil },
+	{ label: 'Instructors', path: '/super-admin/instructors', icon: faUserGroup },
+	{ label: 'Courses', path: '/super-admin/courses', icon: faBook },
+	{ label: 'Learners', path: '/super-admin/learners', icon: faGraduationCap },
+	{ label: 'Profile', path: '/super-admin/profile', icon: faUser },
+	{ label: 'Settings', path: '/super-admin/settings', icon: faCog },
 ];
 
 type Props = {

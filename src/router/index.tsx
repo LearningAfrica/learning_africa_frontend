@@ -1,4 +1,4 @@
-import adminRouter from "@/modules/admin";
+import adminRouter from "@/modules/super-admin";
 import AppLayout from "@/components/layouts/AppLayout";
 import BaseErrorPage from "@/views/BaseErrorPage";
 import NotFoundPage from "@/views/NotFoundPage";

@@ -14,64 +14,64 @@ import AdminInstructorsCreatePage from './pages/admin-instructors/components/Adm
 import AdminSingleInstructorView from './pages/admin-instructors/components/AdminSingleInstructorView';
 
 const adminRouter: RouteObject = {
-	path: '/admin',
+	path: '/super-admin',
 	element: <AdminLayout />,
 	errorElement: <AdminErrorPage />,
 	children: [
 		{
-			path: '/admin',
+			path: '/super-admin',
 			element: <AdminDashboard />
 		},
 		{
-			path: '/admin/profile',
+			path: '/super-admin/profile',
 			element: <AdminProfile />
 		},
 		{
-			path: '/admin/learners',
+			path: '/super-admin/learners',
 			element: <AdminLearners />
 		},
 		{
-			path: '/admin/courses',
+			path: '/super-admin/courses',
 			element: <AdminCourses />
 		},
 		{
-			path: '/admin/instructors',
+			path: '/super-admin/instructors',
 			element: <Outlet />,
 			children: [
 				{
-					path: '/admin/instructors',
+					path: '/super-admin/instructors',
 					element: <AdminInstructors />
 				},
 				{
-					path: '/admin/instructors/create',
+					path: '/super-admin/instructors/create',
 					element: <AdminInstructorsCreatePage />
 				},
 				{
-					path: '/admin/instructors/:id',
+					path: '/super-admin/instructors/:id',
 					element: <AdminSingleInstructorView />
 				}
 			]
 		},
 		{
-			path: '/admin/settings',
+			path: '/super-admin/settings',
 			element: <AdminSettings />
 		},
 		{
-			path: '/admin/subjects',
+			path: '/super-admin/subjects',
 			element: <Outlet />,
 			children: [
 				{
-					path: '/admin/subjects',
+					path: '/super-admin/subjects',
 					element: <AdminSubjects />
 				},
 				{
-					path: '/admin/subjects/create',
+					path: '/super-admin/subjects/create',
 					element: <AdminCreateSubject />
 				}
 			]
 		},
 		{
-			path: '/admin/*',
+			path: '/super-admin/*',
 			element: <AdminUnFoundPage />
 		}
 	]
