@@ -24,7 +24,7 @@ export default function AdminWrapper({ children }: Props) {
 		};
 	}, []);
 	return (
-		<div className="relative grid ">
+		<div className="relative grid bg-neutral-300">
 			<AdminSidebar
 				isSidebarOpen={isSidebarOpen}
 				setIsSidebarOpen={setIsSidebarOpen}

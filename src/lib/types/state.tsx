@@ -5,7 +5,7 @@ export type UserInterface = {
 	_id: string;
 	firstName: string;
 	lastName: string;
-	email: string;
+	email: string; 
 	phone: string;
 	role: string;
 	organization: string;

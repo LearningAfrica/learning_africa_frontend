@@ -19,7 +19,7 @@ const routes = [
 		path: '/super-admin',
 		icon: faDashboard
 	},
-	{ label: 'Subjects', path: '/super-admin/subjects', icon: faPencil },
+	{ label: 'Categories', path: '/super-admin/subjects', icon: faPencil },
 	{ label: 'Instructors', path: '/super-admin/instructors', icon: faUserGroup },
 	{ label: 'Courses', path: '/super-admin/courses', icon: faBook },
 	{ label: 'Learners', path: '/super-admin/learners', icon: faGraduationCap },
