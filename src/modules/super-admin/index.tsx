@@ -10,8 +10,13 @@ import AdminSubjects from './pages/admin-subjects/AdminSubjects';
 import AdminLearners from './pages/admin-learners/AdminLearners';
 import AdminInstructors from './pages/admin-instructors/AdminInstructors';
 import AdminCreateSubject from './pages/admin-subjects/components/AdminCreateSubject';
-import AdminInstructorsCreatePage from './pages/admin-instructors/components/AdminInstructorsCreatePage';
-import AdminSingleInstructorView from './pages/admin-instructors/components/AdminSingleInstructorView';
+import AdminOrganizations from './pages/admin-organizations/AdminOrganizations';
+import AdminCreateOrganization from './pages/admin-organizations/AdminCreateOrganization';
+import AdminUpdateOrganization from './pages/admin-organizations/AdminUpdateOrganization';
+import AdminOrganizationSingleView from './pages/admin-organizations/AdminOrganizationSingleView';
+import AdminCreateInstructor from './pages/admin-instructors/AdminCreateInstructor';
+import AdminInstructorsUpdate from './pages/admin-instructors/AdminInstructorsUpdate';
+import AdminInstructorsSingleView from './pages/admin-instructors/AdminInstructorsSingleView';
 
 const adminRouter: RouteObject = {
 	path: '/super-admin',
@@ -21,6 +26,28 @@ const adminRouter: RouteObject = {
 		{
 			path: '/super-admin',
 			element: <AdminDashboard />
+		},
+		{
+			path: '/super-admin/organizations',
+			element: <Outlet />,
+			children: [
+				{
+					path: '/super-admin/organizations',
+					element: <AdminOrganizations />
+				},
+				{
+					path: '/super-admin/organizations/create',
+					element: <AdminCreateOrganization />
+				},
+				{
+					path: '/super-admin/organizations/:id/edit',
+					element: <AdminUpdateOrganization />
+				},
+				{
+					path: '/super-admin/organizations/:id/view',
+					element: <AdminOrganizationSingleView />
+				}
+			]
 		},
 		{
 			path: '/super-admin/profile',
@@ -44,11 +71,15 @@ const adminRouter: RouteObject = {
 				},
 				{
 					path: '/super-admin/instructors/create',
-					element: <AdminInstructorsCreatePage />
+					element: <AdminCreateInstructor />
 				},
 				{
-					path: '/super-admin/instructors/:id',
-					element: <AdminSingleInstructorView />
+					path: '/super-admin/instructors/:id/edit',
+					element: <AdminInstructorsUpdate />
+				},
+				{
+					path: '/super-admin/instructors/:id/view',
+					element: <AdminInstructorsSingleView />
 				}
 			]
 		},

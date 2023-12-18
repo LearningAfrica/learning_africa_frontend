@@ -3,25 +3,34 @@ import { motion } from 'framer-motion';
 import profile from '@/assets/1.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
-	faBook,
 	faChevronLeft,
 	faChevronRight,
 	faCog,
 	faGraduationCap,
+	faHourglass,
+	faPenSquare,
 	faPencil,
 	faUser
 } from '@fortawesome/free-solid-svg-icons';
 import { faDashboard } from '@fortawesome/free-solid-svg-icons/faDashboard';
 import { faUserGroup } from '@fortawesome/free-solid-svg-icons/faUserGroup';
+import { faDeskpro } from '@fortawesome/free-brands-svg-icons';
 const routes = [
 	{
 		label: 'Dashboard',
 		path: '/super-admin',
 		icon: faDashboard
 	},
-	{ label: 'Categories', path: '/super-admin/subjects', icon: faPencil },
+	{ label: 'Organizations', path: '/super-admin/organizations', icon: faHourglass },
+	{ label: 'Create organization', path: '/super-admin/subjects', icon: faPencil },
+	{ label: 'Course Categories', path: '/super-admin/subjects', icon: faDeskpro },
+	{ label: 'Create category', path: '/super-admin/subjects', icon: faPencil },
+	{ label: 'Courses', path: '/super-admin/subjects', icon: faGraduationCap },
+	{ label: 'Create course', path: '/super-admin/subjects', icon: faPencil },
+	{ label: 'Students', path: '/super-admin/subjects', icon: faUser },
+	{ label: 'Create student', path: '/super-admin/subjects', icon: faPencil },
 	{ label: 'Instructors', path: '/super-admin/instructors', icon: faUserGroup },
-	{ label: 'Courses', path: '/super-admin/courses', icon: faBook },
+	{ label: 'Create Instructor', path: '/super-admin/courses', icon: faPenSquare },
 	{ label: 'Learners', path: '/super-admin/learners', icon: faGraduationCap },
 	{ label: 'Profile', path: '/super-admin/profile', icon: faUser },
 	{ label: 'Settings', path: '/super-admin/settings', icon: faCog },

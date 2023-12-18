@@ -2,16 +2,30 @@ import { NavLink } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
+	faBook,
 	faChevronLeft,
-	faChevronRight
+	faChevronRight,
+	faCog,
+	faDashboard,
+	faPerson,
+	faUserGroup
 } from '@fortawesome/free-solid-svg-icons';
+import SidebarLinkItem from '@/components/SidebarLinkItem';
+import React from 'react';
 const routes = [
-	{ label: 'Dashboard', path: '/instructor/dashboard', icon: 'dashboard' },
-	{ label: 'Profile', path: '/instructor/profile', icon: 'person' },
-	{ label: 'Users', path: '/instructor/users', icon: 'people' },
-	{ label: 'Courses', path: '/instructor/courses', icon: 'book' },
-	{ label: 'Settings', path: '/instructor/settings', icon: 'settings' },
-	{ label: 'NA', path: '/instructor/na', icon: 'na' }
+	{ id: 1, label: 'Dashboard', path: '/instructor/dashboard', icon: faDashboard },
+	{ id: 2, label: 'Profile', path: '/instructor/profile', icon: faPerson },
+	{
+		id: 3, label: 'Users', path: '/instructor/users', icon: faUserGroup,
+		children: [
+			{ id: 1, label: 'Users', path: '/instructor/users', icon: faUserGroup },
+			{ id: 2, label: 'Roles', path: '/instructor/roles', icon: faUserGroup },
+			{ id: 3, label: 'Permissions', path: '/instructor/permissions', icon: faUserGroup }
+		]
+	},
+	{ id: 4, label: 'Courses', path: '/instructor/courses', icon: faBook },
+	{ id: 5, label: 'Settings', path: '/instructor/settings', icon: faCog },
+	{ id: 6, label: 'NA', path: '/instructor/na', icon: 'na' }
 ];
 
 type Props = {
@@ -22,11 +36,18 @@ export default function InstructorSidebar({
 	isSidebarOpen,
 	setIsSidebarOpen
 }: Props) {
+	const toggleSidebar = () => {
+		setIsSidebarOpen(!isSidebarOpen);
+	}
+	const [activeItem, setActiveItem] = React.useState('dashboard');
+
+	const onToggle = (id: string) => {
+		setActiveItem(id);
+	}
 	return (
 		<motion.div
-			className={`flex flex-col gap-2 p-2 border-r absolute h-screen z-50 bg-slate-300 ${
-				isSidebarOpen ? 'w-60' : 'w-20'
-			}`}
+			className={`flex flex-col gap-2 p-2 border-r absolute h-screen z-50 bg-slate-300 ${isSidebarOpen ? 'w-60' : 'w-20'
+				}`}
 		>
 			<motion.button
 				animate={{ x: isSidebarOpen ? 60 : 20 }}
@@ -45,17 +66,17 @@ export default function InstructorSidebar({
 			</motion.button>
 			{routes.map((route) => {
 				return (
-					<NavLink
-						to={route.path}
-						key={route.path}
-						className={({ isActive, isPending }) =>
-							isPending ? 'pending' : isActive ? 'active' : ''
-						}
-					>
-						<span>{route.label}</span>
-					</NavLink>
+					<SidebarLinkItem
+						href={route.path}
+						id={route.id.toString()}
+						onToggle={() => { }}
+						title={route.label}
+						isActive={true}
+						isChildActive={true}
+						key={route.id} />
 				);
 			})}
+
 		</motion.div>
 	);
 }

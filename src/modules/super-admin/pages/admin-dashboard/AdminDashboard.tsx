@@ -61,7 +61,7 @@ export default function AdminDashboard() {
 
 										{
 											[1, 2, 3, 4].map((item) => (
-												<button className={`border border-purple-300 px-1 ${item == 1 ? 'bg-purple-900 text-purple-100' : 'text-purple-900 bg-purple-100'}`}>{item}M</button>
+												<button className={`border border-purple-300 px-1 ${ item == 1 ? 'bg-purple-900 text-purple-100' : 'text-purple-900 bg-purple-100' }`}>{item}M</button>
 											))
 										}
 									</div>
