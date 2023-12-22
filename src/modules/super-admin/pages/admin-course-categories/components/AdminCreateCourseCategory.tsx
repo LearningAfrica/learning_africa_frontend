@@ -3,15 +3,15 @@ export default function AdminCreateSubject() {
 		<div className="w-full p-10 min-h-screen flex items-center gap-4 flex-col">
 			<form
 				action=""
-				className="w-full max-w-2xl shadow flex flex-col gap-4 px-4 py-8"
+				className="w-full max-w-2xl shadow flex flex-col gap-4 px-4 py-8 border"
 			>
 				<div>
 					<h1 className="text-2xl text-center font-semibold">
-						Create a new Subject
+						Create a new course category
 					</h1>
 				</div>
 				<div className="w-full flex flex-col gap-4">
-					<label htmlFor="title" className="text-lg">Subject Name</label>
+					<label htmlFor="title" className="text-lg">Category Name</label>
 					<input
 						type="text"
 						name="title"

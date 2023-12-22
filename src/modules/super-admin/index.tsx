@@ -6,10 +6,10 @@ import AdminProfile from './pages/admin-profile/AdminProfile';
 import AdminSettings from './pages/AdminSettings';
 import AdminCourses from './pages/admin-courses/AdminCourses';
 import AdminErrorPage from './error-pages/AdminErrorPage';
-import AdminSubjects from './pages/admin-subjects/AdminSubjects';
+import AdminSubjects from './pages/admin-course-categories/AdminSubjects';
 import AdminLearners from './pages/admin-learners/AdminLearners';
 import AdminInstructors from './pages/admin-instructors/AdminInstructors';
-import AdminCreateSubject from './pages/admin-subjects/components/AdminCreateSubject';
+import AdminCreateSubject from './pages/admin-course-categories/components/AdminCreateCourseCategory';
 import AdminOrganizations from './pages/admin-organizations/AdminOrganizations';
 import AdminCreateOrganization from './pages/admin-organizations/AdminCreateOrganization';
 import AdminUpdateOrganization from './pages/admin-organizations/AdminUpdateOrganization';
@@ -17,6 +17,7 @@ import AdminOrganizationSingleView from './pages/admin-organizations/AdminOrgani
 import AdminCreateInstructor from './pages/admin-instructors/AdminCreateInstructor';
 import AdminInstructorsUpdate from './pages/admin-instructors/AdminInstructorsUpdate';
 import AdminInstructorsSingleView from './pages/admin-instructors/AdminInstructorsSingleView';
+import AdminCreateAdminCourse from './pages/admin-courses/components/AdminCreateAdminCourse';
 
 const adminRouter: RouteObject = {
 	path: '/super-admin',
@@ -59,7 +60,18 @@ const adminRouter: RouteObject = {
 		},
 		{
 			path: '/super-admin/courses',
-			element: <AdminCourses />
+			element: <Outlet />,
+			children: [
+				{
+					path: '/super-admin/courses',
+					element: <AdminCourses />,
+				},
+				{
+					path: '/super-admin/courses/create',
+					element: <AdminCreateAdminCourse />,
+
+				}
+			]
 		},
 		{
 			path: '/super-admin/instructors',
@@ -88,15 +100,15 @@ const adminRouter: RouteObject = {
 			element: <AdminSettings />
 		},
 		{
-			path: '/super-admin/subjects',
+			path: '/super-admin/course-categories',
 			element: <Outlet />,
 			children: [
 				{
-					path: '/super-admin/subjects',
+					path: '/super-admin/course-categories',
 					element: <AdminSubjects />
 				},
 				{
-					path: '/super-admin/subjects/create',
+					path: '/super-admin/course-categories/create',
 					element: <AdminCreateSubject />
 				}
 			]

@@ -22,7 +22,7 @@ export default function AdminCreateOrganization() {
 		<div className="p-4 flex flex-col gap-4">
 			<div className="flex items-center flex-col gap-4 justify-between">
 				<div>
-					<h2 className="text-2xl font-bold">Update Organization</h2>
+					<h2 className="text-2xl font-bold">Create Organization</h2>
 				</div>
 				<form
 					action=""
@@ -34,6 +34,7 @@ export default function AdminCreateOrganization() {
 							<input
 								type="text"
 								className="border p-2 rounded"
+								placeholder='e.g. "Learning Africa"'
 								value={formData?.name}
 								onChange={handleInputChange}
 							/>
@@ -44,17 +45,21 @@ export default function AdminCreateOrganization() {
 								type="text"
 								className="border p-2 rounded"
 								value={formData?.admin}
+								placeholder='e.g. "John Doe"'
 								onChange={handleInputChange}
 							/>
 						</div>
 					</div>
 					<div className="flex justify-start gap-2 my-4">
-						<button
+						{/* <button
 							className="bg-blue-500 text-white px-2 py-1 rounded-full"
 							onClick={() => {}}
 						>
 							Create Organization
-						</button>
+						</button> */}
+						<button className="p-2 bg-orange-500 text-white rounded-md w-full">
+						Create Organization
+					</button>
 					</div>
 				</form>
 			</div>

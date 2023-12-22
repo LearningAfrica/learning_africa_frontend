@@ -12,36 +12,36 @@ Super admin has the following abilities:
 Modules
 ```ts
 type User = {
-	Id: int,
-	Username: string,
-	Email: email,
-	First_name: string,
-	Last_name: string,
-	Is_super_admin: boolean,
-	Is_admin: boolean,
-	Is_instructor: boolean,
-	Is_student: boolean
+	id: int,
+	username: string,
+	email: email,
+	first_name: string,
+	last_name: string,
+	is_super_admin: boolean,
+	is_admin: boolean,
+	is_instructor: boolean,
+	is_student: boolean
 }
 
 type SuperAdmin = {
-	User = id
+	user = id
 }
 
 type Admin = {
-	User = id
+	user = id
 }
 
 type Instructor = {
-	User = id
+	user = id
 }
 
 type Student = {
-	User = id
+	user = id
 }
 
 type Organization = {
-	Id: int,
-	Name: string,
-	Admin: string
+	id: int,
+	name: string,
+	admin: string
 }
 ```

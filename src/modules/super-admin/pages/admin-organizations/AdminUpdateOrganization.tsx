@@ -24,7 +24,7 @@ export default function AdminUpdateOrganization() {
 		// fetch organization data here
 	}, [params.id]);
 	const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-		setFormData(prev=>({...prev!, [e.target.name]: e.target.value} as OrganizationType));
+		setFormData(prev => ({ ...prev!, [e.target.name]: e.target.value } as OrganizationType));
 	};
 	return (
 		<div className="p-4 flex flex-col gap-4">
@@ -59,10 +59,15 @@ export default function AdminUpdateOrganization() {
 							</div>
 						</div>
 						<div className="flex justify-start gap-2 my-4">
-							<button
+							{/* <button
 								className="bg-blue-500 text-white px-2 py-1 rounded-full"
 								onClick={() => {}}
 							>
+								Update Organization
+							</button> */}
+							<button
+								onClick={() => { }}
+								className="p-2 bg-orange-500 text-white rounded-md w-full">
 								Update Organization
 							</button>
 						</div>

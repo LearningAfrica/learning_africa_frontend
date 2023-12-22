@@ -60,7 +60,7 @@ export default function AdminSubjectsDataTable() {
 							<span>Export</span>
 						</button>
 						<Link
-							to={'/admin/subjects/create'}
+							to={'/super-admin/course-categories/create'}
 							className="bg-neutral-300 text-orange px-4 py-1 rounded-lg border flex items-center gap-2"
 						>
 							<FontAwesomeIcon
