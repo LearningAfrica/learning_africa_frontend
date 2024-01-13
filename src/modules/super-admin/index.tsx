@@ -18,6 +18,7 @@ import AdminCreateInstructor from './pages/admin-instructors/AdminCreateInstruct
 import AdminInstructorsUpdate from './pages/admin-instructors/AdminInstructorsUpdate';
 import AdminInstructorsSingleView from './pages/admin-instructors/AdminInstructorsSingleView';
 import AdminCreateAdminCourse from './pages/admin-courses/components/AdminCreateAdminCourse';
+import ViewCourse from './pages/admin-courses/components/ViewCourse';
 
 const adminRouter: RouteObject = {
 	path: '/super-admin',
@@ -69,6 +70,16 @@ const adminRouter: RouteObject = {
 				{
 					path: '/super-admin/courses/create',
 					element: <AdminCreateAdminCourse />,
+
+				},
+				{
+					path: '/super-admin/courses/:id/edit',
+					element: <AdminCreateAdminCourse />,
+
+				},
+				{
+					path: '/super-admin/courses/:id/view',
+					element: <ViewCourse />,
 
 				}
 			]
