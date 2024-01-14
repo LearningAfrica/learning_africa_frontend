@@ -7,7 +7,7 @@ font-family: 'Roboto', sans-serif;
 font-family: 'Rubik', sans-serif; */
 @layer base {
   body {
-    @apply bg-grey-3 text-base leading-relaxed font-rubik;
+    @apply text-base leading-relaxed font-rubik;
   }
   .section {
     @apply py-[50px] lg:py-[70px];
@@ -22,16 +22,16 @@ font-family: 'Rubik', sans-serif; */
 	clip-path: polygon(39% 53%, 61% 0, 100% 0, 100% 70%, 100% 100%, 30% 100%, 0 100%, 0 53%);
   } */
   table{
-	@apply w-full border-collapse border border-grey-2;
+	@apply w-full border-collapse border;
 
   }
   th{
-	@apply text-left px-4 py-2 border border-grey-2;
+	@apply text-left px-4 py-2 border;
   }
   td{
-	@apply text-left px-4 py-2 border border-grey-2;
+	@apply text-left px-4 py-2 border;
   }
   tr{
-	@apply border border-grey-2;
+	@apply border;
   }
 }
