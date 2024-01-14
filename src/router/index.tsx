@@ -1,21 +1,32 @@
-import Homepage from "@/client/home-page/Homepage";
-import {  RouteObject, createBrowserRouter } from "react-router-dom";
+import Homepage from '@/client/home-page/Homepage';
+import StudentDashboard from '@/client/student-dashboard/StudentDashboard';
+import { Outlet, RouteObject, createBrowserRouter } from 'react-router-dom';
 
 function wrapRouters(routes: RouteObject[]) {
-    const router = createBrowserRouter([{
-        path: "/",
-        element: <Homepage/>,
-        children: routes,
-    }, {
-        path: "*",
-        element: <></>
-    }])
+	const router = createBrowserRouter([
+		{
+			path: '/',
+			element: <Outlet />,
+			children: routes
+		},
+		{
+			path: '*',
+			element: <></>
+		}
+	]);
 
-    return router;
+	return router;
 }
 
-
-
-const router = wrapRouters([])
+const router = wrapRouters([
+	{
+		path: '/',
+		element: <Homepage />
+	},
+	{
+		path: '/student-dashboard',
+		element: <StudentDashboard />
+	}
+]);
 
 export default router;

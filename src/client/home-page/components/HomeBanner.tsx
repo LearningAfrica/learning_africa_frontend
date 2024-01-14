@@ -1,4 +1,5 @@
 import assets from '@/lib/constants/assets';
+import { NavLink } from 'react-router-dom';
 
 export default function HomeBanner() {
 	return (
@@ -24,9 +25,12 @@ export default function HomeBanner() {
 						career
 					</p>
 					<div className="flex gap-4">
-						<button className="bg-primary text-white px-8 py-4 rounded-md">
+						<NavLink
+							to={'/student-dashboard'}
+							className="bg-primary text-white px-8 py-4 rounded-md"
+						>
 							Get Started
-						</button>
+						</NavLink>
 						<button className="bg-white text-primary px-8 py-4 rounded-md border-primary border-1">
 							Learn More
 						</button>
