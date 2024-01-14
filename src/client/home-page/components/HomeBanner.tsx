@@ -8,7 +8,7 @@ export default function HomeBanner() {
 				backgroundSize: 'cover',
 				backgroundPosition: 'center',
 				backgroundRepeat: 'no-repeat',
-				backgroundAttachment: 'fixed',
+				backgroundAttachment: 'fixed'
 			}}
 			className="w-full bg-primary bg-blend-overlay bg-opacity-10"
 		>
@@ -32,12 +32,18 @@ export default function HomeBanner() {
 						</button>
 					</div>
 				</div>
-				<div>
+				<div className="relative">
 					<img
 						className="w-full h-full"
 						src={assets.images.img2}
 						alt="header"
 					/>
+					<div className="absolute top-0 left-80 -z-[1] animate-ping rounded-full w-40 h-40 bg-primary bg-opacity-50"></div>
+					<div className="absolute top-0 left-0 rounded-full w-20 h-20 bg-green-600 bg-opacity-50"></div>
+					<div className="absolute top-0 left-0 rounded-full w-20 h-20 bg-primary bg-opacity-50"></div>
+					<div className="absolute top-20 right-10 rounded-full w-20 h-20 bg-blue-400 bg-opacity-50"></div>
+					<div className="absolute top-10 left-0 rounded-full w-20 h-20 bg-red-400 -z-[1] bg-opacity-50"></div>
+					<div className="absolute right-0 bottom-0 rounded-full animate-bounce w-64 -z-[1] h-20 bg-primary bg-opacity-50"></div>
 				</div>
 			</div>
 		</div>
