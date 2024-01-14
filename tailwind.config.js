@@ -16,19 +16,9 @@ export default {
 		},
 		extend: {
 			colors: {
-				primary: 'orange',
-				's-blue': '#0D3B66',
-				's-black': '#020A12',
-				light: '#F9F9F9',
-				accent: '#286F6C',
-				grey: {
-					DEFAULT: '#919297',
-					1: '#D9D9D9',
-					2: '#E7E9EB',
-					3: '#F5F5F5'
-				},
-				white: '#fff',
-				pink: 'pink'
+				primary: '#f57328',
+				secondary: '#f57328',
+				accent: '#f57328'
 			},
 			backgroundColor: {
 				// orange: '#ff581f'

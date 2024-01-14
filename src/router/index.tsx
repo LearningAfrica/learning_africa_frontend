@@ -1,28 +1,43 @@
-import adminRouter from "@/modules/admin";
-import AppLayout from "@/components/layouts/AppLayout";
-import BaseErrorPage from "@/views/BaseErrorPage";
-import NotFoundPage from "@/views/NotFoundPage";
-import { RouteObject, createBrowserRouter } from "react-router-dom";
-import instructorRouter from "@/modules/instructor";
-import studentRouter from "@/modules/students";
-import baseRoutes from "@/modules/base";
+import Homepage from '@/client/home-page/Homepage';
+import StudentDashboard from '@/client/student-dashboard/StudentDashboard';
+import StudentDashBoardStats from '@/client/student-dashboard/components/StudentDashBoardStats';
+import { Outlet, RouteObject, createBrowserRouter } from 'react-router-dom';
 
-function wrapRouters (routes: RouteObject[]) {
-    const router = createBrowserRouter([{
-        path: "/",
-        element: <AppLayout />,
-        children: routes,
-        errorElement: <BaseErrorPage/>
-    }, {
-        path: "*",
-        element: <NotFoundPage/>
-    }])
+function wrapRouters(routes: RouteObject[]) {
+	const router = createBrowserRouter([
+		{
+			path: '/',
+			element: <Outlet />,
+			children: routes
+		},
+		{
+			path: '*',
+			element: <></>
+		}
+	]);
 
-    return router;
+	return router;
 }
 
-
-
-const router = wrapRouters([baseRoutes,adminRouter,instructorRouter,studentRouter])
+const router = wrapRouters([
+	{
+		path: '/',
+		element: <Homepage />
+	},
+	{
+		path: '/student-dashboard',
+		element: <StudentDashboard />,
+		children: [
+			{
+				path: '/student-dashboard',
+				element: <StudentDashBoardStats />
+			},
+			{
+				path: '*',
+				element: <></>
+			}
+		]
+	}
+]);
 
 export default router;
