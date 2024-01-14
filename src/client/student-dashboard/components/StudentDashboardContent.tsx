@@ -1,4 +1,4 @@
-import React from 'react';
+import { Outlet } from 'react-router-dom';
 
 export default function StudentDashboardContent() {
 	return (
@@ -7,7 +7,9 @@ export default function StudentDashboardContent() {
 				width: 'calc(100vw - 64px)',
 				height: 'calc(100vh - 64px)'
 			}}
-			className="bg-gray-100 overflow-y-scroll"
-		></div>
+			className="overflow-y-scroll bg-neutral-100"
+		>
+			<Outlet />
+		</div>
 	);
 }

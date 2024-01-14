@@ -1,6 +1,7 @@
 import { cn } from '@/lib/utils/cn';
 import { faBars, faBell, faMessage } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { NavLink } from 'react-router-dom';
 
 export default function StudentDashboardHeader() {
 	return (
@@ -9,7 +10,7 @@ export default function StudentDashboardHeader() {
 				<button className="p-4 bg-primary h-full">
 					<FontAwesomeIcon icon={faBars} />
 				</button>
-				<div className="flex items-center">
+				<NavLink to={'/'} className="flex items-center">
 					<img
 						className="w-8 h-8 rounded-full"
 						src="https://avatars.githubusercontent.com/u/150797856?s=200&v=4"
@@ -22,7 +23,7 @@ export default function StudentDashboardHeader() {
 					>
 						Learning Africa
 					</div>
-				</div>
+				</NavLink>
 			</div>
 			<div className="flex gap-2 items-center">
 				<div className="relative flex items-center">

@@ -1,5 +1,6 @@
 import Homepage from '@/client/home-page/Homepage';
 import StudentDashboard from '@/client/student-dashboard/StudentDashboard';
+import StudentDashBoardStats from '@/client/student-dashboard/components/StudentDashBoardStats';
 import { Outlet, RouteObject, createBrowserRouter } from 'react-router-dom';
 
 function wrapRouters(routes: RouteObject[]) {
@@ -25,7 +26,17 @@ const router = wrapRouters([
 	},
 	{
 		path: '/student-dashboard',
-		element: <StudentDashboard />
+		element: <StudentDashboard />,
+		children: [
+			{
+				path: '/student-dashboard',
+				element: <StudentDashBoardStats />
+			},
+			{
+				path: '*',
+				element: <></>
+			}
+		]
 	}
 ]);
 
