@@ -4,23 +4,23 @@ import React from 'react';
 
 function StudentDashboardNotification() {
 	return (
-		<div>
+		<div className='p-2'>
 			<div className="mt-5 flex flex-col  justify-start">
-				<div className="flex space-x-5 text-center justify-start  ">
+				<div className="flex space-x-5 text-center justify-start p-2 ">
 					<div className="text-gray-600 ">
 						<FontAwesomeIcon icon={faBell} />
 					</div>
-					<div className="text-3xl">Notification</div>
+					<div className="text-2xl font-semibold">Notification</div>
 				</div>
 				<div className="flex justify-start mt-3">
-					<button className="rounded-full px-4 py-2 bg-red-600 text-white text-2xl">
+					<button className="rounded-full px-4 py-2 bg-red-600 text-white text-[16px]">
 						Notification Setting
 					</button>
 				</div>
 			</div>
 			<div className="flex items-center justify-start mt-3">
 				<div className="w-full md:w-1/2 lg:w-1/3">
-					<div className="flex flex-col">
+					<div className="flex flex-col space-y-4">
 						<div className="w-full flex justify-between py-6 px-4 bg-white/60 rounded-lg divide-x-4">
 							<div className="flex items-center space-x-4">
 								<img
