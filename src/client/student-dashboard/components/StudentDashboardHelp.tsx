@@ -1,4 +1,3 @@
-import React from 'react';
 import HelpTab from './student-help/HelpTab';
 function StudentDashboardHelp() {
 	return (

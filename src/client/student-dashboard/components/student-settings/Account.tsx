@@ -1,13 +1,13 @@
-import React, { useState } from 'react';
+import React from "react";
 
 function Account() {
-	const [firstName, setFirstName] = useState('');
-	const [lastName, setLastName] = useState('');
-	const [description, setDescription] = useState('');
-	const [facebookProfile, setFacebookProfile] = useState('');
-	const [twitterProfile, setTwitterProfile] = useState('');
-	const [linkedinProfile, setLinkedinProfile] = useState('');
-	const [youtubeProfile, setYoutubeProfile] = useState('');
+	const [firstName, setFirstName] = React.useState('');
+	const [lastName, setLastName] = React.useState('');
+	const [description, setDescription] = React.useState('');
+	const [facebookProfile, setFacebookProfile] = React.useState('');
+	const [twitterProfile, setTwitterProfile] = React.useState('');
+	const [linkedinProfile, setLinkedinProfile] = React.useState('');
+	const [youtubeProfile, setYoutubeProfile] = React.useState('');
 
 	const handleSubmit = (e: { preventDefault: () => void }) => {
 		e.preventDefault();

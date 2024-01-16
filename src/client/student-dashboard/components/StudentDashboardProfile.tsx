@@ -1,4 +1,3 @@
-import React from 'react';
 import ProfileTab from './student-profile/ProfileTab';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStethoscope } from '@fortawesome/free-solid-svg-icons';

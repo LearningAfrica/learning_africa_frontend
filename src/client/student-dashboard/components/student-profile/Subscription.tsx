@@ -1,5 +1,4 @@
 import { faBell, faBellSlash } from '@fortawesome/free-solid-svg-icons';
-import React from 'react';
 import SubscriptionCard from './SubscriptionCard';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 const subsciptionplan = [

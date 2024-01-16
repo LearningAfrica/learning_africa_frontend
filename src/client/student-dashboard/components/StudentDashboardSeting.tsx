@@ -1,4 +1,3 @@
-import React from 'react'
 import Tab from './student-settings/Tab'
 
 function StudentDashboardSeting() {
