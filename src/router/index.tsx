@@ -1,3 +1,16 @@
+import AdminDashboard from '@/client/admin-dashboard /AdminDashboard';
+import AdminDashBoardStats from '@/client/admin-dashboard /components/AdminDashBoardStats';
+import AdminDashbaordCourses from '@/client/admin-dashboard /components/AdminDashbaordCourses';
+import AdminDashbaordCoursesCategory from '@/client/admin-dashboard /components/AdminDashbaordCoursesCategory';
+import AdminDashbaordOrganization from '@/client/admin-dashboard /components/AdminDashbaordOrganization';
+import AdminDashbaordStudents from '@/client/admin-dashboard /components/AdminDashbaordStudents';
+import AdminDashboardCertificates from '@/client/admin-dashboard /components/AdminDashboardCertificates';
+import AdminDashboardHelp from '@/client/admin-dashboard /components/AdminDashboardHelp';
+import AdminDashboardInstructors from '@/client/admin-dashboard /components/AdminDashboardInstructors';
+import AdminDashboardNotification from '@/client/admin-dashboard /components/AdminDashboardNotification';
+import AdminDashboardProfile from '@/client/admin-dashboard /components/AdminDashboardProfile';
+import AdminDashboardReviews from '@/client/admin-dashboard /components/AdminDashboardReviews';
+import AdminDashboardSeting from '@/client/admin-dashboard /components/AdminDashboardSeting';
 import Homepage from '@/client/home-page/Homepage';
 import InstructorDashboard from '@/client/instructor-dashboard/InstructorDashboard';
 import InstructorCourses from '@/client/instructor-dashboard/components/InstructorCourses';
@@ -95,6 +108,62 @@ const router = wrapRouters([
 				path: '*',
 				element: <InstructorPageNotFound />
 			}
+		]
+	},
+	{
+		path: '/admin-dashboard',
+		element: <AdminDashboard />,
+		children: [
+			{
+				path: '/admin-dashboard',
+				element: <AdminDashBoardStats />
+			},
+			{
+				path: '*',
+				element: <></>
+			},
+			{
+				path: '/admin-dashboard/courses',
+				element: <AdminDashbaordCourses />
+			},
+			{
+				path: '/admin-dashboard/notifications',
+				element: <AdminDashboardNotification />
+			},
+			{
+				path: '/admin-dashboard/settings',
+				element: <AdminDashboardSeting />
+			},
+			{
+				path: '/admin-dashboard/certificates',
+				element: <AdminDashboardCertificates />
+			},{
+				path: '/admin-dashboard/reviews',
+				element: <AdminDashboardReviews/>
+			},
+			{
+				path: '/admin-dashboard/help',
+				element: <AdminDashboardHelp />
+			},
+			{
+				path: '/admin-dashboard/profile',
+				element: <AdminDashboardProfile />
+			},
+			{
+				path: '/admin-dashboard/instructors',
+				element: <AdminDashboardInstructors />
+			},
+			{
+				path: '/admin-dashboard/courses-category',
+				element: <AdminDashbaordCoursesCategory />
+			},{
+				path: '/admin-dashboard/organization',
+				element: <AdminDashbaordOrganization />
+			},{
+				path: '/admin-dashboard/students',
+				element: <AdminDashbaordStudents />
+			},
+			
 		]
 	}
 ]);
