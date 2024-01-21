@@ -1,8 +1,12 @@
+import Login from '@/client/accounts/Login';
+import Register from '@/client/accounts/Register';
 import AdminDashboard from '@/client/admin-dashboard /AdminDashboard';
+import AdminCreateCourse from '@/client/admin-dashboard /components/AdminCreateCourse';
+import AdminCreateOrganization from '@/client/admin-dashboard /components/AdminCreateOrganization';
+import AdminDashBoardOrganization from '@/client/admin-dashboard /components/AdminDashBoardOrganization';
 import AdminDashBoardStats from '@/client/admin-dashboard /components/AdminDashBoardStats';
 import AdminDashbaordCourses from '@/client/admin-dashboard /components/AdminDashbaordCourses';
 import AdminDashbaordCoursesCategory from '@/client/admin-dashboard /components/AdminDashbaordCoursesCategory';
-import AdminDashbaordOrganization from '@/client/admin-dashboard /components/AdminDashbaordOrganization';
 import AdminDashbaordStudents from '@/client/admin-dashboard /components/AdminDashbaordStudents';
 import AdminDashboardCertificates from '@/client/admin-dashboard /components/AdminDashboardCertificates';
 import AdminDashboardHelp from '@/client/admin-dashboard /components/AdminDashboardHelp';
@@ -11,6 +15,8 @@ import AdminDashboardNotification from '@/client/admin-dashboard /components/Adm
 import AdminDashboardProfile from '@/client/admin-dashboard /components/AdminDashboardProfile';
 import AdminDashboardReviews from '@/client/admin-dashboard /components/AdminDashboardReviews';
 import AdminDashboardSeting from '@/client/admin-dashboard /components/AdminDashboardSeting';
+import BaseErrorPage from '@/client/error-pages/BaseErrorpage';
+import NotFoundPage from '@/client/error-pages/NotFoundPage';
 import Homepage from '@/client/home-page/Homepage';
 import InstructorDashboard from '@/client/instructor-dashboard/InstructorDashboard';
 import InstructorCourses from '@/client/instructor-dashboard/components/InstructorCourses';
@@ -46,6 +52,7 @@ function wrapRouters(routes: RouteObject[]) {
 const router = wrapRouters([
 	{
 		path: '/',
+		errorElement: <BaseErrorPage />,
 		element: <Homepage />
 	},
 	{
@@ -113,6 +120,7 @@ const router = wrapRouters([
 	{
 		path: '/admin-dashboard',
 		element: <AdminDashboard />,
+		errorElement: <BaseErrorPage />,
 		children: [
 			{
 				path: '/admin-dashboard',
@@ -125,6 +133,9 @@ const router = wrapRouters([
 			{
 				path: '/admin-dashboard/courses',
 				element: <AdminDashbaordCourses />
+			},{
+				path:"/admin-dashboard/courses/create",
+				element:<AdminCreateCourse/>
 			},
 			{
 				path: '/admin-dashboard/notifications',
@@ -137,9 +148,10 @@ const router = wrapRouters([
 			{
 				path: '/admin-dashboard/certificates',
 				element: <AdminDashboardCertificates />
-			},{
+			},
+			{
 				path: '/admin-dashboard/reviews',
-				element: <AdminDashboardReviews/>
+				element: <AdminDashboardReviews />
 			},
 			{
 				path: '/admin-dashboard/help',
@@ -156,15 +168,35 @@ const router = wrapRouters([
 			{
 				path: '/admin-dashboard/courses-category',
 				element: <AdminDashbaordCoursesCategory />
-			},{
+			},
+			{
 				path: '/admin-dashboard/organization',
-				element: <AdminDashbaordOrganization />
-			},{
+				element: <AdminDashBoardOrganization />
+			},
+			{
+				path: '/admin-dashboard/organization/create',
+				element: <AdminCreateOrganization />
+			},
+			{
 				path: '/admin-dashboard/students',
 				element: <AdminDashbaordStudents />
 			},
 			
 		]
+	},
+	// Login
+	{
+		path: '/login',
+		element: <Login />
+	},
+	// signup
+	{
+		path: '/sign-up',
+		element: <Register />
+	},
+	{
+		path: '*',
+		element: <NotFoundPage />
 	}
 ]);
 

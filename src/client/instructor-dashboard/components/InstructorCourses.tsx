@@ -36,7 +36,7 @@ export default function InstructorCourses() {
 					</button>
 				</div>
 			</div>
-			{tab}
+			
 			<InstructorCourseItemsWrapper tab={tab as CourseTabs} />
 		</div>
 	);

@@ -47,12 +47,12 @@ export default function InstructorCourseItemsWrapper({ tab }: Props) {
 
 	return (
 		<div>
-			<div className="flex items-center gap-1 justify-stretch">
+			<div className="flex items-center gap-1 justify-stretch bg-white shadow">
 				{courseTabs.map(({ icon, title, href, tabref }) => (
 					<NavLink
 						to={href}
 						className={cn(
-							`flex flex-1 items-center gap-1 hover:bg-primary hover:text-white transition-all ease-linear duration-75 px-4 py-2 rounded`,
+							`flex flex-1 items-center gap-1 hover:bg-primary hover:text-white transition-all ease-linear duration-75 px-4 p-4 rounded`,
 							{
 								'bg-primary text-white': tab === tabref
 							}

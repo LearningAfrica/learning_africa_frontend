@@ -4,9 +4,13 @@ import {
 	faGraduationCap,
 	faUser,
 	faCog,
-	faMessage,
 	faStar,
-	faPhoneAlt
+	faPhoneAlt,
+	faTachographDigital,
+	faBookOpen,
+	faBellConcierge,
+	faUserGraduate,
+	faChalkboardTeacher
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link } from 'react-router-dom';
@@ -22,27 +26,27 @@ const adminSidebarItems = [
 		link: '/admin-dashboard/courses'
 	},
 	{
-		icon: faBookAtlas,
+		icon: faTachographDigital,
 		title: 'Organization',
 		link: '/admin-dashboard/organization'
 	},
 	{
-		icon: faBookAtlas,
+		icon: faBookOpen,
 		title: ' Categories',
 		link: '/admin-dashboard/courses-category'
 	},
 	{
-		icon: faMessage,
+		icon: faBellConcierge,
 		link: '/admin-dashboard/notifications',
 		title: 'Notifications'
 	},
 	{
-		icon: faMessage,
+		icon: faUserGraduate,
 		link: '/admin-dashboard/students',
 		title: 'Students'
 	},
 	{
-		icon: faMessage,
+		icon: faChalkboardTeacher,
 		link: '/admin-dashboard/instructors',
 		title: 'Instructors'
 	},
@@ -79,8 +83,11 @@ const faQsAndProfileSettings = [
 export default function AdminDashboardSidebar() {
 	return (
 		<div className="w-64 bg-white shadow p-4 overflow-y-scroll border-r flex flex-col">
-			{adminSidebarItems.map(({ icon, title, link }) => (
-				<div className="grid grid-cols-[20%_80%] items-center gap-1 hover:bg-primary hover:text-white transition-all ease-linear duration-75 px-4 py-2 rounded">
+			{adminSidebarItems.map(({ icon, title, link },index) => (
+				<div
+					key={title+index}
+					className="grid grid-cols-[20%_80%] items-center gap-1 hover:bg-primary hover:text-white transition-all ease-linear duration-75 px-4 py-2 rounded"
+				>
 					<FontAwesomeIcon icon={icon} className="text-xl" />
 					<Link to={link}>
 						<span className="text-xl flex-1">{title}</span>
@@ -89,7 +96,10 @@ export default function AdminDashboardSidebar() {
 			))}
 			<hr className="my-2" />
 			{faQsAndProfileSettings.map(({ icon, title, link }) => (
-				<div className="grid grid-cols-[20%_80%] items-center gap-1 hover:bg-primary hover:text-white transition-all ease-linear duration-75 px-4 py-2 rounded">
+				<div
+					key={title}
+					className="grid grid-cols-[20%_80%] items-center gap-1 hover:bg-primary hover:text-white transition-all ease-linear duration-75 px-4 py-2 rounded"
+				>
 					<FontAwesomeIcon icon={icon} className="text-xl" />
 					<Link to={link}>
 						<span className="text-xl flex-1">{title}</span>

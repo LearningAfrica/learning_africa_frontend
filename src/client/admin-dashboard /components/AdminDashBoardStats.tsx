@@ -1,34 +1,64 @@
 import {
-	faBookOpen,
+	faChalkboardTeacher,
 	faChevronLeft,
 	faChevronRight,
-	faDashboard
+	faDashboard,
+	faLeaf,
+	faLock,
+	faObjectGroup,
+	faPenFancy,
+	faUserGraduate,
+	faUserGroup
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 const stats = [
 	{
-		title: 'Total purchased courses',
+		title: 'Total draft courses',
 		value: '100',
 		new: '10',
-		icon: faBookOpen
+		icon: faPenFancy
 	},
 	{
-		title: 'Total instructor subscriptions',
+		title: 'Total users',
 		value: '100',
 		new: '10',
-		icon: faBookOpen
+		icon: faUserGroup
 	},
 	{
-		title: 'Total purchased courses',
+		title: 'Total Students',
 		value: '100',
 		new: '10',
-		icon: faBookOpen
+		icon: faUserGraduate
 	},
 	{
-		title: 'Total purchased courses',
+		title: 'Total courses',
 		value: '100',
 		new: '10',
-		icon: faBookOpen
+		icon: faPenFancy
+	},
+	{
+		title: 'Total course categories',
+		value: '100',
+		new: '10',
+		icon: faLeaf
+	},
+	{
+		title: 'Total Organizations',
+		value: '100',
+		new: '10',
+		icon: faObjectGroup
+	},
+	{
+		title: 'Total Instructors',
+		value: '100',
+		new: '10',
+		icon: faChalkboardTeacher
+	},
+	{
+		title: 'Total Administrators',
+		value: '100',
+		new: '10',
+		icon: faLock
 	}
 ];
 
