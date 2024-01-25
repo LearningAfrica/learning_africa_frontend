@@ -3,13 +3,13 @@
 import jtwDecode, { JwtPayload } from 'jwt-decode';
 
 import axios from 'axios';
-import AppConfigService from './config';
+// import AppConfigService from './config';
 import { Cookie } from '../services/cookie-service';
-
-const baseURL =
-	AppConfigService.getKey('MODE') === 'development'
-		? AppConfigService.getKey('VITE_API_DEV_BACKEND_URL')
-		: AppConfigService.getKey('VITE_API_PROD_BACKEND_URL');
+const current_url = 'https://learning-africa-backend-029536c20803.herokuapp.com'
+const baseURL = current_url;
+	// AppConfigService.getKey('MODE') === 'development'
+	// 	? AppConfigService.getKey('VITE_API_DEV_BACKEND_URL')
+	// 	: AppConfigService.getKey('VITE_API_PROD_BACKEND_URL');
 const appAxios = axios.create({
 	baseURL,
 	timeout: 30000,
@@ -49,7 +49,7 @@ privateAxios.interceptors.request.use(
 		// console.log("token: " + JSON.stringify(token));
 
 		if (token) {
-			config.headers.Authorization = `JWT ${ token.accessToken }`;
+			config.headers.Authorization = `Bearer ${ token.accessToken }`;
 		}
 		// console.log("config: " + JSON.stringify(config));
 
