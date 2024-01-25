@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
-
-import jtwDecode, { JwtPayload } from 'jwt-decode';
+// import jtwDecode, { JwtPayload } from 'jwt-decode';
+import * as jtwDecode from 'jwt-decode';
+import type { JwtPayload } from 'jwt-decode';
 
 import axios from 'axios';
 // import AppConfigService from './config';
