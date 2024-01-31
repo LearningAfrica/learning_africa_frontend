@@ -26,7 +26,7 @@ export default function HomeFooter() {
 				</div>
 				<div>
 					<h1>
-						Quick <span className="text-primary">Links</span>
+						Quick <span className="text-primary-pk">Links</span>
 					</h1>
 					<p>Home</p>
 					<p>About</p>

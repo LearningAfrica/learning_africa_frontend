@@ -101,7 +101,7 @@ function Account() {
 				<div>
 					<button
 						type="submit"
-						className="bg-primary text-white py-2 px-4 rounded-full hover:bg-orange-700 focus:outline-none focus:ring focus:border-orange-300"
+						className="bg-primary-pk text-white py-2 px-4 rounded-full hover:bg-orange-700 focus:outline-none focus:ring focus:border-orange-300"
 					>
 						Save Changes
 					</button>

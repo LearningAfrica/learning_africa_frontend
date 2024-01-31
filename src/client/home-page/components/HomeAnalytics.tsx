@@ -48,7 +48,7 @@ const HomeAnalytics = () => {
 								key={analytic.id}
 								className="bg-white p-4 flex gap-4 items-center flex-col rounded-md shadow-md"
 							>
-								<div className="bg-primary p-4 rounded-full">
+								<div className="bg-primary-pk p-4 rounded-full">
 									<FontAwesomeIcon
 										icon={analytic.icon}
 										className="text-white text-2xl"

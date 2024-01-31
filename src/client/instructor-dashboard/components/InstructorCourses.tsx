@@ -31,7 +31,7 @@ export default function InstructorCourses() {
 					<h1 className="text-2xl">Jump into course creation</h1>
 				</div>
 				<div>
-					<button className="bg-primary text-white rounded-full px-4 py-2">
+					<button className="bg-primary-pk text-white rounded-full px-4 py-2">
 						Create Course
 					</button>
 				</div>

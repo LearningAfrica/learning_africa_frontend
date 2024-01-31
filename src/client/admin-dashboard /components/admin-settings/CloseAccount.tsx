@@ -24,7 +24,7 @@ function CloseAccount() {
 				<div className="mt-3">
 					<button
 						type="submit"
-						className="bg-primary text-white py-2 px-4 rounded-full hover:bg-orange-400 focus:outline-none focus:ring focus:border-orange-300"
+						className="bg-primary-pk text-white py-2 px-4 rounded-full hover:bg-orange-400 focus:outline-none focus:ring focus:border-orange-300"
 					>
 						Close Account
 					</button>s

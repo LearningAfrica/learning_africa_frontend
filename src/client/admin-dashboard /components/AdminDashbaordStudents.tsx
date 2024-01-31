@@ -11,7 +11,7 @@ function AdminDashbaordStudents() {
 		<div>
 			<h1>AdminDashbaordStudents</h1>
 			<div className="flex flex-col justify-center space-y-3">
-				<p className="text-center text-primary">
+				<p className="text-center text-primary-pk">
 					Total number of students
 				</p>
 			</div>

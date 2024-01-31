@@ -69,7 +69,7 @@ function Purchased() {
 								<div>
 									<a
 										href="#"
-										className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-primary rounded-lg hover:bg-orange-800 focus:ring-4 focus:outline-none focus:ring-orange-300"
+										className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-primary-pk rounded-lg hover:bg-orange-800 focus:ring-4 focus:outline-none focus:ring-orange-300"
 									>
 										Purchased
 									</a>

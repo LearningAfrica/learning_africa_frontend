@@ -56,7 +56,7 @@ function Subscription() {
 							<span className="text-xl text-center">{title}</span>
 
 							<div className="flex flex-row justify-center items-center space-x-3">
-								<button className="rounded-full bg-primary px-4 py-2 text-white">
+								<button className="rounded-full bg-primary-pk px-4 py-2 text-white">
 									Subscribed
 								</button>
 								<FontAwesomeIcon

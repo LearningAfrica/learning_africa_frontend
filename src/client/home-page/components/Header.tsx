@@ -29,7 +29,7 @@ export default function Header() {
 				duration: 0.5
 			}}
 			className={cn(
-				'w-full flex justify-between items-center px-4 transition-all duration-500 py-2  bg-primary bg-blend-overlay bg-opacity-10',
+				'w-full flex justify-between items-center px-4 transition-all duration-500 py-2  bg-primary-pk bg-blend-overlay bg-opacity-10',
 
 				{
 					'sticky top-2  z-20 mx-auto bg-white bg-opacity-100 border-b-2 border-primary shadow':
@@ -54,7 +54,7 @@ export default function Header() {
 						/>
 						<div
 							className={cn(
-								'text-xl   text-primary ml-4 font-bold uppercase'
+								'text-xl   text-primary-pk ml-4 font-bold uppercase'
 							)}
 						>
 							Learning Africa
@@ -82,7 +82,7 @@ export default function Header() {
 						>
 							Login
 						</NavLink>
-						<div className="text-sm font-medium text-gray-900 ml-4 bg-primary px-8 py-4 rounded">
+						<div className="text-sm font-medium text-gray-900 ml-4 bg-primary-pk px-8 py-4 rounded">
 							Signup
 						</div>
 					</div>

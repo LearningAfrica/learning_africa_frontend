@@ -6,7 +6,7 @@ function AdminDashBoardOrganization() {
 			<div className="p-4 bg-white rounded-full flex justify-between">
 				<h2 className="text-2xl font-bold">Organizations</h2>
 				<div>
-					<NavLink to={'/admin-dashboard/organization/create'} className="bg-primary text-white px-4 py-2 rounded-full">
+					<NavLink to={'/admin-dashboard/organization/create'} className="bg-primary-pk text-white px-4 py-2 rounded-full">
 						+ Create Organization
 					</NavLink>
 				</div>

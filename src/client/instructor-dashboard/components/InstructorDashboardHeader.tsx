@@ -7,7 +7,7 @@ export default function InstructorDashboardHeader() {
 	return (
 		<div className="h-16 bg-white flex justify-between items-center shadow border-b pr-4">
 			<div className="flex items-center">
-				<button className="p-4 bg-primary h-full">
+				<button className="p-4 bg-primary-pk h-full">
 					<FontAwesomeIcon icon={faBars} />
 				</button>
 				<NavLink to={'/'} className="flex items-center">
@@ -18,7 +18,7 @@ export default function InstructorDashboardHeader() {
 					/>
 					<div
 						className={cn(
-							'text-xl   text-primary ml-4 font-bold uppercase'
+							'text-xl   text-primary-pk ml-4 font-bold uppercase'
 						)}
 					>
 						Learning Africa
@@ -34,7 +34,7 @@ export default function InstructorDashboardHeader() {
 					/>
 				</div>
 				<div>
-					<NavLink to={'/'} className="text-xl bg-primary px-4 py-1 rounded-full text-white">
+					<NavLink to={'/'} className="text-xl bg-primary-pk px-4 py-1 rounded-full text-white">
 						Create Course
 					</NavLink>
 				</div>
@@ -42,13 +42,13 @@ export default function InstructorDashboardHeader() {
 			<div className="flex gap-2 items-center">
 				<div className="relative flex items-center">
 					<FontAwesomeIcon icon={faBell} className="text-xl" />
-					<div className="absolute -top-3 right-1 bg-primary text-white rounded-full w-4 h-4 flex items-center justify-center">
+					<div className="absolute -top-3 right-1 bg-primary-pk text-white rounded-full w-4 h-4 flex items-center justify-center">
 						2
 					</div>
 				</div>
 				<div className="relative flex items-center">
 					<FontAwesomeIcon icon={faMessage} className="text-xl" />
-					<div className="absolute -top-3 right-1 bg-primary text-white rounded-full w-4 h-4 flex items-center justify-center">
+					<div className="absolute -top-3 right-1 bg-primary-pk text-white rounded-full w-4 h-4 flex items-center justify-center">
 						2
 					</div>
 				</div>

@@ -63,7 +63,7 @@ function AdminDashboardInstructors() {
 							<div className="flex flex-row justify-end items-center space-x-3">
 								<a
 									href={'/admin-dashboard/courses'}
-									className="rounded-full bg-primary px-4 py-2 text-white"
+									className="rounded-full bg-primary-pk px-4 py-2 text-white"
 								>
 									Courses
 								</a>

@@ -41,7 +41,7 @@ function Feature({ icon, title, description }: FeatureProps) {
 					className="text-gray-400"
 				/>
 			</div>
-			<div className="text-2xl font-bold text-primary">{title}</div>
+			<div className="text-2xl font-bold text-primary-pk">{title}</div>
 			<div>{description}</div>
 		</div>
 	);

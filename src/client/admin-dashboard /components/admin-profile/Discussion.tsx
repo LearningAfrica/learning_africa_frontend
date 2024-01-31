@@ -24,7 +24,7 @@ function Discussion() {
 					></textarea>
 				</div>
 				<div className="flex justify-end">
-					<button className="bg-primary text-white text-xl  px-4 py-2 rounded-full">
+					<button className="bg-primary-pk text-white text-xl  px-4 py-2 rounded-full">
 						Comment
 					</button>
 				</div>

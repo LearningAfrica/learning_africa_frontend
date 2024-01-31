@@ -52,9 +52,9 @@ export default function InstructorCourseItemsWrapper({ tab }: Props) {
 					<NavLink
 						to={href}
 						className={cn(
-							`flex flex-1 items-center gap-1 hover:bg-primary hover:text-white transition-all ease-linear duration-75 px-4 p-4 rounded`,
+							`flex flex-1 items-center gap-1 hover:bg-primary-pk hover:text-white transition-all ease-linear duration-75 px-4 p-4 rounded`,
 							{
-								'bg-primary text-white': tab === tabref
+								'bg-primary-pk text-white': tab === tabref
 							}
 						)}
 					>

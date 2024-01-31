@@ -23,7 +23,7 @@ const Tab: React.FC = () => {
 						onClick={() => setActiveTab(tab.id)}
 						className={`${
 							activeTab === tab.id
-								? 'bg-primary rounded-full px-4 py-2 text-white'
+								? 'bg-primary-pk rounded-full px-4 py-2 text-white'
 								: ' text-gray-600'
 						} px-4 py-2 mr-2 rounded-full`}
 					>

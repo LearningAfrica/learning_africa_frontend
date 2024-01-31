@@ -86,7 +86,7 @@ export default function AdminDashboardSidebar() {
 			{adminSidebarItems.map(({ icon, title, link },index) => (
 				<div
 					key={title+index}
-					className="grid grid-cols-[20%_80%] items-center gap-1 hover:bg-primary hover:text-white transition-all ease-linear duration-75 px-4 py-2 rounded"
+					className="grid grid-cols-[20%_80%] items-center gap-1 hover:bg-primary-pk hover:text-white transition-all ease-linear duration-75 px-4 py-2 rounded"
 				>
 					<FontAwesomeIcon icon={icon} className="text-xl" />
 					<Link to={link}>
@@ -98,7 +98,7 @@ export default function AdminDashboardSidebar() {
 			{faQsAndProfileSettings.map(({ icon, title, link }) => (
 				<div
 					key={title}
-					className="grid grid-cols-[20%_80%] items-center gap-1 hover:bg-primary hover:text-white transition-all ease-linear duration-75 px-4 py-2 rounded"
+					className="grid grid-cols-[20%_80%] items-center gap-1 hover:bg-primary-pk hover:text-white transition-all ease-linear duration-75 px-4 py-2 rounded"
 				>
 					<FontAwesomeIcon icon={icon} className="text-xl" />
 					<Link to={link}>
@@ -106,7 +106,7 @@ export default function AdminDashboardSidebar() {
 					</Link>
 				</div>
 			))}
-			{/* <div className="grid grid-cols-[20%_80%] items-center gap-1 hover:bg-primary hover:text-white transition-all ease-linear duration-75 px-4 py-2 rounded">
+			{/* <div className="grid grid-cols-[20%_80%] items-center gap-1 hover:bg-primary-pk hover:text-white transition-all ease-linear duration-75 px-4 py-2 rounded">
 				<FontAwesomeIcon icon={faCog} className="text-xl" />
 				<span className="text-xl flex-1">Settings</span>
 			</div> */}

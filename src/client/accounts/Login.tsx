@@ -139,7 +139,7 @@ export default function Login() {
 						<Button
 							type="submit"
 							className={cn(
-								'bg-primary text-white font-bold py-4 px-8 rounded-md',
+								'bg-primary-pk text-white font-bold py-4 px-8 rounded-md',
 								{
 									'opacity-50': mutation.isPending,
 									'cursor-not-allowed': mutation.isPending

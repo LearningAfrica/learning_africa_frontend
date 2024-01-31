@@ -163,11 +163,11 @@ export default function HomeCourses() {
 		return () => clearInterval(interval);
 	}, []);
 	return (
-		<div className="w-full bg-primary bg-opacity-10 p-10">
+		<div className="w-full bg-primary-pk bg-opacity-10 p-10">
 			<div className="w-full bg-opacity-10 p-10">
 				<div className="max-w-7xl mx-auto flex flex-col gap-4">
 					<h1
-						className="text-4xl font-bold text-primary"
+						className="text-4xl font-bold text-primary-pk"
 						id="courses"
 					>
 						Our Courses
@@ -198,14 +198,14 @@ export default function HomeCourses() {
 										/>
 
 										{course.is_free && (
-											<div className="absolute top-2 left-2 bg-primary text-white px-2 py-1 rounded-md">
+											<div className="absolute top-2 left-2 bg-primary-pk text-white px-2 py-1 rounded-md">
 												Free
 											</div>
 										)}
 										<div className="absolute bottom-2 left-2 flex gap-2 text-white	rounded  text-xs">
 											{course.tags.map((tag) => (
 												<span
-													className="rounded bg-primary p-1"
+													className="rounded bg-primary-pk p-1"
 													key={tag}
 												>
 													{tag}
@@ -229,17 +229,17 @@ export default function HomeCourses() {
 												</span>
 											</div>
 										</div>
-										<div className="text-lg font-bold text-primary">
+										<div className="text-lg font-bold text-primary-pk">
 											<h1>{course.name}</h1>
 										</div>
 										<div>{course.category}</div>
 										<div className="flex justify-between">
 											{course.is_free ? (
-												<div className="text-lg font-medium text-primary">
+												<div className="text-lg font-medium text-primary-pk">
 													<h1>Free</h1>
 												</div>
 											) : (
-												<div className="text-lg font-bold text-primary">
+												<div className="text-lg font-bold text-primary-pk">
 													{course.discount > 0 ? (
 														<>
 															<span className="text-gray-400 line-through text-sm">
