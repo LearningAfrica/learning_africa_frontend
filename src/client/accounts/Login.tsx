@@ -153,7 +153,7 @@ export default function Login() {
 						<div className="flex-1">
 							<p>
 								Don't have an account?{' '}
-								<NavLink to="/login" className="text-blue-500">
+								<NavLink to="/sign-up" className="text-blue-500">
 									Create account
 								</NavLink>
 							</p>

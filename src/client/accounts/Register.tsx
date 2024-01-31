@@ -1,4 +1,4 @@
-import { NavLink } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Toaster, toast } from 'react-hot-toast';
@@ -18,6 +18,7 @@ import { AuthApiService } from '@/lib/services/api-services/auth.service';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { useMutation } from '@tanstack/react-query';
 import { cn } from '@/lib/utils';
+import useParamHook from '@/lib/hooks/useParamHook';
 
 const authApi = new AuthApiService();
 const RegisterSchema = z
@@ -36,7 +37,8 @@ const RegisterSchema = z
 			.max(20, {
 				message: 'Password must be at most 50 characters long'
 			}),
-		confirm_password: z.string()
+		confirm_password: z.string(),
+		token: z.string().optional()
 	})
 	.refine((data) => data.password === data.confirm_password, {
 		message: 'Passwords do not match',
@@ -46,6 +48,20 @@ const RegisterSchema = z
 export type RegisterFormType = z.infer<typeof RegisterSchema>;
 
 export default function Register() {
+	const location = useLocation();
+	// const searchParam = new URLSearchParams(location.search)
+	// const tab = searchParam.get('tab') as CourseTabs
+	// console.log({tab});
+	// sample url= http://localhost:3000/sign-up?action=register&organization=ucb34523bd&token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJvcmdhbml6YXRpb24iOiJ1Y2IzNDUyM2JkIiwiaWF0IjoxNjI5MjU0NjQ2LCJleHAiOj&
+	/**
+	 * {
+	 * type:'access'// refresh
+	 * token:'121222'
+	 * }
+	 */
+	const {
+		searchParam: { token }
+	} = useParamHook({ location });
 	const form = useForm<RegisterFormType>({
 		resolver: zodResolver(RegisterSchema),
 		defaultValues: {
@@ -58,7 +74,8 @@ export default function Register() {
 			is_instructor: false,
 			is_super_admin: false,
 			last_name: '',
-			username: ''
+			username: '',
+			token: token ?? ''
 		}
 	});
 	// const queryClient = useQueryClient();
