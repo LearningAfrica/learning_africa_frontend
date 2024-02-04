@@ -19,6 +19,7 @@ import { useForm, SubmitHandler } from 'react-hook-form';
 import { useMutation } from '@tanstack/react-query';
 import { cn } from '@/lib/utils';
 import { AxiosError } from 'axios';
+import { useAuthStore } from '@/store/useAuthStore';
 
 const authApi = new AuthApiService();
 const loginSchema = z.object({
@@ -41,16 +42,21 @@ export default function Login() {
 			username_or_email: ''
 		}
 	});
+	const { login } = useAuthStore();
 	// const queryClient = useQueryClient();
 	const mutation = useMutation({
 		mutationFn: authApi.login,
-		onSuccess: () => {
-			toast.success('Registration successful', {
+		onSuccess: (data) => {
+			toast.success('Login successful', {
 				className: 'bg-green-500 text-white font-bold p-4 rounded-md',
 				icon: '👏',
 				position: 'top-right',
 				duration: 5000
 			});
+			console.log({ data });
+
+			login(data);
+
 		},
 		onError: (error) => {
 			console.log(error);

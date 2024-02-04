@@ -179,7 +179,7 @@ export default function HomeCourses() {
 								currentCourse.previous.value,
 								currentCourse.value,
 								currentCourse.next.value
-							].map((course) => (
+							].map((course,index) => (
 								<motion.div
 									initial={{ opacity: 0 }}
 									animate={{
@@ -187,7 +187,7 @@ export default function HomeCourses() {
 										transition: { duration: 0.5 }
 									}}
 									exit={{ opacity: 0, x: 100, y: 100 }}
-									key={course.id}
+									key={course.id+index}
 									className="flex-[1_0_18rem] flex flex-col bg-white gap-4 rounded-md shadow-md overflow-hidden"
 								>
 									<div className="flex justify-center h-72 relative">
@@ -203,10 +203,10 @@ export default function HomeCourses() {
 											</div>
 										)}
 										<div className="absolute bottom-2 left-2 flex gap-2 text-white	rounded  text-xs">
-											{course.tags.map((tag) => (
+											{course.tags.map((tag, index) => (
 												<span
 													className="rounded bg-primary-pk p-1"
-													key={tag}
+													key={tag+index}
 												>
 													{tag}
 												</span>

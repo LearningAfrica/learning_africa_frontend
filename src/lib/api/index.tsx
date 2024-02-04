@@ -6,8 +6,8 @@ import type { JwtPayload } from 'jwt-decode';
 import axios from 'axios';
 // import AppConfigService from './config';
 import { Cookie } from '../services/cookie-service';
-const current_url = 'https://8796-102-215-33-50.ngrok-free.app'
-// const current_url = 'https://learning-africa-backend-029536c20803.herokuapp.com'
+// const current_url = 'https://8796-102-215-33-50.ngrok-free.app'
+const current_url = 'https://learning-africa-backend-029536c20803.herokuapp.com'
 const baseURL = current_url;
 	// AppConfigService.getKey('MODE') === 'development'
 	// 	? AppConfigService.getKey('VITE_API_DEV_BACKEND_URL')
