@@ -28,7 +28,7 @@ export class AuthApiService {
 
 	async login(payload: LoginFormType): Promise<LoginUserResponse> {
 		const resp = await appAxios.post(`/auth/login/`, payload);
-		console.log(resp.data);
+		// console.log(resp.data);
 
 		return resp.data;
 	}
