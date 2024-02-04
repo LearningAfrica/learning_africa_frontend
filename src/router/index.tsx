@@ -1,102 +1,39 @@
-import Homepage from '@/client/home-page/Homepage';
-import InstructorDashboard from '@/client/instructor-dashboard/InstructorDashboard';
-import InstructorCourses from '@/client/instructor-dashboard/components/InstructorCourses';
-import InstructorDashboardStats from '@/client/instructor-dashboard/components/InstructorDashboardStats';
-import InstructorPageNotFound from '@/client/instructor-dashboard/components/InstructorPageNotFound';
-import StudentDashboard from '@/client/student-dashboard/StudentDashboard';
-import StudentDashBoardStats from '@/client/student-dashboard/components/StudentDashBoardStats';
-import StudentDashbaordCertificates from '@/client/student-dashboard/components/StudentDashbaordCertificates';
-import StudentDashbaordCourses from '@/client/student-dashboard/components/StudentDashbaordCourses';
-import StudentDashboardHelp from '@/client/student-dashboard/components/StudentDashboardHelp';
-import StudentDashboardNotification from '@/client/student-dashboard/components/StudentDashboardNotification';
-import StudentDashboardProfile from '@/client/student-dashboard/components/StudentDashboardProfile';
-import StudentDashboardReviews from '@/client/student-dashboard/components/StudentDashboardReviews';
-import StudentDashboardSeting from '@/client/student-dashboard/components/StudentDashboardSeting';
+/* eslint-disable react-refresh/only-export-components */
+import { adminRoutes } from '@/client/admin/normal';
+import { superAdminRoutes } from '@/client/admin/super';
+
 import { Outlet, RouteObject, createBrowserRouter } from 'react-router-dom';
+import { baseRoutes } from '@/client/base';
+import { studentRoutes } from '@/client/students';
+import { instructorRoutes } from '@/client/instructors';
+import { lazy } from 'react';
+import BaseErrorPage from '@/client/errors/BaseErrorPage';
+const NotFoundPage = lazy(() => import('@/client/errors/NotFoundPage'));
 
 function wrapRouters(routes: RouteObject[]) {
 	const router = createBrowserRouter([
 		{
 			path: '/',
+			errorElement: <BaseErrorPage />,
 			element: <Outlet />,
-			children: routes
+			children: routes	
 		},
-		{
-			path: '*',
-			element: <></>
-		}
+		
 	]);
 
 	return router;
 }
 
 const router = wrapRouters([
+	baseRoutes,
+	studentRoutes,
+	instructorRoutes,
+	adminRoutes,
+	superAdminRoutes,
 	{
-		path: '/',
-		element: <Homepage />
-	},
-	{
-		path: '/student-dashboard',
-		element: <StudentDashboard />,
-		children: [
-			{
-				path: '/student-dashboard',
-				element: <StudentDashBoardStats />
-			},
-
-			{
-				path: '*',
-				element: <></>
-			},
-			{
-				path: '/student-dashboard/courses',
-				element: <StudentDashbaordCourses />
-			},
-
-			{
-				path: '/student-dashboard/certificates',
-				element: <StudentDashbaordCertificates />
-			},
-			{
-				path: '/student-dashboard/notifications',
-				element: <StudentDashboardNotification />
-			},
-			{
-				path: '/student-dashboard/reviews',
-				element: <StudentDashboardReviews />
-			},
-			{
-				path: '/student-dashboard/settings',
-				element: <StudentDashboardSeting />
-			},
-			{
-				path: '/student-dashboard/help',
-				element: <StudentDashboardHelp />
-			},
-			{
-				path: '/student-dashboard/profile',
-				element: <StudentDashboardProfile />
-			}
-		]
-	},
-	{
-		path: '/instructor-dashboard',
-		element: <InstructorDashboard />,
-		children: [
-			{
-				path: '/instructor-dashboard',
-				element: <InstructorDashboardStats />
-			},
-			{
-				path: '/instructor-dashboard/courses',
-				element: <InstructorCourses />
-			},
-			{
-				path: '*',
-				element: <InstructorPageNotFound />
-			}
-		]
+		path: '/*',
+		element: <NotFoundPage />
 	}
-]);
+])
 
 export default router;

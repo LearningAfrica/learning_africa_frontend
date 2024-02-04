@@ -1,7 +1,7 @@
 import React from 'react';
 
 type ScrollHeightOptions = {
-	expre: '<=' | '>=' | '===' | '!==' | '<' | '>';
+	expr: '<=' | '>=' | '===' | '!==' | '<' | '>';
 	magnitude: number;
 	from: 'top' | 'bottom';
 };
@@ -26,11 +26,17 @@ export function useScrollHeight(
 		return () => {
 			window.removeEventListener('scroll', handleScroll);
 		};
-	}, []);
+	}, [
+		options.from,
+		options.expr,
+		options.magnitude,
+		scrollHeight,
+		magnitude
+	]);
 
 	return {
 		scrollHeight,
-		isScroll: eval(`${scrollHeight} ${options.expre} ${magnitude}`) as boolean,
+		isScroll: eval(`${ scrollHeight } ${ options.expr } ${ magnitude }`) as boolean,
 		bottom: options.from === 'bottom' ? scrollHeight : undefined
 	};
 }
