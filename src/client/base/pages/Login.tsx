@@ -43,6 +43,7 @@ export default function Login() {
 			username_or_email: ''
 		}
 	});
+	
 	const [, setAuth] = useAtom(authStoreAtom);
 	// const queryClient = useQueryClient();
 	const mutation = useMutation({
@@ -54,7 +55,7 @@ export default function Login() {
 				position: 'top-right',
 				duration: 5000
 			});
-			console.log({ data });
+			// console.log({ data });
 
 			setAuth({
 				access_token: data.access_token,
@@ -64,6 +65,8 @@ export default function Login() {
 					user_role: data.user_role
 				}
 			});
+			
+
 		},
 		onError: (error) => {
 			console.log(error);

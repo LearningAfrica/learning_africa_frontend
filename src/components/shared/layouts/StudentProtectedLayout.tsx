@@ -1,17 +1,15 @@
 import useAuthHook from '@/lib/hooks/useAuthHook';
 import { lazy } from 'react';
-import { Navigate } from 'react-router-dom';
+import { Navigate, useLocation } from 'react-router-dom';
 const StudentDashboard = lazy(
 	() => import('@/client/students/pages/StudentDashboard')
 );
 
-// type StudentProtectedLayoutProps = {
-// 	children: React.ReactNode;
-// };
 export default function StudentProtectedLayout() {
 	const { access, isAuthenticated } = useAuthHook('student');
+	const location = useLocation();
 	return !isAuthenticated ? (
-		<Navigate to="/login" />
+		<Navigate to="/login" state={{ from: location.pathname }} replace />
 	) : access ? (
 		<StudentDashboard />
 	) : (
