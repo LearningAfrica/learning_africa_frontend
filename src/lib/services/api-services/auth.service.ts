@@ -1,7 +1,7 @@
-import { LoginFormType } from '@/client/accounts/Login';
-import { RegisterFormType } from '@/client/accounts/Register';
+import { LoginFormType } from '@/client/base/pages/Login';
+import { RegisterFormType } from '@/client/base/pages/Register';
 import { appAxios } from '@/lib/api';
-import { AuthState } from '@/store/useAuthStore';
+import { UserRoleTypes } from '@/store/authAtom';
 export type RegisterUserType = {
 	username: string;
 	email: string;
@@ -15,13 +15,22 @@ export type RegisterUserType = {
 	confirm_password: string;
 };
 
+type LoginUserResponse = {
+	username: string;
+	user_role: UserRoleTypes;
+	refresh_token: string;
+	access_token: string;
+};
+
 export class AuthApiService {
 	// register: MutationFunction<unknown, void> | undefined;
 	// constructor(private http: AxiosInstance) {}
 
-	async login(payload: LoginFormType): Promise<AuthState> {
-		const resp = await appAxios.post(`/auth/login/`, payload)
-		return resp.data
+	async login(payload: LoginFormType): Promise<LoginUserResponse> {
+		const resp = await appAxios.post(`/auth/login/`, payload);
+		console.log(resp.data);
+
+		return resp.data;
 	}
 	register(user: RegisterFormType) {
 		const feedback = appAxios.post(`/auth/register/`, user);
