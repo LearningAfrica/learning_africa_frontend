@@ -170,7 +170,7 @@ export default function Login() {
 							<p>
 								Don't have an account?{' '}
 								<NavLink
-									to="/sign-up"
+									to="/register"
 									className="text-blue-500"
 								>
 									Create account
