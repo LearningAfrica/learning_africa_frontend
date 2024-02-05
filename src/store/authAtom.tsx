@@ -34,40 +34,6 @@ export const authStoreAtom = atom(
 	}
 );
 
-// export const logoutUserAtom = atom(authStorage, (_get, set) => {
-// 	set(authAtom, {
-// 		user: null,
-// 		refresh_token: null,
-// 		access_token: null
-// 	});
-// 	AppLocalStorage.removeKey('learning-africa-auth');
-// });
-
-// export const isAuthenticatedAtom = atom(authStorage, (get) => {
-// 	const state = get(authAtom);
-// 	const { access_token } = state!;
-// 	if (access_token) {
-// 		const decodedToken = jwtDecode(access_token);
-// 		if (decodedToken) {
-// 			const currentTime = new Date().getTime() / 1000;
-// 			if (decodedToken.exp! < currentTime) {
-// 				return false;
-// 			}
-// 			return false;
-// 		}
-// 	}
-// 	return false;
-// });
-
-// export const userRoleAtom = atom(authStorage, (get) => {
-// 	const state = get(authAtom);
-// 	const { user } = state!;
-// 	if (user) {
-// 		return user.user_role;
-// 	}
-// 	return null;
-// });
-
 // Want derived is_authenticated value
 export const isAuthenticatedAtom = atom((get) => {
 	const state = get(authAtom);
