@@ -51,6 +51,7 @@ export default function InstructorCourseItemsWrapper({ tab }: Props) {
 				{courseTabs.map(({ icon, title, href, tabref }) => (
 					<NavLink
 						to={href}
+						key={title}
 						className={cn(
 							`flex flex-1 items-center gap-1 hover:bg-primary-pk hover:text-white transition-all ease-linear duration-75 px-4 p-4 rounded`,
 							{

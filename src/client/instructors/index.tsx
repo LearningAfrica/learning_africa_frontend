@@ -1,4 +1,5 @@
 /* eslint-disable react-refresh/only-export-components */
+import InstructorProtectedLayout from '@/components/shared/layouts/InstructorProtectedLayout';
 import { lazy } from 'react';
 import { RouteObject } from 'react-router-dom';
 const InstructorCourses = lazy(() => import('./components/InstructorCourses'));
@@ -10,11 +11,11 @@ const InstructorDashboardStats = lazy(
 const InstructorPageNotFound = lazy(
 	() => import('./components/InstructorPageNotFound')
 );
-const InstructorDashboard = lazy(() => import('./pages/InstructorDashboard'));
+// const InstructorProtectedLayout = lazy(() => import('@/components/shared/layouts/InstructorProtectedLayout'));
 
 export const instructorRoutes: RouteObject = {
 	path: '/instructor-dashboard',
-	element: <InstructorDashboard />,
+	element: <InstructorProtectedLayout />,
 	children: [
 		{
 			path: '/instructor-dashboard',
