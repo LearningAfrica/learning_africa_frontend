@@ -53,21 +53,28 @@ export default function InstructorDashboardSidebar() {
 	return (
 		<div className="w-64 bg-white shadow p-4 overflow-y-scroll border-r flex flex-col">
 			{studentSidebarItems.map(({ icon, title, href }) => (
-				<NavLink to={href} className="grid grid-cols-[20%_80%] items-center gap-1 hover:bg-primary-pk hover:text-white transition-all ease-linear duration-75 px-4 py-2 rounded">
+				<NavLink
+					key={title}
+					to={href} className="grid grid-cols-[20%_80%] items-center gap-1 hover:bg-primary-pk hover:text-white transition-all ease-linear duration-75 px-4 py-2 rounded">
 					<FontAwesomeIcon icon={icon} className="text-xl" />
 					<span className="text-xl flex-1">{title}</span>
 				</NavLink>
 			))}
 			<hr className="my-2" />
 			{faQsAndProfileSettings.map(({ icon, title, href }) => (
-				<NavLink to={href} className={cn(`grid grid-cols-[20%_80%] items-center gap-1 hover:bg-primary-pk hover:text-white transition-all ease-linear duration-75 px-4 py-2 rounded`)}>
+				<NavLink
+					key={title}
+					to={href} className={cn(`grid grid-cols-[20%_80%] items-center gap-1 hover:bg-primary-pk hover:text-white transition-all ease-linear duration-75 px-4 py-2 rounded`)}>
 					<FontAwesomeIcon icon={icon} className="text-xl" />
 					<span className="text-xl flex-1">{title}</span>
 				</NavLink>
 			))}
 			<button
 				className="grid grid-cols-[20%_80%] items-center gap-1 hover:bg-primary-pk hover:text-white transition-all ease-linear duration-75 px-4 py-2 rounded"
-				onClick={logout}>
+				onClick={()=>{
+					console.log('logout')
+					logout()
+				}}>
 				<FontAwesomeIcon icon={faCog} className="text-xl" />
 				<span className="text-xl ">Logout</span>
 			</button>

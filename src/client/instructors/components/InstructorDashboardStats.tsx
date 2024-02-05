@@ -149,7 +149,9 @@ export default function InstructorDashboardStats() {
 			<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
 				{[
 					stats.map((stat) => (
-						<div className="bg-white p-4 flex gap-4 items-center flex-row-reverse justify-between rounded-md shadow-md">
+						<div 
+							key={stat.title}
+						className="bg-white p-4 flex gap-4 items-center flex-row-reverse justify-between rounded-md shadow-md">
 							<div className="bg-primary-pk p-4 rounded-full">
 								<FontAwesomeIcon
 									icon={stat.icon}
@@ -188,7 +190,7 @@ export default function InstructorDashboardStats() {
 					<div className="flex flex-col gap-4">
 						{newCourses.map((course) => (
 							<div
-								key={course.id}
+								key={course.id+course.name}
 								className="flex gap-4 items-center my-4"
 							>
 								<div className="w-16 h-16 bg-gray-200 rounded-md">
