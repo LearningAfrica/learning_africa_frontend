@@ -10,19 +10,13 @@ export type MenuItemProps = {
 	iconSize?: number;
 	href?: string;
 	sub_items?: MenuItemProps[];
-};
-export function DashboardMenuItem({
-	Icon,
-	name,
-	sub_items,
-	iconSize,
-	className,
-	href
-}: MenuItemProps & {
+}& {
 	className?: string;
-}) {
+}
+export function DashboardMenuItem(props: MenuItemProps ) {
+	
 	const [isOpen, setIsOpen] = useState(false);
-	const hasSubItems = sub_items && sub_items.length > 0;
+	const hasSubItems = props.sub_items && props.sub_items.length > 0;
 
 	const wrapperRef = useRef<HTMLDivElement>(null);
 
@@ -55,7 +49,7 @@ export function DashboardMenuItem({
 		<div
 			className={cn(
 				'flex items-center justify-start gap-4  text-white w-full',
-				className
+				props.className
 			)}
 			ref={wrapperRef}
 		>
@@ -79,11 +73,11 @@ export function DashboardMenuItem({
 								`flex items-center justify-start gap-4 text-white w-full`
 							)}
 						>
-							<Icon size={iconSize || 20} />
-							<span>{name}</span>
+							<props.Icon size={props.iconSize || 20} />
+							<span>{props.name}</span>
 						</div>
 						<LucideChevronDown
-							size={iconSize || 20}
+							size={props.iconSize || 20}
 							className={`transform ${
 								isOpen ? 'rotate-180' : ''
 							}`}
@@ -91,13 +85,13 @@ export function DashboardMenuItem({
 					</button>
 					{isOpen && (
 						<div className="flex px-2 flex-col gap-4">
-							{sub_items!.map((item) => (
+							{props.sub_items!.map((item) => (
 								<DashboardMenuItem
 									key={item.name}
 									Icon={item.Icon}
 									name={item.name}
 									href={item.href}
-									iconSize={iconSize || 20}
+									iconSize={props.iconSize || 20}
 									sub_items={item.sub_items}
 								/>
 							))}
@@ -106,7 +100,7 @@ export function DashboardMenuItem({
 				</div>
 			) : (
 				<NavLink
-					to={href!}
+					to={props.href!}
 					className={() => {
 						return cn(
 							`flex items-center justify-start gap-4 text-white w-full`,
@@ -114,8 +108,8 @@ export function DashboardMenuItem({
 						);
 					}}
 				>
-					<Icon size={iconSize || 20} />
-					<span>{name}</span>
+					<props.Icon size={props.iconSize || 20} />
+					<span>{props.name}</span>
 				</NavLink>
 			)}
 		</div>
