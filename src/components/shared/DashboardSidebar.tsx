@@ -21,7 +21,7 @@ export default function DashboardSidebar({
 	return (
 		<div
 			className={cn(
-				`hidden md:grid grid-rows-[5rem_1fr_2rem] h-screen bg-gray-900 w-48 md:w-64 fixed top-0 left-0 z-[10000]  flex-col gap-6`,
+				`hidden md:grid grid-rows-[5rem_1fr_2rem] h-screen bg-black w-48 md:w-64 fixed top-0 left-0 z-[10000]  flex-col gap-6`,
 				{
 					flex: isSidebarOpen
 				}
@@ -59,19 +59,17 @@ export default function DashboardSidebar({
 			{/* <hr /> */}
 			<div className="flex justify-between flex-col flex-1">
 				<div className="flex-1 overflow-y-auto">
-					{navItems.map(({ Icon, name, sub_items }) => {
+					{navItems.map((nav) => {
 						return (
 							<div
-								key={name}
+								key={nav.name}
 								className={cn(
 									`flex items-center space-y-8 px-4 py-2 text-white`
 								)}
 							>
 								{/* <ConciergeBell /> */}
 								<DashboardMenuItem
-									Icon={Icon}
-									name={name}
-									sub_items={sub_items}
+									{...nav}
 									iconSize={
 										isDesktop
 											? 24
