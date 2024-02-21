@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom';
 
 export default function NotFoundPage() {
 	return (
-		<div className="flex items-center flex-col justify-center h-screen bg-neutral-100 gap-3">
-			<h1 className={cn('text-xl font-bold text-neutral-900')}>
+		<div className="flex items-center flex-col justify-center h-screen bg-neutral-100 gap-3 text-center">
+			<h1 className={cn('text-xl font-bold text-neutral-500 font-mono')}>
 				404 - Page Not Found
 			</h1>
 			<p>We're sorry, the page you were looking for doesn't exist.</p>

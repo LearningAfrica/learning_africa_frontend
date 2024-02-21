@@ -21,7 +21,7 @@ export default function DashboardSidebar({
 	return (
 		<div
 			className={cn(
-				`hidden md:grid grid-rows-[5rem_1fr_2rem] h-screen bg-black w-48 md:w-64 fixed top-0 left-0 z-[10000]  flex-col gap-6`,
+				`hidden md:grid grid-rows-[5rem_1fr_2rem] h-screen bg-black w-48 md:w-64 fixed top-0 left-0 z-[10000]  flex-col gap-6 pb-2`,
 				{
 					flex: isSidebarOpen
 				}
@@ -57,8 +57,8 @@ export default function DashboardSidebar({
 				</h1>
 			</div>
 			{/* <hr /> */}
-			<div className="flex justify-between flex-col flex-1">
-				<div className="flex-1 overflow-y-auto">
+			<div className="flex justify-between flex-col flex-1 overflow-y-scroll">
+				<div className="flex-1 ">
 					{navItems.map((nav) => {
 						return (
 							<div
