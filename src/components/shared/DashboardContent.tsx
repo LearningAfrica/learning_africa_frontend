@@ -1,7 +1,6 @@
 import { cn } from '@/lib/utils';
 import React from 'react';
 import MaxWidthWrapper from './MaxWidthWrapper';
-import useViewPort from '@/lib/hooks/useViewPort';
 import DashboardHeader from './DashboardHeader';
 
 type DashboardContentProps = {
@@ -15,7 +14,7 @@ export default function DashboardContent({
 	//   isOpen,
 	handleMenubarToggle
 }: DashboardContentProps) {
-	const { isDesktop, isLaptop } = useViewPort();
+
 	return (
 		<div
 			className={cn(
@@ -23,8 +22,7 @@ export default function DashboardContent({
 			)}
 		>
 			<DashboardHeader
-				isDesktop={isDesktop}
-				isLaptop={isLaptop}
+			
 				handleMenubarToggle={handleMenubarToggle}
 			/>
 			<MaxWidthWrapper className="max-w-[2540px] h-full overflow-hidden">
