@@ -48,7 +48,7 @@ export function DashboardMenuItem(props: MenuItemProps ) {
 	return (
 		<div
 			className={cn(
-				'flex items-center justify-start gap-4  text-white w-full',
+				'flex items-center justify-start gap-4  w-full',
 				props.className
 			)}
 			ref={wrapperRef}
@@ -62,7 +62,7 @@ export function DashboardMenuItem(props: MenuItemProps ) {
 					<button
 						onClick={() => setIsOpen(!isOpen)}
 						className={cn(
-							`flex items-center justify-between w-full gap-4 text-white`,
+							`flex items-center justify-between w-full gap-4`,
 							{
 								'mb-4': isOpen
 							}
@@ -70,7 +70,7 @@ export function DashboardMenuItem(props: MenuItemProps ) {
 					>
 						<div
 							className={cn(
-								`flex items-center justify-start gap-4 text-white w-full`
+								`flex items-center justify-start gap-4 w-full`
 							)}
 						>
 							<props.Icon size={props.iconSize || 20} />
@@ -103,7 +103,7 @@ export function DashboardMenuItem(props: MenuItemProps ) {
 					to={props.href!}
 					className={() => {
 						return cn(
-							`flex items-center justify-start gap-4 text-white w-full`,
+							`flex items-center justify-start gap-4  w-full`,
 							
 						);
 					}}
