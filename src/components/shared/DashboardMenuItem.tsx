@@ -1,21 +1,24 @@
 'use client';
-import  { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { LucideChevronDown, LucideIcon } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import { NavLink } from 'react-router-dom';
-export type MenuItemProps = {
+import { NavLink, useLocation } from 'react-router-dom';
+export type DashboardMenuItemProps = {
 	Icon: LucideIcon;
 	name: string;
 	showIcon?: boolean;
 	iconSize?: number;
 	href?: string;
-	sub_items?: MenuItemProps[];
-}& {
-	className?: string;
-}
-export function DashboardMenuItem(props: MenuItemProps ) {
+	sub_items?: DashboardMenuItemProps[];
+	toggleSidebar?: (
 	
+	) => void;
+} & {
+	className?: string;
+};
+export function DashboardMenuItem(props: DashboardMenuItemProps) {
 	const [isOpen, setIsOpen] = useState(false);
+	const location = useLocation();
 	const hasSubItems = props.sub_items && props.sub_items.length > 0;
 
 	const wrapperRef = useRef<HTMLDivElement>(null);
@@ -101,10 +104,19 @@ export function DashboardMenuItem(props: MenuItemProps ) {
 			) : (
 				<NavLink
 					to={props.href!}
-					className={() => {
+					onClick={props.toggleSidebar}
+					className={({ isActive }) => {
 						return cn(
-							`flex items-center justify-start gap-4  w-full`,
-							
+							`flex items-center justify-start gap-4  w-full p-1 sm:p-2 rounded transition-all duration-300 hover:bg-primary-pk border border-transparent hover:text-white`,
+							{
+								'bg-primary-pk text-white':
+									isActive &&
+									location.pathname === props.href,
+								'hover:bg-orange-200  hover:text-black':
+									!isActive,
+								'border border-primary-pk':
+									location.pathname.includes(props.href!)
+							}
 						);
 					}}
 				>

@@ -7,10 +7,8 @@ const InstructorCourses = lazy(() => import('./components/InstructorCourses'));
 const InstructorDashboardStats = lazy(
 	() => import('./components/InstructorDashboardStats')
 );
+const DashboardNotFoundPage = lazy(() => import('@/components/shared/DashboardNotFoundPage'));
 
-const InstructorPageNotFound = lazy(
-	() => import('./components/InstructorPageNotFound')
-);
 // const InstructorProtectedLayout = lazy(() => import('@/components/shared/layouts/InstructorProtectedLayout'));
 
 export const instructorRoutes: RouteObject = {
@@ -27,7 +25,7 @@ export const instructorRoutes: RouteObject = {
 		},
 		{
 			path: '/instructor-dashboard/*',
-			element: <InstructorPageNotFound />
+			element: <DashboardNotFoundPage />
 		}
 	]
 };

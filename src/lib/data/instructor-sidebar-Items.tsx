@@ -1,4 +1,4 @@
-import { MenuItemProps } from '@/components/shared/DashboardMenuItem';
+import { DashboardMenuItemProps } from '@/components/shared/DashboardMenuItem';
 import {
 	LucideLayoutDashboard,
 	LucideGlobe,
@@ -10,7 +10,7 @@ import {
 	LucidePhoneCall
 } from 'lucide-react';
 
-export const instructorSidebarItems: MenuItemProps[] = [
+export const instructorSidebarItems: DashboardMenuItemProps[] = [
 	{
 		Icon: LucideLayoutDashboard,
 		name: 'Dashboard',

@@ -3,7 +3,7 @@ import { lazy } from 'react';
 import { RouteObject } from 'react-router-dom';
 
 const BaseErrorPage = lazy(() => import('@/client/errors/BaseErrorPage'));
-const NotFoundPage = lazy(() => import('@/client/errors/NotFoundPage'));
+const DashboardNotFoundPage = lazy(() => import('@/components/shared/DashboardNotFoundPage'));
 const SuperAdminProtectedLayout = lazy(
 	() => import('@/components/shared/layouts/SuperAdminProtectedLayout')
 );
@@ -114,7 +114,7 @@ export const superAdminRoutes: RouteObject = {
 		},
 		{
 			path: '/super/dashboard/*',
-			element: <NotFoundPage/>
+			element: <DashboardNotFoundPage/>
 		}
 	]
 };
