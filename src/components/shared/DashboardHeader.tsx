@@ -49,8 +49,7 @@ export default function DashboardHeader({
 						<LucideMenu />
 					</button>
 					<button
-						className="flex items-center justify-start gap-4 md:hidden "
-						disabled={isDesktop || isLaptop}
+						className="flex items-center justify-start gap-4  "
 						onClick={() => navigate('/')}
 					>
 						<LucideHome />

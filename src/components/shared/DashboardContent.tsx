@@ -16,14 +16,14 @@ export default function DashboardContent({
 	return (
 		<div
 			className={cn(
-				` bg-stone-100 border w-full md:ml-64 md:w-[calc(100%_-_16rem)] overflow-hidden`
+				` bg-stone-100 border w-full md:ml-64 md:w-[calc(100%_-_16rem)]`
 			)}
 		>
 			<DashboardHeader handleMenubarToggle={handleMenubarToggle} />
 
 			<div
 				className={cn(
-					`border  overflow-y-auto  h-[calc(100dvh_-_4rem)] p-4 sm:p-4 md:p-6 lg:p-8`
+					`border  overflow-y-auto p-4 sm:p-4 md:p-6 lg:p-8`
 				)}
 			>
 				{children}

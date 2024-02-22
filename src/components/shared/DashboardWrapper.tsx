@@ -3,8 +3,6 @@ import { Outlet } from 'react-router-dom';
 import DashboardContent from './DashboardContent';
 import DashboardSidebar from './DashboardSidebar';
 import { DashboardMenuItemProps } from './DashboardMenuItem';
-import MaxWidthWrapper from './MaxWidthWrapper';
-import { cn } from '@/lib/utils';
 
 type DashboardWrapperProps = {
 	menu_items: DashboardMenuItemProps[];
@@ -21,24 +19,20 @@ export default function DashboardWrapper({
 		setIsOpen(!isOpen);
 	};
 	return (
-		<MaxWidthWrapper
-			className={cn('max-w-[1920px] h-screen w-full scrb')}
-		>
-			<div className={'w-full relative'}>
-				{' '}
-				<DashboardSidebar
-					isSidebarOpen={isOpen}
-					title={title || 'Dashboard'}
-					menuItems={menu_items}
-					handleToggle={handleMenubarToggle}
-				/>
-				<DashboardContent
-					isOpen={isOpen}
-					handleMenubarToggle={handleMenubarToggle}
-				>
-					<Outlet />
-				</DashboardContent>
-			</div>
-		</MaxWidthWrapper>
+		<div className={'w-full '}>
+			{' '}
+			<DashboardSidebar
+				isSidebarOpen={isOpen}
+				title={title || 'Dashboard'}
+				menuItems={menu_items}
+				handleToggle={handleMenubarToggle}
+			/>
+			<DashboardContent
+				isOpen={isOpen}
+				handleMenubarToggle={handleMenubarToggle}
+			>
+				<Outlet />
+			</DashboardContent>
+		</div>
 	);
 }
