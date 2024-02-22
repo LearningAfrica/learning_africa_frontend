@@ -7,6 +7,9 @@ const Register = lazy(() => import('./pages/Register'));
 const NonAuthLayout = lazy(
 	() => import('@/components/shared/layouts/NonAuthLayout')
 );
+const RegisterReferral = lazy(
+	() => import('./pages/RegisterReferral')
+);
 
 export const all_only_unauthenticated_routes: RouteObject = {
 	path: '/',
@@ -19,6 +22,11 @@ export const all_only_unauthenticated_routes: RouteObject = {
 		{
 			path: '/register',
 			element: <Register />
+		},
+		{
+			// RegisterReferral
+			path: '/invite/register',
+			element: <RegisterReferral />
 		}
 	]
 };
