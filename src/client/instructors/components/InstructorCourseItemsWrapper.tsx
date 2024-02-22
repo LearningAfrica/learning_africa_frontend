@@ -5,7 +5,7 @@ import {
 	faUpload
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { NavLink, useParams } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { CourseTabs } from './InstructorCourses';
 const courseTabs = [
 	{
@@ -42,7 +42,7 @@ type Props = {
 	tab: CourseTabs;
 };
 export default function InstructorCourseItemsWrapper({ tab }: Props) {
-	const param = useParams();
+	// const param = useParams();
 
 	return (
 		<div>
