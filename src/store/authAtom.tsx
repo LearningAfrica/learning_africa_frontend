@@ -27,8 +27,6 @@ const authAtom = atom<AuthState | null>(
 export const authStoreAtom = atom(
 	authStorage,
 	(_get, set, update: AuthState) => {
-		console.log('authStoreAtom', { update });
-
 		set(authAtom, update);
 		AppLocalStorage.set('learning-africa-auth', JSON.stringify(update));
 	}

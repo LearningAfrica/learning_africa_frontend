@@ -43,7 +43,6 @@ type Props = {
 };
 export default function InstructorCourseItemsWrapper({ tab }: Props) {
 	const param = useParams();
-	console.log({ param });
 
 	return (
 		<div>

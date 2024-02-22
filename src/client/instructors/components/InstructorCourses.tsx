@@ -13,7 +13,6 @@ export default function InstructorCourses() {
 	const location = useLocation();
 	// const searchParam = new URLSearchParams(location.search)
 	// const tab = searchParam.get('tab') as CourseTabs
-	// console.log({tab});
 	const {
 		searchParam: { tab }
 	} = useParamHook({ location });
