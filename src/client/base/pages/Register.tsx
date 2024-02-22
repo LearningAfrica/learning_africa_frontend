@@ -26,7 +26,7 @@ const RegisterSchema = z
 		email: z.string().email('Please enter a valid email'),
 		first_name: z.string({ required_error: 'First name is required' }),
 		username: z.string({ required_error: 'Username is required' }),
-		is_admin: z.boolean().default(true), //admin@learningafrica.com
+		is_admin: z.boolean().default(false), //admin@learningafrica.com
 		is_instructor: z.boolean().default(false), //instructor@learningafrica.com
 		is_student: z.boolean().default(false), // student@learningafrica.com
 		is_super_admin: z.boolean().default(false), // superadmin@learningafrica
