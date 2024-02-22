@@ -4,7 +4,6 @@ import { Outlet, Navigate, useLocation } from 'react-router-dom';
 export default function NonAuthLayout() {
 	const { isAuthenticated } = useAuthHook('admin');
 	const { state } = useLocation() as { state: { from: string | undefined } };
-console.log({ state });
 
 	return !isAuthenticated ? (
 		<Outlet />

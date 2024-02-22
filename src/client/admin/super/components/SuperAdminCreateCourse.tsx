@@ -96,7 +96,6 @@ export default function SuperAdminCreateCourse() {
 	const handleInputChange = (
 		e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
 	) => {
-		console.log(e.target.name, e.target.value);
 		const target = e.target;
 		if (target.name === 'private'&&target.type==='checkbox') {
 			setFormData(

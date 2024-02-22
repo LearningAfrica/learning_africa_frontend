@@ -51,7 +51,6 @@ export default function Register() {
 	const location = useLocation();
 	// const searchParam = new URLSearchParams(location.search)
 	// const tab = searchParam.get('tab') as CourseTabs
-	// console.log({tab});
 	// sample url= http://localhost:3000/sign-up?action=register&organization=ucb34523bd&token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJvcmdhbml6YXRpb24iOiJ1Y2IzNDUyM2JkIiwiaWF0IjoxNjI5MjU0NjQ2LCJleHAiOj&
 	/**
 	 * {
@@ -89,8 +88,8 @@ export default function Register() {
 				duration: 5000
 			});
 		},
-		onError: (error) => {
-			console.log(error);
+		// eslint-disable-next-line @typescript-eslint/no-unused-vars
+		onError: (_error) => {
 			toast.error('Registration failed', {
 				className: 'bg-red-500 text-white font-bold p-4 rounded-md',
 				icon: '👏',
@@ -100,7 +99,6 @@ export default function Register() {
 		}
 	});
 	const onSubmit: SubmitHandler<RegisterFormType> = async (values) => {
-		// console.log(values);
 		// toast.success('Registration successful', {
 		// 	className: 'bg-green-500 text-white font-bold p-4 rounded-md',
 		// 	icon: '👏',
@@ -109,7 +107,6 @@ export default function Register() {
 		// });
 		mutation.mutate(values);
 		// const res = await api.register(values);
-		// console.log(res);
 	};
 	return (
 		<div className="bg-light p-4">

@@ -55,7 +55,6 @@ export default function Login() {
 				position: 'top-right',
 				duration: 5000
 			});
-			// console.log({ data });
 
 			setAuth({
 				access_token: data.access_token,
@@ -69,7 +68,6 @@ export default function Login() {
 
 		},
 		onError: (error) => {
-			console.log(error);
 			if (error instanceof AxiosError) {
 				toast.error(error.response?.data.detail, {
 					className: 'bg-red-500 text-white font-bold p-4 rounded-md',
@@ -81,7 +79,6 @@ export default function Login() {
 		}
 	});
 	const onSubmit: SubmitHandler<LoginFormType> = async (values) => {
-		// console.log(values);
 		// toast.success('Registration successful', {
 		// 	className: 'bg-green-500 text-white font-bold p-4 rounded-md',
 		// 	icon: '👏',
@@ -90,7 +87,6 @@ export default function Login() {
 		// });
 		mutation.mutate(values);
 		// const res = await api.register(values);
-		// console.log(res);
 	};
 	return (
 		<div className="bg-light p-4">

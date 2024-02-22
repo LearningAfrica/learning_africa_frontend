@@ -48,12 +48,10 @@ privateAxios.interceptors.request.use(
 	// eslint-disable-next-line @typescript-eslint/require-await
 	async (config) => {
 		const token = Cookie.getCookieToken('ck_63hsG-sscWPkl');
-		// console.log("token: " + JSON.stringify(token));
 
 		if (token) {
 			config.headers.Authorization = `Bearer ${ token.accessToken }`;
 		}
-		// console.log("config: " + JSON.stringify(config));
 
 		return config;
 	},
@@ -142,7 +140,7 @@ function getWebSocketAddress(url: string): string {
 		// const prodUrl = `${protocol}://${hostname}`;
 		return match[0].replace(/http/, 'ws'); //isDev ? `${protocol}://${hostname}:${port}` : prodUrl;
 	} else {
-		console.log('No match found for url', url);
+		// console.log('No match found for url', url);
 		return url;
 	}
 }
