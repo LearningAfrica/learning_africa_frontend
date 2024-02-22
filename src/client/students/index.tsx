@@ -26,7 +26,7 @@ const StudentDashboardReviews = lazy(
 const StudentDashboardSetting = lazy(
 	() => import('./components/StudentDashboardSetting')
 );
-const NotFoundPage = lazy(() => import('../errors/NotFoundPage'));
+const DashboardNotFoundPage = lazy(() => import('@/components/shared/DashboardNotFoundPage'));
 // import StudentDashboard from './pages/StudentDashboard';
 
 export const studentRoutes: RouteObject = {
@@ -69,7 +69,7 @@ export const studentRoutes: RouteObject = {
 		},
 		{
 			path: '/student/dashboard/*',
-			element: <NotFoundPage />
+			element: <DashboardNotFoundPage />
 		}
 	]
 };

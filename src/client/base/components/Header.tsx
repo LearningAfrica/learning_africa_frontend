@@ -66,7 +66,7 @@ export default function Header() {
 						/>
 						<div
 							className={cn(
-								'text-xl   text-primary-pk ml-4 font-bold uppercase'
+								'text-xl hidden md:block  text-primary-pk ml-4 font-bold uppercase'
 							)}
 						>
 							Learning Africa
@@ -74,7 +74,7 @@ export default function Header() {
 					</div>
 				</div>
 				<div>
-					<div className="flex items-center">
+					<div className="items-center hidden md:flex">
 						<div className="text-sm font-medium text-gray-900">
 							Home
 						</div>

@@ -1,14 +1,14 @@
-import React from 'react';
-import { DashboardMenuItem, MenuItemProps } from './DashboardMenuItem';
+import { DashboardMenuItem, DashboardMenuItemProps } from './DashboardMenuItem';
 import { ChevronLeft, User } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import useViewPort from '@/lib/hooks/useViewPort';
+import useAuthHook from '@/lib/hooks/useAuthHook';
 
 type DashboardSidebarProps = {
 	title?: string;
 	isSidebarOpen?: boolean;
-	menuItems: MenuItemProps[];
-	handleToggle?: (e: React.MouseEvent<HTMLButtonElement>) => void;
+	menuItems: DashboardMenuItemProps[];
+	handleToggle?: () => void;
 };
 
 export default function DashboardSidebar({
@@ -18,10 +18,11 @@ export default function DashboardSidebar({
 	handleToggle
 }: DashboardSidebarProps) {
 	const { isDesktop, isTablet, isMobile } = useViewPort();
+	const auth =useAuthHook();
 	return (
 		<div
 			className={cn(
-				`hidden md:grid grid-rows-[5rem_1fr_2rem] h-[100dvh] bg-slate-100  text-black w-48 md:w-64 fixed top-0 left-0 z-[10000]  flex-col gap-6 pb-2`,
+				`hidden md:grid grid-rows-[5rem_1fr_2rem] h-[100dvh] bg-slate-100  text-black w-48 md:w-64 fixed border-r border-gray-500 top-0 left-0 z-[10000]  flex-col gap-6 pb-4`,
 				{
 					flex: isSidebarOpen
 				}
@@ -70,6 +71,7 @@ export default function DashboardSidebar({
 								{/* <ConciergeBell /> */}
 								<DashboardMenuItem
 									{...nav}
+									toggleSidebar={handleToggle}
 									iconSize={
 										isDesktop
 											? 24
@@ -103,6 +105,7 @@ export default function DashboardSidebar({
 						'py-1': isMobile
 					}
 				)}
+				onClick={auth.logout}
 			>
 				<User
 					size={isDesktop ? 24 : isTablet ? 20 : isMobile ? 16 : 24}

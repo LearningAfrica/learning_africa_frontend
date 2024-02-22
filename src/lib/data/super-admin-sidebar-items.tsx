@@ -1,4 +1,4 @@
-import { MenuItemProps } from '@/components/shared/DashboardMenuItem';
+import { DashboardMenuItemProps } from '@/components/shared/DashboardMenuItem';
 import {
 	LucideAsteriskSquare,
 	LucideFileCog,
@@ -14,7 +14,7 @@ import {
 	LucideUser
 } from 'lucide-react';
 
-export const superAdminSidebarItems: MenuItemProps[] = [
+export const superAdminSidebarItems: DashboardMenuItemProps[] = [
 	{
 		Icon: LucideLayoutDashboard,
 		name: 'Dashboard',

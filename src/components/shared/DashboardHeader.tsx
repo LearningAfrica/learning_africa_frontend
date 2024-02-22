@@ -1,4 +1,11 @@
-import { LogOut, LucideMenu, LucideUser, Moon, Sun } from 'lucide-react';
+import {
+	LogOut,
+	LucideHome,
+	LucideMenu,
+	LucideUser,
+	Moon,
+	Sun
+} from 'lucide-react';
 import React from 'react';
 import {
 	DropdownMenu,
@@ -18,6 +25,7 @@ import { Button } from '../ui/button';
 import { useTheme } from '@/lib/hooks/useTheme';
 import useAuthHook from '@/lib/hooks/useAuthHook';
 import useViewPort from '@/lib/hooks/useViewPort';
+import { useNavigate } from 'react-router-dom';
 type DashboardHeaderProps = {
 	handleMenubarToggle: (e: React.MouseEvent<HTMLButtonElement>) => void;
 };
@@ -27,20 +35,30 @@ export default function DashboardHeader({
 }: DashboardHeaderProps) {
 	const { setTheme } = useTheme();
 	const { logout } = useAuthHook();
-	const { isDesktop, isLaptop,  isMobile } = useViewPort();
+	const navigate = useNavigate();
+	const { isDesktop, isLaptop, isMobile } = useViewPort();
 	return (
 		<div className="sticky top-0 bg-white z-10 shadow w-full border-b h-16 flex items-center justify-between px-4">
 			<div>
-				<button
-					onClick={handleMenubarToggle}
-					disabled={isDesktop || isLaptop}
-					className="flex items-center justify-start gap-4 px-4 disabled:cursor-not-allowed"
-				>
-					<LucideMenu />
+				<div className="flex items-center justify-start gap-4 px-4 disabled:cursor-not-allowed">
+					<button
+						className="flex items-center justify-start gap-4 md:hidden "
+						onClick={handleMenubarToggle}
+						disabled={isDesktop || isLaptop}
+					>
+						<LucideMenu />
+					</button>
+					<button
+						className="flex items-center justify-start gap-4  "
+						onClick={() => navigate('/')}
+					>
+						<LucideHome />
+					</button>
+
 					<h1 className="hidden md:block font-bold text-xl">
 						Dashboard
 					</h1>
-				</button>
+				</div>
 			</div>
 			<div className="hidden items-center justify-start gap-4 px-4">
 				<div className="flex items-center justify-start gap-4 px-4 border">

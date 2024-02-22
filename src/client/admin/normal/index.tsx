@@ -3,7 +3,8 @@ import { lazy } from 'react';
 import { RouteObject } from 'react-router-dom';
 const AdminProtectedLayout = lazy(() => import('@/components/shared/layouts/AdminProtectedLayout'));
 const BaseErrorPage = lazy(() => import('@/client/errors/BaseErrorPage'));
-const NotFoundPage = lazy(() => import('@/client/errors/NotFoundPage'));
+const DashboardNotFoundPage = lazy(() => import('@/components/shared/DashboardNotFoundPage'));
+
 
 export const adminRoutes: RouteObject = {
 	path: '/org-admin',
@@ -16,7 +17,7 @@ export const adminRoutes: RouteObject = {
 		},
 		{
 			path: '/org-admin/*',
-			element: <NotFoundPage />
+			element: <DashboardNotFoundPage />
 		}
 	]
 };
