@@ -44,7 +44,7 @@ export default function Header() {
 				'w-full flex justify-between items-center px-4 transition-all duration-500 py-2  bg-primary-pk bg-blend-overlay bg-opacity-10',
 
 				{
-					'sticky top-2  z-20 mx-auto bg-white bg-opacity-100 border-b-2 border-primary shadow':
+					'sticky top-2  z-20 mx-auto bg-white bg-opacity- border-b-2 border-primary shadow':
 						isScroll
 				}
 			)}
@@ -97,7 +97,7 @@ export default function Header() {
 											return cn(
 												'text-sm font-medium text-gray-900 ml-4',
 												{
-													'bg-primary-pk px-8 py-4 rounded':
+													'bg-primary-pk px-4 text-white py-2 rounded':
 														isScroll
 												},
 												{
@@ -120,12 +120,12 @@ export default function Header() {
 						<div className="flex items-center">
 							<NavLink
 								to={'/login'}
-								className="text-sm font-medium text-gray-900"
+								className="text-sm font-medium text-blue-600 hover:underline ml-4"
 							>
 								Login
 							</NavLink>
-							<div className="text-sm font-medium text-gray-900 ml-4 bg-primary-pk px-8 py-4 rounded">
-								Signup
+							<div className="text-sm font-medium text-gray-900 ml-4 bg-primary-pk px-4 md:px-8 py-2 md:py-4 rounded">
+								Sign up
 							</div>
 						</div>
 					)}

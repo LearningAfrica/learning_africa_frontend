@@ -1,8 +1,8 @@
 
 export default function HomeFooter() {
 	return (
-		<div className="bg-orange-700 py-10 text-white ">
-			<div className="py-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 max-w-7xl mx-auto">
+		<div className="bg-orange-700 px-4 py-10 text-white ">
+			<div className="px-4 md:px-10 py-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 max-w-7xl mx-auto">
 				<div>
 					<div className="text-2xl font-bold text-white">
 						About Us
@@ -49,7 +49,7 @@ export default function HomeFooter() {
 			<div className="max-w-7xl mx-auto flex justify-between py-4 text-white">
 				<div>
 					Copyright &copy;{new Date().getFullYear()} - All rights
-					reserved(Learnin Africa)
+					reserved(Learning Africa)
 				</div>
 				<div>
 					Designed by{' '}
