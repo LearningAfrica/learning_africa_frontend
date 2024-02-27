@@ -163,8 +163,8 @@ export default function HomeCourses() {
 		return () => clearInterval(interval);
 	}, []);
 	return (
-		<div className="w-full bg-primary-pk bg-opacity-10 p-10">
-			<div className="w-full bg-opacity-10 p-10">
+		<div className="w-full bg-primary-pk bg-opacity-10 p-4 md:p-10">
+			<div className="w-full bg-opacity-10 md:p-10">
 				<div className="max-w-7xl mx-auto flex flex-col gap-4">
 					<h1
 						className="text-4xl font-bold text-primary-pk"
