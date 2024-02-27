@@ -42,7 +42,7 @@ export default function HomeBanner() {
 						src={assets.images.img2}
 						alt="header"
 					/>
-					<div className="absolute top-0 left-80 -z-[1] rounded-full w-20 h-20 md:w-40 md:h-40 bg-primary-pk bg-opacity-50"></div>
+					<div className="absolute top-0 left-40 md:left-80 -z-[1] rounded-full w-20 h-20 md:w-40 md:h-40 bg-primary-pk bg-opacity-50"></div>
 					<div className="absolute top-0 left-0 rounded-full w-20 h-20 bg-green-600 bg-opacity-50"></div>
 					<div className="absolute top-0 left-0 rounded-full w-20 h-20 bg-primary-pk-pk bg-opacity-50"></div>
 					<div className="absolute top-20 right-10 rounded-full w-20 h-20 bg-blue-400 bg-opacity-50"></div>
