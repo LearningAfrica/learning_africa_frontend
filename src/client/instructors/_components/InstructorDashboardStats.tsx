@@ -1,37 +1,44 @@
 import {
-	faBookReader,
-	faChevronLeft,
-	faChevronRight,
-	faComputer,
-	faDashboard,
-	faTrophy,
-	faUserGraduate
-} from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-const stats = [
+	LucideBook,
+	LucideChevronLeft,
+	LucideChevronRight,
+	LucideComputer,
+	LucideGraduationCap,
+	LucideIcon,
+	LucideLayoutDashboard,
+	LucideTrophy
+} from 'lucide-react';
+
+type Stat = {
+	title: string;
+	value: string;
+	new: string;
+	Icon: LucideIcon;
+};
+const stats: Stat[] = [
 	{
 		title: 'Total Sales',
 		value: '40',
 		new: '10',
-		icon: faTrophy
+		Icon: LucideTrophy
 	},
 	{
 		title: 'Total Enrollments',
 		value: '100',
 		new: '10',
-		icon: faComputer
+		Icon: LucideComputer
 	},
 	{
 		title: 'Total courses',
 		value: '100',
 		new: '10',
-		icon: faBookReader
+		Icon: LucideBook
 	},
 	{
 		title: 'Total purchased courses',
 		value: '100',
 		new: '10',
-		icon: faUserGraduate
+		Icon: LucideGraduationCap
 	}
 ];
 
@@ -113,7 +120,7 @@ const student_features = [
 	}
 ];
 
-const announcents = [
+const announcements = [
 	{
 		id: '1',
 		title: 'New Course: Introduction to Web Development',
@@ -135,29 +142,22 @@ const announcents = [
 ];
 
 export default function InstructorDashboardStats() {
-  return (
-	<div className="p-4 flex flex-col gap-4">
-			<div className="flex gap-4 items-center">
-				<FontAwesomeIcon
-					icon={faDashboard}
-					className="text-4xl text-gray-500"
-				/>
-				<h2 className="text-4xl font-medium text-gray-500">
-					Instructor Dashboard
-				</h2>
+	return (
+		<div className="flex flex-col gap-4 p-2">
+			<div className="flex gap-4 items-center justify-between bg-white p-4">
+				<LucideLayoutDashboard />
+
+				<h2 className="">Dashboard</h2>
 			</div>
-			<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+			<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 bg-white p-2">
 				{[
 					stats.map((stat) => (
-						<div 
+						<div
 							key={stat.title}
-						className="bg-white p-4 flex gap-4 items-center flex-row-reverse justify-between rounded-md shadow-md">
+							className="bg-white p-4 flex gap-4 items-center flex-row-reverse justify-between rounded-md shadow-md"
+						>
 							<div className="bg-primary-pk p-4 rounded-full">
-								<FontAwesomeIcon
-									icon={stat.icon}
-									className="text-white text-2xl"
-									aria-hidden="true"
-								/>
+								<stat.Icon className="text-white" />
 							</div>
 							<div className="flex flex-col gap-4">
 								<div className="text-2xl font-bold">
@@ -180,17 +180,19 @@ export default function InstructorDashboardStats() {
 						</h2>
 						<div className="flex">
 							<button className="">
-								<FontAwesomeIcon icon={faChevronLeft} />
+								{/* <FontAwesomeIcon icon={faChevronLeft} /> */}
+								<LucideChevronLeft />
 							</button>
 							<button className="px-2 rounded-md">
-								<FontAwesomeIcon icon={faChevronRight} />
+								{/* <FontAwesomeIcon icon={faChevronRight} /> */}
+								<LucideChevronRight />
 							</button>
 						</div>
 					</div>
 					<div className="flex flex-col gap-4">
 						{newCourses.map((course) => (
 							<div
-								key={course.id+course.name}
+								key={course.id + course.name}
 								className="flex gap-4 items-center my-4"
 							>
 								<div className="w-16 h-16 bg-gray-200 rounded-md">
@@ -219,20 +221,22 @@ export default function InstructorDashboardStats() {
 						</h2>
 						<div className="flex">
 							<button className="">
-								<FontAwesomeIcon icon={faChevronLeft} />
+								{/* <FontAwesomeIcon icon={faChevronLeft} /> */}
+								<LucideChevronLeft />
 							</button>
 							<button className="px-2 rounded-md">
-								<FontAwesomeIcon icon={faChevronRight} />
+								{/* <FontAwesomeIcon icon={faChevronRight} /> */}
+								<LucideChevronRight />
 							</button>
 						</div>
 					</div>
-					<div className="flex flex-col text-xs">
-						{announcents.map((announcement) => (
+					<div className="text-xs grid grid-cols-1 sm:grid-cols-2">
+						{announcements.map((announcement) => (
 							<div
 								key={announcement.id}
-								className="flex gap-4 items-center my-4"
+								className="flex flex-col gap-4 items-center my-4 border p-2 rounded"
 							>
-								<div className="w-16 h-16 bg-gray-200 rounded-md">
+								<div className="h-36 bg-gray-200 rounded-md w-full">
 									<img
 										src="https://images.unsplash.com/photo-1515879218367-8466d910aaa4?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8cHl0aG9uJTIwcHJvZ3JhbW1pbmd8ZW58MHx8MHx8fDA%3D"
 										alt="course"
@@ -243,7 +247,7 @@ export default function InstructorDashboardStats() {
 									<div className="text-lg font-bold">
 										{announcement.title}
 									</div>
-									<div className="text-gray-500">
+									<div className="text-gray-500 text-ellipsis">
 										{announcement.description}
 									</div>
 								</div>
@@ -261,10 +265,12 @@ export default function InstructorDashboardStats() {
 						</h2>
 						<div className="flex">
 							<button className="">
-								<FontAwesomeIcon icon={faChevronLeft} />
+								{/* <FontAwesomeIcon icon={faChevronLeft} /> */}
+								<LucideChevronLeft />
 							</button>
 							<button className="px-2 rounded-md">
-								<FontAwesomeIcon icon={faChevronRight} />
+								{/* <FontAwesomeIcon icon={faChevronRight} /> */}
+								<LucideChevronRight />
 							</button>
 						</div>
 					</div>
@@ -296,5 +302,5 @@ export default function InstructorDashboardStats() {
 				</div>
 			</div>
 		</div>
-  )
+	);
 }
