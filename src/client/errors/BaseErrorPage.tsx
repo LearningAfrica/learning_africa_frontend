@@ -9,22 +9,25 @@ export default function BaseErrorPage() {
 	const reload = () => window.location.reload();
 	return (
 		<div
-			className="w-full h-full flex flex-col justify-center items-center"
+			className="w-full h-full flex flex-col gap-8 justify-center items-center"
 			style={{ minHeight: 'calc(100vh - 100px)' }}
 		>
-			<p>Something went wrong. Please try again later.</p>
+			<p className="md:text-xl font-bold text-center text-gray-500 text-lg">
+				Something went wrong. <br />
+				Please try again later.
+			</p>
 			<div className="flex gap-4 items-center">
 				<button
 					onClick={reload}
-					className="bg-primary-pk text-white px-4  md:px-8 py-2 md:py-4 rounded-md text-sm md:text-2xl"
+					className="bg-primary-pk text-white px-2  md:px-4 py-2 rounded-md text-sm md:text-xl"
 				>
 					Reload
 				</button>
 				<NavLink
 					to="/"
-					className="bg-primary-pk text-white px-4  md:px-8 py-2 md:py-4 rounded-md text-sm md:text-2xl"
+					className="bg-primary-pk text-white px-4  md:px-8 py-2  rounded-md text-sm md:text-xl"
 				>
-					Go to Home
+					Home
 				</NavLink>
 			</div>
 		</div>
