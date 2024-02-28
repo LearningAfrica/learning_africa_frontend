@@ -2,10 +2,10 @@
 import InstructorProtectedLayout from '@/components/shared/layouts/InstructorProtectedLayout';
 import { lazy } from 'react';
 import { RouteObject } from 'react-router-dom';
-const InstructorCourses = lazy(() => import('./components/InstructorCourses'));
+const InstructorCourses = lazy(() => import('./_components/InstructorCourses'));
 
 const InstructorDashboardStats = lazy(
-	() => import('./components/InstructorDashboardStats')
+	() => import('./_components/InstructorDashboardStats')
 );
 const DashboardNotFoundPage = lazy(() => import('@/components/shared/DashboardNotFoundPage'));
 
