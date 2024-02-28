@@ -1,154 +1,144 @@
 import { cn } from '@/lib/utils/cn';
-import {
-	faBook,
-	faDownload,
-	faUpload
-} from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { NavLink } from 'react-router-dom';
 import { CourseTabs } from './InstructorCourses';
-const courseTabs = [
+import {
+	LucideBook,
+	LucideDollarSign,
+	LucideDownloadCloud,
+	LucideIcon,
+	LucideUploadCloud
+} from 'lucide-react';
+import useViewPort from '@/lib/hooks/useViewPort';
+
+type TabItem = {
+	Icon: LucideIcon;
+	title: string;
+	tabRef: string;
+	href: string;
+};
+const courseTabs: TabItem[] = [
 	{
-		icon: faBook,
-		title: 'My Courses',
-		tabref: 'my-courses',
+		Icon: LucideBook,
+		title: 'All',
+		tabRef: 'my-courses',
 		href: '/instructor-dashboard/courses?tab=my-courses'
 	},
 	{
-		icon: faDownload,
-		title: 'Purchased courses',
-		tabref: 'purchased-courses',
+		Icon: LucideDollarSign,
+		title: 'Purchased',
+		tabRef: 'purchased-courses',
 		href: '/instructor-dashboard/courses?tab=purchased-courses'
 	},
 	{
 		// Upcoming
-		icon: faUpload,
-		title: 'Upcoming courses',
-		tabref: 'upcoming-courses',
+		Icon: LucideUploadCloud,
+		title: 'Upcoming',
+		tabRef: 'upcoming-courses',
 		href: '/instructor-dashboard/courses?tab=upcoming-courses'
 	},
 	{
 		// drafts
-		icon: faDownload,
+		Icon: LucideDownloadCloud,
 		title: 'Drafts',
-		tabref: 'drafts',
+		tabRef: 'drafts',
 		href: '/instructor-dashboard/courses?tab=drafts'
 	}
 ];
 
-
+const courses = [
+	{
+		id: '1',
+		title: 'Introduction to Python',
+		description: 'Learn Python from scratch',
+		imageUrl: 'https://source.unsplash.com/300x200/?python'
+	},
+	{
+		id: '2',
+		title: 'Introduction to React',
+		description: 'Learn React from scratch',
+		imageUrl: 'https://source.unsplash.com/300x200/?react'
+	},
+	{
+		id: '3',
+		title: 'Introduction to Node',
+		description: 'Learn Node from scratch',
+		imageUrl: 'https://source.unsplash.com/300x200/?node'
+	},
+	{
+		id: '4',
+		title: 'Introduction to Express',
+		description: 'Learn Express from scratch',
+		imageUrl: 'https://source.unsplash.com/300x200/?express'
+	},
+	{
+		id: '5',
+		title: 'Introduction to MongoDB',
+		description: 'Learn MongoDB from scratch',
+		imageUrl: 'https://source.unsplash.com/300x200/?mongodb'
+	}
+];
 
 type Props = {
 	tab: CourseTabs;
 };
+
 export default function InstructorCourseItemsWrapper({ tab }: Props) {
-	// const param = useParams();
+	const { isDesktop, isTablet } = useViewPort();
 
 	return (
-		<div>
+		<div className="bg-white p-2">
 			<div className="flex items-center gap-1 justify-stretch bg-white shadow">
-				{courseTabs.map(({ icon, title, href, tabref }) => (
+				{courseTabs.map(({ Icon, title, href, tabRef }) => (
 					<NavLink
 						to={href}
 						key={title}
 						className={cn(
-							`flex flex-1 items-center gap-1 hover:bg-primary-pk hover:text-white transition-all ease-linear duration-75 px-4 p-4 rounded`,
+							`flex flex-1 items-center gap-1 hover:bg-primary-pk hover:text-white transition-all ease-linear duration-75 px-4 p-2 rounded`,
 							{
-								'bg-primary-pk text-white': tab === tabref
+								'bg-primary-pk text-white': tab === tabRef
 							}
 						)}
 					>
-						<FontAwesomeIcon icon={icon} className="text-xl" />
-						<span className="text-xl flex-1">{title}</span>
+						<Icon
+							className="text-sm"
+							size={isDesktop ? 24 : isTablet ? 20 : 16}
+						/>
+						<span className="text-sm flex-1">{title}</span>
 					</NavLink>
 				))}
 			</div>
-			<div className='py-4'>
-				{tab === 'my-courses' ? (
-					<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-						{[
-							{
-								id: 1,
-								title: 'Introduction to HTML',
-								description:
-									'Learn the basics of HTML and how to create a website',
-								imageUrl:
-									`https://images.unsplash.com/photo-1508921340878-ba53e1f016ec?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTV8fHdlYiUyMGRldmVsb3BtZW50fGVufDB8fDB8fHww`
-							},
-							{
-								id: 2,
-								title: 'Introduction to CSS',
-								description:
-									'Learn the basics of CSS and how to style your website',
-								imageUrl:
-									`https://images.unsplash.com/photo-1508921340878-ba53e1f016ec?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTV8fHdlYiUyMGRldmVsb3BtZW50fGVufDB8fDB8fHww`
-							},
-							{
-								id: 3,
-								title: 'Introduction to JavaScript',
-								description:
-									'Learn the basics of JavaScript and how to add interactivity to your website',
-								imageUrl:
-									`https://images.unsplash.com/photo-1508921340878-ba53e1f016ec?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTV8fHdlYiUyMGRldmVsb3BtZW50fGVufDB8fDB8fHww`
-							}
-						].map((course) => (
+			<div className="py-4 ">
+				{
+					<div className="grid  grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+						{courses.map((course) => (
 							<div
 								key={course.id}
-								className="bg-white p-4 shadow px-2 rounded-md flex flex-col justify-between"
+								className="flex flex-col gap-2 border"
 							>
-								<div
-									className="flex justify-between items-center"
-									style={{ marginBottom: '-1rem' }}
-								>
-									<div className="w-32 h-32 bg-gray-200 rounded-md">
+								<div className="">
+									<div className="w-full">
 										<img
 											src={course.imageUrl}
 											alt="course"
 											className="w-full h-full object-cover rounded-md"
 										/>
 									</div>
-									<div className="flex flex-col gap-2">
+									<div className="text-left flex flex-col gap-2 p-2">
 										<div className="text-lg font-bold">
 											{course.title}
 										</div>
-										<div className="text-gray-500">
+										<div className="text-gray-500 text-ellipsis">
 											{course.description}
 										</div>
-									</div>
-								</div>
-								<div className="flex justify-between items-center">
-									<div className="text-lg font-bold text-gray-500">
-										Students
-									</div>
-									<div className="text-lg font-bold text-gray-500">
-										10
-									</div>
-								</div>
-								<div className="flex justify-between items-center">
-									<div className="text-lg font-bold text-gray-500">
-										Reviews
-									</div>
-									<div className="text-lg font-bold text-gray-500">
-										10
-									</div>
-								</div>
-								<div className="flex justify-between items-center">
-									<div className="text-lg font-bold text-gray-500">
-										Last updated
-									</div>
-									<div className="text-lg font-bold text-gray-500">
-										10
 									</div>
 								</div>
 							</div>
 						))}
 					</div>
-				) : tab === 'purchased-courses' ? (
-					<>Some</>
-				) : (
-					<>Some 2</>
-				)}
+				}
 			</div>
 		</div>
 	);
 }
+
+// const InstructorCourseItem = () => {
