@@ -3,6 +3,7 @@ import InstructorProtectedLayout from '@/components/shared/layouts/InstructorPro
 import { lazy } from 'react';
 import { RouteObject } from 'react-router-dom';
 const InstructorCourses = lazy(() => import('./_components/InstructorCourses'));
+const InstructorCreateCourse = lazy(() => import('./_components/InstructorCreateCourse'));
 
 const InstructorDashboardStats = lazy(
 	() => import('./_components/InstructorDashboardStats')
@@ -22,6 +23,9 @@ export const instructorRoutes: RouteObject = {
 		{
 			path: '/instructor-dashboard/courses',
 			element: <InstructorCourses />
+		},{
+			path: '/instructor-dashboard/courses/create',
+			element: <InstructorCreateCourse />
 		},
 		{
 			path: '/instructor-dashboard/*',

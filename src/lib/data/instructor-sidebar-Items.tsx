@@ -7,7 +7,12 @@ import {
 	LucideStar,
 	LucideUser,
 	LucideFileCog,
-	LucidePhoneCall
+	LucidePhoneCall,
+	LucidePencil,
+	LucideLibrary,
+	LucideDollarSign,
+	LucideLoader,
+	LucideDraftingCompass
 } from 'lucide-react';
 
 export const instructorSidebarItems: DashboardMenuItemProps[] = [
@@ -17,9 +22,33 @@ export const instructorSidebarItems: DashboardMenuItemProps[] = [
 		href: '/instructor-dashboard'
 	},
 	{
-		Icon: LucideGlobe,
+		Icon: LucideLibrary,
 		name: 'Courses',
-		href: '/instructor-dashboard/courses'
+		href: '/instructor-dashboard/courses',
+		sub_items: [
+			{
+				Icon: LucideGlobe,
+				name: 'All Courses',
+				href: '/instructor-dashboard/courses?tab=my-courses'
+			},
+			{
+				Icon: LucidePencil,
+				name: 'Create Course',
+				href: '/instructor-dashboard/courses/create'
+			},{
+				Icon: LucideDollarSign,
+				name: 'Purchased',
+				href: '/instructor-dashboard/courses?tab=purchased-courses'
+			},{
+				Icon: LucideLoader,
+				name: 'Upcoming',
+				href: '/instructor-dashboard/courses?tab=upcoming-courses'
+			},{
+				Icon: LucideDraftingCompass,
+				name: 'Drafts',
+				href: '/instructor-dashboard/courses?tab=drafts'
+			}
+		]
 	},
 	{
 		Icon: LucideBellPlus,

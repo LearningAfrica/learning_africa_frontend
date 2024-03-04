@@ -23,7 +23,7 @@ import { useAtom } from 'jotai';
 import { authStoreAtom } from '@/store/authAtom';
 
 const authApi = new AuthApiService();
-const loginSchema = z.object({
+const createCourseSchema = z.object({
 	username_or_email: z.string(),
 	password: z
 		.string({})
@@ -33,11 +33,11 @@ const loginSchema = z.object({
 		})
 });
 
-export type LoginFormType = z.infer<typeof loginSchema>;
+export type CreateCourseFormType = z.infer<typeof createCourseSchema>;
 
-export default function Login() {
-	const form = useForm<LoginFormType>({
-		resolver: zodResolver(loginSchema),
+export default function CreateCourse() {
+	const form = useForm<CreateCourseFormType>({
+		resolver: zodResolver(createCourseSchema),
 		defaultValues: {
 			password: '',
 			username_or_email: ''
@@ -49,7 +49,7 @@ export default function Login() {
 	const mutation = useMutation({
 		mutationFn: authApi.login,
 		onSuccess: (data) => {
-			toast.success('Login successful', {
+			toast.success('CreateCourse successful', {
 				className: 'bg-green-500 text-white font-bold p-4 rounded-md',
 				icon: '👏👏',
 				position: 'top-right',
@@ -78,7 +78,7 @@ export default function Login() {
 			}
 		}
 	});
-	const onSubmit: SubmitHandler<LoginFormType> = async (values) => {
+	const onSubmit: SubmitHandler<CreateCourseFormType> = async (values) => {
 		// toast.success('Registration successful', {
 		// 	className: 'bg-green-500 text-white font-bold p-4 rounded-md',
 		// 	icon: '👏',
@@ -94,7 +94,7 @@ export default function Login() {
 			<div className="max-w-7xl mx-auto py-4 flex flex-col items-center justify-center min-h-[70vh]">
 				<div>
 					{/* Create account title */}
-					<h1 className="text-4xl font-bold">Login</h1>
+					<h1 className="text-4xl font-bold">CreateCourse</h1>
 				</div>
 				<Form {...form}>
 					<form
@@ -159,9 +159,9 @@ export default function Login() {
 							)}
 							disabled={mutation.isPending}
 						>
-							{mutation.isPending ? 'Loading...' : 'login'}
+							{mutation.isPending ? 'Loading...' : 'createCourse'}
 						</Button>
-						{/* Login link */}
+						{/* CreateCourse link */}
 						<div className="flex-1">
 							<p>
 								Don't have an account?{' '}
