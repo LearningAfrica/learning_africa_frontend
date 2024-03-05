@@ -26,6 +26,20 @@ function HomeCourses() {
                 </div>
                 <div className="p-4">
                   <h2>{cs.title}</h2>
+                  {cs.tags.length > 0 ? (
+                    <div className="flex gap-2">
+                      {cs.tags.map((tg) => (
+                        <span
+                          key={tg}
+                          className="bg-neutral-300 text-sm px-2 rounded-full"
+                        >
+                          {tg}
+                        </span>
+                      ))}
+                    </div>
+                  ) : (
+                    <></>
+                  )}
                 </div>
               </div>
             ))}
