@@ -3,12 +3,11 @@ import { Input } from '@/components/ui/input';
 import { Toaster, toast } from 'react-hot-toast';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
-import { useState } from 'react';
-import { Combobox } from '@headlessui/react';
 
 import {
 	Form,
 	FormControl,
+	FormDescription,
 	// FormDescription,
 	FormField,
 	FormItem,
@@ -31,6 +30,7 @@ import {
 	SelectContent,
 	SelectItem
 } from '@radix-ui/react-select';
+import { Link } from 'react-router-dom';
 
 const authApi = new AuthApiService();
 const instructorCreateCourseSchema = z.object({
@@ -41,14 +41,25 @@ const instructorCreateCourseSchema = z.object({
 	private: z.boolean().default(false),
 	organization_id: z.number()
 });
-const people = [
-	'Durward Reynolds',
-	'Kenton Towne',
-	'Therese Wunsch',
-	'Benedict Kessler',
-	'Katelyn Rohan'
+
+export type InstructorCreateCourseFormType = z.infer<
+	typeof instructorCreateCourseSchema
+>;
+
+const organizations = [
+	{
+		id: 1,
+		name: 'Organization 1'
+	},
+	{
+		id: 2,
+		name: 'Organization 2'
+	},
+	{
+		id: 3,
+		name: 'Organization 3'
+	}
 ];
-export type InstructorCreateCourseFormType = z.infer<typeof instructorCreateCourseSchema>;
 
 export default function InstructorCreateCourse() {
 	const form = useForm<InstructorCreateCourseFormType>({
@@ -62,15 +73,6 @@ export default function InstructorCreateCourse() {
 			organization_id: 0
 		}
 	});
-	const [selectedPerson, setSelectedPerson] = useState(people[0]);
-	const [query, setQuery] = useState('');
-
-	const filteredPeople =
-		query === ''
-			? people
-			: people.filter((person) => {
-				return person.toLowerCase().includes(query.toLowerCase());
-			});
 
 	const [, setAuth] = useAtom(authStoreAtom);
 	// const queryClient = useQueryClient();
@@ -104,7 +106,9 @@ export default function InstructorCreateCourse() {
 			}
 		}
 	});
-	const onSubmit: SubmitHandler<InstructorCreateCourseFormType> = async (values) => {
+	const onSubmit: SubmitHandler<InstructorCreateCourseFormType> = async (
+		values
+	) => {
 		// toast.success('Registration successful', {
 		// 	className: 'bg-green-500 text-white font-bold p-4 rounded-md',
 		// 	icon: '👏',
@@ -168,26 +172,45 @@ export default function InstructorCreateCourse() {
 								id="message"
 							/>
 						</div>
-						<Combobox
-							value={selectedPerson}
-							onChange={setSelectedPerson}
-						>
-							<Combobox.Input
-								onChange={(event) =>
-									setQuery(event.target.value)
-								}
-							/>
-							<Combobox.Options>
-								{filteredPeople.map((person) => (
-									<Combobox.Option
-										key={person}
-										value={person}
+						<FormField
+							control={form.control}
+							name="organization_id"
+							render={({ field }) => (
+								<FormItem>
+									<FormLabel className="block">
+										Organization
+									</FormLabel>
+									<Select
+										onValueChange={field.onChange}
+										defaultValue={field.value}
 									>
-										{person}
-									</Combobox.Option>
-								))}
-							</Combobox.Options>
-						</Combobox>
+										<FormControl>
+											<SelectTrigger>
+												<SelectValue
+													className="w-full p-2 border rounded-md"
+													placeholder="Select a verified email to display"
+												/>
+											</SelectTrigger>
+										</FormControl>
+										<SelectContent className="bg-white border p-2 flex flex-col gap-1 rounded-md shadow-md w-full max-h-60 overflow-y-auto">
+											{organizations.map((org) => (
+												<SelectItem value={org.id}>
+													{org.name}
+												</SelectItem>
+											))}
+										</SelectContent>
+									</Select>
+									<FormDescription>
+										You can manage email addresses in your{' '}
+										<Link to="/examples/forms">
+											email settings
+										</Link>
+										.
+									</FormDescription>
+									<FormMessage />
+								</FormItem>
+							)}
+						/>
 
 						<Button
 							type="submit"
