@@ -1,5 +1,5 @@
 import MaxWidthWrapper from "@/components/max-width-wrapper";
-import { whyUsData } from "@/data/why-us.data";
+import { whyUsData } from "@/app/(base-app)/_data/why-us.data";
 import React from "react";
 
 // const

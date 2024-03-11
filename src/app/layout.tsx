@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Catamaran } from "next/font/google";
 import "./globals.css";
+import { AppQueryClientProvider } from "@/lib/query-provider";
 
 const inter = Catamaran({ subsets: ["latin"] });
 
@@ -16,7 +17,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        <AppQueryClientProvider>{children}</AppQueryClientProvider>
+      </body>
     </html>
   );
 }

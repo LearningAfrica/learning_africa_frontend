@@ -1,24 +1,6 @@
 import MaxWidthWrapper from "@/components/max-width-wrapper";
-import { LucideGraduationCap, LucideLibrary } from "lucide-react";
 import React from "react";
-
-const stats = [
-  {
-    title: "Courses",
-    Icon: LucideLibrary,
-    count: "20K+",
-  },
-  {
-    title: "Certifications",
-    Icon: LucideGraduationCap,
-    count: "20K+",
-  },
-  {
-    title: "Instructors",
-    Icon: LucideGraduationCap,
-    count: "4.2K+",
-  },
-];
+import { homeStats } from "../_data/home-stats.data";
 
 function HomeStats() {
   return (
@@ -29,7 +11,7 @@ function HomeStats() {
             <h1 className="text-4xl text-center">We are trusted globally</h1>
           </div>
           <div className="grid grid-cols-[repeat(auto-fit,minmax(20rem,1fr))]">
-            {stats.map((st) => (
+            {homeStats.map((st) => (
               <div key={st.title} className="border p-4">
                 <div className="flex justify-center">
                   <st.Icon size={48} className="" />

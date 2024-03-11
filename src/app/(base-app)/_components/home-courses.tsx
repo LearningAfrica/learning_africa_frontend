@@ -1,5 +1,5 @@
 import MaxWidthWrapper from "@/components/max-width-wrapper";
-import { homeCoursedData } from "@/data/home-courses.data";
+import { homeCoursedData } from "@/app/(base-app)/_data/home-courses.data";
 import Image from "next/image";
 import React from "react";
 
@@ -9,7 +9,7 @@ function HomeCourses() {
       <MaxWidthWrapper>
         <div className="py-10 px-4">
           <div className="py-8 flex justify-center">
-            <h1 className="text-4xl font-bold uppercase font-bold">
+            <h1 className="text-4xl uppercase font-bold">
               Our Courses
             </h1>
           </div>

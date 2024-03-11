@@ -9,7 +9,7 @@ function HomeBannerSection() {
       className=" bg-orange-300 bg-opacity-35 bg-cover bg-center bg-fixed"
     >
       <MaxWidthWrapper>
-        <div className="grid grid-cols-1 lg:grid-cols-2 min-h-[40vh] p-4 md:p-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 min-h-[40vh] md:min-h-[60vh] p-4 md:p-8">
           <div className="flex flex-col gap-4 py-10 justify-center">
             <h1 className="text-4xl font-bold">Learning Africa</h1>
             <p className="text-2xl">
