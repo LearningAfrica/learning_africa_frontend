@@ -114,13 +114,18 @@ function BaseHeader() {
           ) : (
             <div className="flex items-center">
               <Link
-                href={"/login"}
-                className="text-sm font-medium text-blue-600 hover:underline ml-4"
+                href={"/auth/login"}
+                className="text-sm font-medium text-gray-900 ml-4 bg-primary-pk px-4 md:px-8 py-2 md:py-2 border border-primary rounded hover:border-transparent hover:text-white hover:bg-primary hover:shadow-md transition-all duration-300"
               >
                 Login
-              </Link>
-              <div className="text-sm font-medium text-gray-900 ml-4 bg-primary-pk px-4 md:px-8 py-2 md:py-4 rounded">
+              </Link>{" "}
+              <Link
+                href={"/auth/register"}
+                className="text-sm font-medium text-white ml-4 bg-primary border border-transparent px-4 md:px-8 py-2 md:py-2 rounded  hover:border-primary hover:text-primary hover:bg-white hover:shadow-md transition-all duration-300"
+              >
                 Sign up
+              </Link>
+              <div className="">
               </div>
             </div>
           )}
