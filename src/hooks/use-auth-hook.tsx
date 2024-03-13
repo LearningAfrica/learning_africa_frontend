@@ -1,4 +1,5 @@
 
+"use client"
 import { UserRoleTypes, authStoreAtom, isAuthenticatedAtom, logoutUserAtom, userRoleAtom } from "@/store/auth-atom";
 import { useAtom } from "jotai";
 import React from "react";

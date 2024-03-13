@@ -4,6 +4,7 @@ import useAuthHook from "@/hooks/use-auth-hook";
 import { useScrollHeight } from "@/hooks/use-scroll-height";
 import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
+import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
@@ -61,7 +62,9 @@ function BaseHeader() {
       >
         <div className="flex items-center">
           <div className="flex items-center">
-            <img
+            <Image
+              height={100}
+              width={100}
               className="w-14 h-14 rounded-full"
               src="https://avatars.githubusercontent.com/u/150797856?s=200&v=4"
               alt="avatar"
@@ -104,7 +107,9 @@ function BaseHeader() {
                     Dashboard
                   </Link>
                 </div>
-                <img
+                <Image
+                  height={100}
+                  width={100}
                   className="w-8 h-8 rounded-full"
                   src="https://secure.gravatar.com/avatar/2b7b7c9b5c9c5b5c9b7c9b5c9b7c9b5c?s=200&d=mm&r=g"
                   alt="avatar"
@@ -125,8 +130,7 @@ function BaseHeader() {
               >
                 Sign up
               </Link>
-              <div className="">
-              </div>
+              <div className=""></div>
             </div>
           )}
         </div>

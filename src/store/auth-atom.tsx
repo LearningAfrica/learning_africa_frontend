@@ -1,6 +1,6 @@
-"use client"
+// "use client";
 // import { jwtDecode } from 'jwt-decode';
-import { AppLocalStorage } from "@/services/cookie-service";
+import { localAppStore } from "@/lib/utils/local-store";
 import { atom } from "jotai";
 import { jwtDecode } from "jwt-decode";
 type AuthUser = {
@@ -15,8 +15,9 @@ export type AuthState = {
   access_token: string | null;
 };
 
-const authStorage = AppLocalStorage.get<AuthState>("learning-africa-auth");
-
+const authStorage = localAppStore.getItem(
+  "learning-africa-auth"
+) as unknown as AuthState;
 const authAtom = atom<AuthState | null>(
   authStorage ?? {
     user: null,
@@ -29,7 +30,7 @@ export const authStoreAtom = atom(
   authStorage,
   (_get, set, update: AuthState) => {
     set(authAtom, update);
-    AppLocalStorage.set("learning-africa-auth", JSON.stringify(update));
+    localAppStore.setItem("learning-africa-auth", JSON.stringify(update));
   }
 );
 
@@ -65,5 +66,7 @@ export const logoutUserAtom = atom(authStorage, (_get, set) => {
     refresh_token: null,
     access_token: null,
   });
-  AppLocalStorage.removeKey("learning-africa-auth");
+  localAppStore.removeItem("learning-africa-auth");
 });
+// localStorage &&
+//   (localAppStore.getItem("learning-africa-auth") as unknown as AuthState);

@@ -4,9 +4,8 @@ import type { JwtPayload } from 'jwt-decode';
 
 import axios from 'axios';
 // import AppConfigService from './config';
-import { Cookie } from '../services/cookie-service';
 // const current_url = 'https://8796-102-215-33-50.ngrok-free.app'
-const current_url = 'https://learning-africa-backend-1d2392b46964.herokuapp.com/'
+const current_url = 'https://learning-africa-backend-afd4f3383186.herokuapp.com/'
 const baseURL = current_url;
 	// AppConfigService.getKey('MODE') === 'development'
 	// 	? AppConfigService.getKey('VITE_API_DEV_BACKEND_URL')
@@ -34,9 +33,9 @@ const privateAxios = axios.create({
 		'Access-Control-Allow-Headers':
 			'Origin, X-Requested-With, Content-Type, Accept, Authorization, Access-Control-Allow-Credentials',
 		'Access-Control-Allow-Credentials': 'true',
-		Authorization:
-			'JWT ' +
-				Cookie.getCookieToken('ck_63hsG-sscWPkl')?.['accessToken'] ?? ''
+		// Authorization:
+		// 	'JWT ' +
+		// 		Cookie.getCookieToken('ck_63hsG-sscWPkl')?.['accessToken'] ?? ''
 	},
 	withCredentials: true
 });
@@ -44,11 +43,11 @@ const privateAxios = axios.create({
 // Add a request interceptor to add the JWT token to the authorization header
 privateAxios.interceptors.request.use(
 	async (config) => {
-		const token = Cookie.getCookieToken('ck_63hsG-sscWPkl');
+		// const token = Cookie.getCookieToken('ck_63hsG-sscWPkl');
 
-		if (token) {
-			config.headers.Authorization = `Bearer ${ token.accessToken }`;
-		}
+		// if (token) {
+		// 	config.headers.Authorization = `Bearer ${ token.accessToken }`;
+		// }
 
 		return config;
 	},
@@ -58,62 +57,62 @@ privateAxios.interceptors.request.use(
 // Add a response interceptor to refresh the JWT token if it's expired
 privateAxios.interceptors.response.use(
 	async (response) => response,
-	async (error) => {
-		const originalRequest = error.config;
-		// console.log('Response error: ', error.response);
+	// async (error) => {
+	// 	const originalRequest = error.config;
+	// 	// console.log('Response error: ', error.response);
 
-		if (
-			error.response &&
-			error.response.status === 401 &&
-			!originalRequest._retry
-		) {
-			originalRequest._retry = true;
-			const tokenPayload = Cookie.getCookieToken('ck_63hsG-sscWPkl');
+	// 	if (
+	// 		error.response &&
+	// 		error.response.status === 401 &&
+	// 		!originalRequest._retry
+	// 	) {
+	// 		originalRequest._retry = true;
+			// const tokenPayload = Cookie.getCookieToken('ck_63hsG-sscWPkl');
 			// console.log("tokenPayload: " + JSON.stringify(tokenPayload));
 
-			if (!tokenPayload) {
-				return Promise.reject(error);
-			}
-			const decodedToken = jtwDecode.jwtDecode<JwtPayload>(
-				tokenPayload.refreshToken
-			);
+			// if (!tokenPayload) {
+			// 	return Promise.reject(error);
+			// }
+			// const decodedToken = jtwDecode.jwtDecode<JwtPayload>(
+			// 	tokenPayload.refreshToken
+			// );
 			// console.log("decodedToken: " + JSON.stringify(decodedToken));
 
-			const currentTime = new Date().getTime() / 1000;
-			if (decodedToken.exp! < currentTime) {
-				console.log('Token expired');
+			// const currentTime = new Date().getTime() / 1000;
+		// 	if (decodedToken.exp! < currentTime) {
+		// 		console.log('Token expired');
 
-				// clearSession();
-				return Promise.reject(error);
-			}
-			if (!decodedToken) {
-				// Cookie.removeToken("ck_63hsG-sscWPkl");
-				// AppLocalStorage.removeKey('uz-stUsx-aasSW5242-00981');
-				return Promise.reject(error);
-			}
-			const refreshToken = tokenPayload.refreshToken;
-			const res = await appAxios.post('/auth/refresh_token/', {
-				refresh_token: refreshToken
-			});
-			// console.log("res: " + JSON.stringify(res));
+		// 		// clearSession();
+		// 		return Promise.reject(error);
+		// 	}
+		// 	if (!decodedToken) {
+		// 		// Cookie.removeToken("ck_63hsG-sscWPkl");
+		// 		// AppLocalStorage.removeKey('uz-stUsx-aasSW5242-00981');
+		// 		return Promise.reject(error);
+		// 	}
+		// 	const refreshToken = tokenPayload.refreshToken;
+		// 	const res = await appAxios.post('/auth/refresh_token/', {
+		// 		refresh_token: refreshToken
+		// 	});
+		// 	// console.log("res: " + JSON.stringify(res));
 
-			if (res.status === 201 || res.status === 200) {
-				Cookie.setCookieToken('ck_63hsG-sscWPkl', {
-					accessToken: res.data.access_token,
-					refreshToken: res.data.refresh_token
-				});
-				privateAxios.defaults.headers.common['Authorization'] =
-					'JWT ' +
-					Cookie.getCookieToken('ck_63hsG-sscWPkl').accessToken;
-				originalRequest.headers['Authorization'] =
-					'JWT ' +
-					Cookie.getCookieToken('ck_63hsG-sscWPkl').accessToken;
-				return privateAxios(originalRequest);
-			}
-		}
+		// 	if (res.status === 201 || res.status === 200) {
+		// 		Cookie.setCookieToken('ck_63hsG-sscWPkl', {
+		// 			accessToken: res.data.access_token,
+		// 			refreshToken: res.data.refresh_token
+		// 		});
+		// 		privateAxios.defaults.headers.common['Authorization'] =
+		// 			'JWT ' +
+		// 			Cookie.getCookieToken('ck_63hsG-sscWPkl').accessToken;
+		// 		originalRequest.headers['Authorization'] =
+		// 			'JWT ' +
+		// 			Cookie.getCookieToken('ck_63hsG-sscWPkl').accessToken;
+		// 		return privateAxios(originalRequest);
+		// 	}
+		// }
 		// clearSession();
-		return Promise.reject(error);
-	}
+	// 	return Promise.reject(error);
+	// }
 );
 function getWebSocketAddress(url: string): string {
 	// eslint-disable-next-line no-useless-escape

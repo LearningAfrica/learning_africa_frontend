@@ -9,11 +9,10 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import useParamHook from "@/hooks/use-param-hook";
 import { cn } from "@/lib/utils";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import React from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import toast, { Toaster } from "react-hot-toast";
@@ -57,9 +56,8 @@ function Register() {
    * token:'121222'
    * }
    */
-  const {
-    searchParam: { token },
-  } = useParamHook({ location });
+
+  const { token } = useParams() as { token: string };
   const form = useForm<RegisterFormType>({
     resolver: zodResolver(RegisterSchema),
     defaultValues: {

@@ -8,6 +8,7 @@ import {
   LucideLayoutDashboard,
   LucideTrophy,
 } from "lucide-react";
+import Image from "next/image";
 
 type Stat = {
   title: string;
@@ -16,10 +17,10 @@ type Stat = {
   Icon: LucideIcon;
 };
 export type CourseTabs =
-	| 'my-courses'
-	| 'purchased-courses'
-	| 'upcoming-courses'
-	| 'drafts';
+  | "my-courses"
+  | "purchased-courses"
+  | "upcoming-courses"
+  | "drafts";
 const stats: Stat[] = [
   {
     title: "Total Sales",
@@ -197,7 +198,9 @@ export default function InstructorDashboardStats() {
                 className="flex gap-4 items-center my-4"
               >
                 <div className="w-16 h-16 bg-gray-200 rounded-md">
-                  <img
+                  <Image
+                    height={128}
+                    width={128}
                     src={course.thumbnail}
                     alt="course"
                     className="w-full h-full object-cover rounded-md"
@@ -232,7 +235,9 @@ export default function InstructorDashboardStats() {
                 className="flex flex-col gap-4 items-center my-4 border p-2 rounded"
               >
                 <div className="h-36 bg-gray-200 rounded-md w-full">
-                  <img
+                  <Image
+                    height={100}
+                    width={100}
                     src="https://images.unsplash.com/photo-1515879218367-8466d910aaa4?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8cHl0aG9uJTIwcHJvZ3JhbW1pbmd8ZW58MHx8MHx8fDA%3D"
                     alt="course"
                     className="w-full h-full object-cover rounded-md"

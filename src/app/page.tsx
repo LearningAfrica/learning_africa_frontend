@@ -1,3 +1,4 @@
+"use client"
 import React from "react";
 import HomeBannerSection from "./_components/home-banner";
 import WhyUs from "./_components/why-us";

@@ -1,5 +1,5 @@
 import MaxWidthWrapper from "@/components/max-width-wrapper";
-import { homeCoursedData } from "@/app/(base-app)/_data/home-courses.data";
+import { homeCoursedData } from "@/app/_data/home-courses.data";
 import Image from "next/image";
 import React from "react";
 
