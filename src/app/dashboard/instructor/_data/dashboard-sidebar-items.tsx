@@ -19,7 +19,29 @@ export const instructorSidebarItems: DashboardMenuItemProps[] = [
 	{
 		Icon: LucideGlobe,
 		name: 'Courses',
-		href: '/dashboard/instructor/courses'
+		href: '/dashboard/instructor/courses',
+		sub_items: [
+			{
+				name: 'All Courses',
+				href: '/dashboard/instructor/courses',
+				Icon: LucideLayoutDashboard
+			},
+			{
+				name: 'Create',
+				href: '/dashboard/instructor/courses/create',
+				Icon: LucideLayoutDashboard
+			},
+			{
+				name: 'Published',
+				href: '/dashboard/instructor/courses?tab=published',
+				Icon: LucideLayoutDashboard
+			},
+			{
+				name: 'Archived',
+				href: '/dashboard/instructor/courses?tab=archived',
+				Icon: LucideLayoutDashboard
+			}
+		]
 	},
 	{
 		Icon: LucideBellPlus,

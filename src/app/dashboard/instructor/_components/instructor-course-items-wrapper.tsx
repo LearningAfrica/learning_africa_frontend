@@ -8,10 +8,10 @@ import {
   LucideIcon,
   LucideUploadCloud,
 } from "lucide-react";
-import Link from "next/link";
-import { CourseTabs } from "../_courses/page";
 import Image from "next/image";
+import Link from "next/link";
 import { Suspense } from "react";
+import { CourseTabs } from "../page";
 
 type TabItem = {
   Icon: LucideIcon;

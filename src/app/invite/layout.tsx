@@ -1,7 +1,7 @@
-"use client"
+"use client";
 import useAuthHook from "@/hooks/use-auth-hook";
 import { useRouter } from "next/navigation";
-import React from "react";
+import React, { Suspense } from "react";
 
 type Props = {
   children: React.ReactNode;
@@ -26,7 +26,11 @@ function ReferralLayout({ children }: Props) {
     }
     router.push(dashboard);
   }
-  return <React.Fragment>{children}</React.Fragment>;
+  return (
+    <Suspense>
+      <React.Fragment>{children}</React.Fragment>;
+    </Suspense>
+  );
 }
 
 export default ReferralLayout;

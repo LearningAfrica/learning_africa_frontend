@@ -1,17 +1,12 @@
-"use client";
-import useViewPort from "@/hooks/use-viewport";
-import { LucideBook } from "lucide-react";
-import { useRouter, useSearchParams } from "next/navigation";
-import InstructorCourseItemsWrapper from "../_components/instructor-course-items-wrapper";
-import Link from "next/link";
-import { Suspense } from "react";
+"use client"
+import useViewPort from '@/hooks/use-viewport';
+import { LucideBook, Link } from 'lucide-react';
+import { useSearchParams } from 'next/navigation';
+import React from 'react'
+import InstructorCourseItemsWrapper from '../_components/instructor-course-items-wrapper';
+import { CourseTabs } from '../page';
 
-export type CourseTabs =
-  | "my-courses"
-  | "purchased-courses"
-  | "upcoming-courses"
-  | "drafts";
-export default function InstructorCourses() {
+function InstructorCoursesPage() {
   //   const router = useRouter();
   const searchParams = useSearchParams();
 
@@ -45,3 +40,5 @@ export default function InstructorCourses() {
     </div>
   );
 }
+
+export default InstructorCoursesPage

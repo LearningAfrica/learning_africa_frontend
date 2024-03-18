@@ -17,13 +17,13 @@ function BaseHeader() {
   const { isAuthenticated, role } = useAuthHook();
   const dashboardUrl =
     role === "super_admin"
-      ? "/super/dashboard"
+      ? "/dashboard/super"
       : role === "admin"
-      ? "/org-admin/dashboard"
+      ? "/dashboard/admin"
       : role === "instructor"
-      ? "/instructor-dashboard"
+      ? "/dashboard/instructor"
       : role === "student"
-      ? "/student/dashboard"
+      ? "/dashboard/student"
       : "/";
   return (
     <motion.div
@@ -34,7 +34,7 @@ function BaseHeader() {
         }
       }
       style={{
-        backgroundImage: `url(${assets.images.headerBg})`,
+        // backgroundImage: `url(${assets.images.headerBg})`,
         backgroundSize: "cover",
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",
@@ -44,20 +44,12 @@ function BaseHeader() {
         duration: 0.5,
       }}
       className={cn(
-        "w-full flex justify-between items-center px-4 transition-all duration-500 py-2  bg-primary-pk bg-blend-overlay bg-opacity-10",
-
-        {
-          "sticky top-2  z-20 mx-auto bg-white bg-opacity- border-b-2 border-primary shadow":
-            isScroll,
-        }
+        "w-full flex justify-between items-center px-4 transition-all duration-500 py-2  bg-primary-pk bg-blend-overlay  sticky top-0  z-20 mx-auto bg-white border-primary shadow"
       )}
     >
       <div
         className={cn(
-          "bg-white w-full flex justify-between items-center p-4 max-w-7xl mx-auto rounded-md h-20 shadow border",
-          {
-            "bg-opacity-100 border-none shadow-none": isScroll,
-          }
+          " w-full flex justify-between items-center p-4 max-w-7xl mx-auto rounded-md h-20"
         )}
       >
         <div className="flex items-center">
