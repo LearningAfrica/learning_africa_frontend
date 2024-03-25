@@ -1,19 +1,19 @@
 <script lang="ts" setup>
-type MenuItem = {
+export type DashboardMenuItem = {
 	href: string;
 	active: boolean;
 	label: string;
-	children: MenuItem[];
+	children: DashboardMenuItem[];
 	icon: string;
 };
 
 const props = defineProps<{
-	item: MenuItem;
+	item: DashboardMenuItem;
 	is_sidebar_open: boolean;
 }>();
 
 const hasActiveChild = computed(() => {
-	function hasActiveItem(items: MenuItem[]) {
+	function hasActiveItem(items: DashboardMenuItem[]) {
 		const contained = items.some(
 			(item) => item.active || hasActiveItem(item.children)
 		);
@@ -37,7 +37,7 @@ const hasActiveChild = computed(() => {
 
 	<hui-disclosure v-else v-slot="{ open }" :default-open="hasActiveChild">
 		<hui-disclosure-button :class="[
-		'group flex w-full items-center rounded-md py-2 px-3 text-left text-sm',
+		'group flex w-full items-center rounded-md py-2 px-3 text-left text-md',
 		'hover:bg-gray-100',
 		open ? 'font-semibold text-gray-800' : 'font-medium text-gray-600',
 	]">
@@ -46,9 +46,9 @@ const hasActiveChild = computed(() => {
 		open ? 'text-gray-600' : 'text-gray-400',
 	]" :is="item.icon" v-if="item.icon"></component>
 			<span class="flex-1">{{ item.label }}</span>
-			<icon :name="'mdi:chevron-down'" :class="[
+			<icon :name="'fluent:chevron-right-16-regular'" :class="[
 		'h-6 w-6 shrink-0',
-		open ? '-rotate-180 text-gray-600' : 'text-gray-400',
+		open ? '-rotate-90 text-gray-600' : 'text-gray-400',
 	]" />
 		</hui-disclosure-button>
 

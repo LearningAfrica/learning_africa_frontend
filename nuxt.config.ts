@@ -1,7 +1,7 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
 	devtools: {enabled: true},
-	extends: [],
+	extends: ["./types"],
 	modules: [
 		"@nuxtjs/i18n",
 		"@vueuse/nuxt",
@@ -13,10 +13,10 @@ export default defineNuxtConfig({
 		"nuxt-headlessui",
 		"nuxt-lucide-icons",
 		"my-module",
-		"@nuxtjs/eslint-module",
+		"@nuxtjs/eslint-module"
 		// "'@nuxt/ui'"
 	],
-	css: ["~/assets/css/main.css"],
+	css: ["~/assets/css/main.css", "sweetalert2/src/sweetalert2.scss"],
 	postcss: {
 		plugins: {
 			tailwindcss: {},

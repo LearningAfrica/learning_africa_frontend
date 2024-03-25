@@ -1,0 +1,18 @@
+node_modules
+* /bower_components
+* /dist
+
+## Installation
+package.json
+package-lock.json
+bower.json
+yarn.lock
+pmpm-lock.yml
+
+## Config
+.editorconfig
+assets/
+tsconfig.json
+tslint.json
+*.md
+public/

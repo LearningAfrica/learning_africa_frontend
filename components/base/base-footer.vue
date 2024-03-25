@@ -30,9 +30,7 @@
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                     <div class="grid md:grid-cols-2 gap-8">
                         <div>
-                            <h2
-                            class="text-primary text-2xl underline"
-                            >
+                            <h2 class="text-primary text-2xl underline">
                                 FAQ's
                             </h2>
                             <ul class="flex flex-col gap-2 list-disc">
@@ -44,9 +42,7 @@
 
                         </div>
                         <div>
-                            <h1
-                            class="text-primary text-2xl underline"
-                            >
+                            <h1 class="text-primary text-2xl underline">
                                 Services
                             </h1>
                             <ul class="flex flex-col gap-2 list-disc">

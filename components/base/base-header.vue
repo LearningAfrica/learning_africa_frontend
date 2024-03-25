@@ -1,13 +1,13 @@
 <script setup lang="ts">
 
-
+const auth = useAuthStore();
 // const isScroll = ref(false);
 // const isAuthenticated = ref(false);
 
 
 </script>
 <template>
-    <div class="border-b w-full sticky top-0 flex flex-col gap-0 p-4 bg-white z-50">
+    <div class="border-b w-full sticky top-0 flex flex-col gap-0 p-4 bg-white z-50">{{ auth.user }}
         <max-width-wrapper class-name="flex justify-between items-center">
             <div class="flex items-center gap-2">
 
@@ -17,12 +17,21 @@
                     Learning Africa
                 </span>
             </div>
-            <div>
+            <div v-if="!auth.isAuthenticated">
                 <nuxt-link to='/login' class="text-sm font-medium text-gray-900 ml-4 border px-4 py-2 rounded">
                     Sign in
-                </nuxt-link> <nuxt-link to='/register' class="text-sm font-medium text-white ml-4 px-4 py-2 bg-black rounded">
+                </nuxt-link> <nuxt-link to='/register'
+                    class="text-sm font-medium text-white ml-4 px-4 py-2 bg-black rounded">
                     Sign up
                 </nuxt-link>
+            </div> 
+            <div v-if="auth.isAuthenticated">
+                <nuxt-link :to='auth.dashboardUrl' class="text-sm font-medium text-gray-900 ml-4 border px-4 py-2 rounded">
+                    Dashboard
+                </nuxt-link> <button to='/register'
+                    class="text-sm font-medium text-white ml-4 px-4 py-2 bg-black rounded">
+                    Profile
+                </button>
             </div>
 
         </max-width-wrapper>

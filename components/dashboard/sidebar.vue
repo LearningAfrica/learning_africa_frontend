@@ -1,13 +1,12 @@
 <script lang="ts" setup>
 
-type MenuItem = {
+export type DashboardMenuItem = {
 	href: string;
 	active: boolean;
 	label: string;
-	children: MenuItem[];
+	children: DashboardMenuItem[];
 	icon: string;
 };
-
 defineProps({
 	is_sidebar_open: {
 		type: Boolean,
@@ -19,75 +18,12 @@ defineProps({
 		default: "",
 		required: true,
 	},
+	menu_items: {
+		type: Array as PropType<DashboardMenuItem[]>,
+		default: () => [],
+	},
 });
-const navItems = ref<MenuItem[]>([
-	{
-		href: "#",
-		active: false,
-		label: "Home",
-		children: [],
-		icon: "ic:baseline-home",
-	},
-	{
-		href: "#",
-		active: false,
-		label: "Posts",
-		children: [
-			{
-				href: "#",
-				active: false,
-				label: "All posts",
-				children: [],
-				icon: "ic:baseline-article",
-			},
-			{
-				href: "#",
-				active: false,
-				label: "Add new",
-				children: [],
-				icon: "ic:baseline-add",
-			},
-			{
-				href: "#",
-				active: false,
-				label: "Categories",
-				children: [],
-				icon: "ic:baseline-category",
-			},
-		],
-		icon: "ic:baseline-article",
-	},
-	{
-		href: "#",
-		active: false,
-		label: "Media",
-		children: [
-			{
-				href: "#",
-				active: false,
-				label: "Library",
-				children: [],
-				icon: "ic:baseline-photo-library",
-			},
-			{
-				href: "#",
-				active: false,
-				label: "Add new",
-				children: [
-					{
-						href: "#",
-						active: false,
-						label: "Third level",
-						children: [],
-						icon: "ic:baseline-photo-camera",
-					},
-				],
-				icon: "ic:baseline-photo-camera",
-			},
-		],
-		icon: "ic:baseline-camera-alt",
-	},
-]);
+
 
 </script>
 
@@ -115,7 +51,7 @@ const navItems = ref<MenuItem[]>([
 		</div>
 		<!-- Headless sidebar with recursive menu links -->
 		<nav class="mt-2 px-2">
-			<dashboard-menu-item :item="item" v-for="item in navItems" :key="item.label"
+			<dashboard-menu-item :item="item" v-for="item in menu_items" :key="item.label"
 				:is_sidebar_open="is_sidebar_open" />
 		</nav>
 	</div>

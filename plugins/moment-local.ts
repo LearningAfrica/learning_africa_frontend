@@ -1,4 +1,4 @@
-import { defineNuxtPlugin } from "#app";
+import {defineNuxtPlugin} from "#app";
 import moment from "moment";
 
 export default defineNuxtPlugin((nuxtApp) => {
@@ -8,6 +8,6 @@ export default defineNuxtPlugin((nuxtApp) => {
 	nuxtApp.vueApp.config.globalProperties.$filters = {
 		moment: (date: string, format: string) => {
 			return moment(date).format(format);
-		},
+		}
 	};
 });

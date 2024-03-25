@@ -2479,7 +2479,7 @@ autoprefixer@^10.4.17, autoprefixer@^10.4.18, autoprefixer@^10.4.19:
     picocolors "^1.0.0"
     postcss-value-parser "^4.2.0"
 
-axios@^1.5.0:
+axios@^1.5.0, axios@^1.6.8:
   version "1.6.8"
   resolved "https://registry.yarnpkg.com/axios/-/axios-1.6.8.tgz#66d294951f5d988a00e87a0ffb955316a619ea66"
   integrity sha512-v/ZHtJDU39mDpyBoFVkETcd/uNdxrWRrg3bKpOKzXFA6Bvqopts6ALSMU3y6ijYxbw2B+wPrIv46egTzJXCLGQ==
@@ -6215,6 +6215,11 @@ prelude-ls@^1.2.1:
   resolved "https://registry.yarnpkg.com/prelude-ls/-/prelude-ls-1.2.1.tgz#debc6489d7a6e6b0e7611888cec880337d316396"
   integrity sha512-vkcDPrRZo1QZLbn5RLGPpg/WmIQ65qoWWhcGKf/b5eplkkarX0m9z8ppCat4mlOqUsWpyNuYgO3VRyrYHSzX5g==
 
+prettier@^3.2.5:
+  version "3.2.5"
+  resolved "https://registry.yarnpkg.com/prettier/-/prettier-3.2.5.tgz#e52bc3090586e824964a8813b09aba6233b28368"
+  integrity sha512-3/GWa9aOC0YeD7LUfvOG2NiDyhOWRvt1k+rcKhOuYnMY24iiCphgneUfJDyFXd6rZCAnuLBv6UeAULtrhT/F4A==
+
 pretty-bytes@^6.1.1:
   version "6.1.1"
   resolved "https://registry.yarnpkg.com/pretty-bytes/-/pretty-bytes-6.1.1.tgz#38cd6bb46f47afbf667c202cfc754bffd2016a3b"
@@ -7042,6 +7047,11 @@ svgo@^3.2.0:
     css-what "^6.1.0"
     csso "^5.0.5"
     picocolors "^1.0.0"
+
+sweetalert2@^11.10.7:
+  version "11.10.7"
+  resolved "https://registry.yarnpkg.com/sweetalert2/-/sweetalert2-11.10.7.tgz#db2b8ce486f590404c761e051c7e40c80d648fae"
+  integrity sha512-5Jlzrmaitay6KzU+2+LhYu9q+L4v/dZ8oZyEDH14ep0C/QilCnFLHmqAyD/Lhq/lm5DiwsOs6Tr58iv8k3wyGg==
 
 system-architecture@^0.1.0:
   version "0.1.0"

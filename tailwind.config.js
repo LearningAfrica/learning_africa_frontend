@@ -11,7 +11,7 @@ module.exports = {
 		"./pages/**/*.vue",
 		"./plugins/**/*.{js,ts}",
 		"./app.vue",
-		"./error.vue",
+		"./error.vue"
 	],
 	theme: {
 		extend: {
@@ -19,10 +19,10 @@ module.exports = {
 				primary: "#f49906",
 				secondary: {
 					100: "#E2E2D5",
-					200: "#888883",
-				},
-			},
-		},
+					200: "#888883"
+				}
+			}
+		}
 	},
-	plugins: [animate, forms],
+	plugins: [animate, forms]
 };
