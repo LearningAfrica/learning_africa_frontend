@@ -1,0 +1,22 @@
+{
+    "prettier.enable": true,
+    "editor.indentSize": "tabSize",
+    "eslint.enable": true,
+    "eslint.format.enable": true,
+    "files.associations": {
+        "*.css": "tailwindcss"
+    },
+    "editor.quickSuggestions": {
+        "strings": true
+    },
+    "tailwindCSS.classAttributes": [
+        "class",
+        "className",
+        "ngClass",
+        "ui",
+        "cx",
+        "tw",
+        "class-name",
+        "class_name"
+      ]
+}
