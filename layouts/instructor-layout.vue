@@ -16,7 +16,7 @@ const toggleSidebar = () => {
             :logo="logo"></dashboard-sidebar>
         <!-- Main view -->
         <div class="flex flex-col w-full h-full transition-all duration-300 p-4 relative" :class="{
-            'ml-64': is_sidebar_open,
+            'sm:ml-64': is_sidebar_open,
             'ml-0': !is_sidebar_open,
         }">
             <dashboard-instructor-header :is_sidebar_open="is_sidebar_open" :logo="logo"
