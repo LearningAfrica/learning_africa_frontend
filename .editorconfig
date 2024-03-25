@@ -6,7 +6,7 @@ root = true
 [*.md]
 trim_trailing_whitespace = false
 
-[*.js,*.ts,*.tsx,*.jsx,*.vue,*.json,*.yml,*.yaml,*.html,*.css,*.scss,*.sass,*.less,*.styl,*.graphql,*.md]
+[*.js,*.ts]
 trim_trailing_whitespace = true
 indent_style = tab
 indent_size = 4
