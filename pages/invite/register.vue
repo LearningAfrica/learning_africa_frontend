@@ -1,6 +1,10 @@
 <script setup lang="ts">
 import { useVuelidate } from "@vuelidate/core";
 import { minLength, required, email, helpers } from "@vuelidate/validators";
+
+definePageMeta({
+	middleware: ["open-auth"],
+});
 type RegisterForm = {
   first_name: string;
   last_name: string;
@@ -66,7 +70,6 @@ const handleSubmit = () => {
 </script>
 
 <template>
-  <!-- <client-only> -->
 
   <div class="bg-gray-100 p-4 md:p-10 min-h-[100vh] flex justify-center items-center">
     <max-width-wrapper class-name="flex items-center justify-center">
@@ -165,7 +168,7 @@ const handleSubmit = () => {
       </form>
     </max-width-wrapper>
   </div>
-  <!-- </client-only> -->
+
 </template>
 
 <style scoped>

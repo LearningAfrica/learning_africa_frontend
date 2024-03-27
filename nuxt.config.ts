@@ -1,7 +1,8 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
 	devtools: {enabled: true},
-	extends: ["./types"],
+	ssr: false,
+	extends: [],
 	modules: [
 		"@nuxtjs/i18n",
 		"@vueuse/nuxt",
@@ -13,8 +14,7 @@ export default defineNuxtConfig({
 		"nuxt-headlessui",
 		"nuxt-lucide-icons",
 		"my-module",
-		"@nuxtjs/eslint-module"
-		// "'@nuxt/ui'"
+		"@nuxtjs/eslint-module",
 	],
 	css: ["~/assets/css/main.css", "sweetalert2/src/sweetalert2.scss"],
 	postcss: {
@@ -23,10 +23,7 @@ export default defineNuxtConfig({
 			autoprefixer: {}
 		}
 	},
-	routeRules: {
-		// "/login": { ssr: false },
-		// "/register": { ssr: false },
-	},
+	routeRules: {},
 	googleFonts: {
 		families: {
 			Inter: true,

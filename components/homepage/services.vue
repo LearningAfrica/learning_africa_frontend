@@ -17,7 +17,7 @@
                             <h2>{{ cs.title }}</h2>
 
                             <div v-if="cs.tags.length > 0" class="flex gap-2">
-                                <span v-for="tg in cs.tags" key={tg} class="bg-neutral-300 text-sm px-2 rounded-full">
+                                <span v-for="tg in cs.tags" :key="tg" class="bg-neutral-300 text-sm px-2 rounded-full">
                                     {{ tg }}
                                 </span>
                             </div>

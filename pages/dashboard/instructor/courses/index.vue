@@ -1,4 +1,9 @@
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+
+definePageMeta({
+	middleware: ["instructor-auth"],
+});
+</script>
 
 <template>
   <div>

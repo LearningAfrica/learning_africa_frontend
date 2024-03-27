@@ -6,7 +6,7 @@ const navItems = ref([
 		active: false,
 		label: "Dashboard",
 		children: [],
-		icon: "carbon:dashboard-reference",
+		icon: "ic:baseline-home",
 	},
 	{
 		href: "#",
@@ -14,20 +14,26 @@ const navItems = ref([
 		label: "Categories",
 		children: [
 			{
-				href: "/dashboard/instructor/categories",
+				href: "#",
 				active: false,
 				label: "All",
 				children: [],
-				icon: "carbon:category-new-each",
+				icon: "ic:baseline-article",
 			},
 			{
-				href: "/dashboard/instructor/create",
+				href: "#",
 				active: false,
 				label: "Add new",
 				children: [],
-				icon: "carbon:add",
+				icon: "ic:baseline-add",
 			},
-		
+			// {
+			// 	href: "#",
+			// 	active: false,
+			// 	label: "Categories",
+			// 	children: [],
+			// 	icon: "ic:baseline-category",
+			// },
 		],
 		icon: "ic:baseline-article",
 	},
@@ -41,22 +47,36 @@ const navItems = ref([
 				active: false,
 				label: "All",
 				children: [],
-				icon: "carbon:ibm-watson-machine-learning",
+				icon: "ic:baseline-photo-library",
 			},
 			{
 				href: "#",
 				active: false,
 				label: "Drafts",
 				children: [],
-				icon: "carbon:result-draft",
+				icon: "ic:baseline-photo-library",
 			}, {
 				href: "#",
 				active: false,
 				label: "Add new",
 				children: [],
-				icon: "carbon:add",
+				icon: "ic:baseline-photo-library",
 			},
-			
+			// {
+			// 	href: "#",
+			// 	active: false,
+			// 	label: "Add new",
+			// 	children: [
+			// 		{
+			// 			href: "#",
+			// 			active: false,
+			// 			label: "Third level",
+			// 			children: [],
+			// 			icon: "ic:baseline-photo-camera",
+			// 		},
+			// 	],
+			// 	icon: "ic:baseline-photo-camera",
+			// },
 		],
 		icon: "ic:baseline-camera-alt",
 	},
@@ -71,10 +91,8 @@ const navItems = ref([
 
 </script>
 <template>
-	<dashboard-content-wrapper :menu_items="navItems" user_role="instructor">
-		<template #content>
-			<slot />
-		</template>
+	<dashboard-content-wrapper :menu_items="navItems" user_role="student">
+
 	</dashboard-content-wrapper>
 </template>
 

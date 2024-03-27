@@ -7,7 +7,7 @@ const auth = useAuthStore();
 
 </script>
 <template>
-    <div class="border-b w-full sticky top-0 flex flex-col gap-0 p-4 bg-white z-50">{{ auth.user }}
+    <div class="border-b w-full sticky top-0 flex flex-col gap-0 p-4 bg-white z-50">
         <max-width-wrapper class-name="flex justify-between items-center">
             <div class="flex items-center gap-2">
 

@@ -21,6 +21,8 @@
     ],
     "prettier.requireConfig": true,
     "prettier.tabWidth": 4,
+    "prettier.endOfLine": "lf",
+    "prettier.semi": true,
     "prettier.useTabs": true,
     "prettier.vueIndentScriptAndStyle": true
 }

@@ -2,7 +2,7 @@
 import { useVuelidate } from "@vuelidate/core";
 import { minLength, required, email, helpers } from "@vuelidate/validators";
 definePageMeta({
-	middleware: ["open-auth-client"]
+	middleware: ["open-auth"]
 	// or middleware: 'auth'
 });
 type RegisterForm = {
@@ -12,7 +12,7 @@ type RegisterForm = {
 	email: string;
 	password: string;
 	confirm_password: string;
-	is_student: boolean;
+	is_admin: boolean;
 };
 const { $openAxios, $notify } = useNuxtApp();
 const form = ref<RegisterForm>({
@@ -22,7 +22,7 @@ const form = ref<RegisterForm>({
 	email: "",
 	password: "",
 	confirm_password: "",
-	is_student: true
+	is_admin: true
 });
 const rules = {
 	first_name: {
@@ -55,10 +55,11 @@ const rules = {
 function sameAsPassword(value: string,) {
 	return form.value.password === value;
 }
-
+const auth = useAuthStore();
 const $v = useVuelidate(rules, form);
 const showPassword = ref(false);
 const insLoading = ref(false);
+const router = useRouter();
 const handleSubmit = async () => {
 	// alert("Something good");
 	console.log("submitting");
@@ -71,13 +72,13 @@ const handleSubmit = async () => {
 	try {
 		const response = await $openAxios.post("/auth/register/", form.value);
 		if (response.status === 200 || response.status === 201) {
-			$notify.fire({
+			await $notify.fire({
 				title: "Success",
 				icon: "success",
 				confirmButtonText: "Close",
 				text: "Registration successful"
 			});
-			console.log(response.data);
+			await router.push("/login");
 		} else {
 			console.log(response.data);
 
@@ -100,7 +101,6 @@ const handleSubmit = async () => {
 </script>
 
 <template>
-	<!-- <client-only> -->
 
 	<div class="bg-gray-100 p-4 md:p-10 min-h-[100vh] flex justify-center items-center">
 		<max-width-wrapper class-name="flex items-center justify-center">
@@ -204,7 +204,7 @@ const handleSubmit = async () => {
 			</form>
 		</max-width-wrapper>
 	</div>
-	<!-- </client-only> -->
+
 </template>
 
 <style scoped>
