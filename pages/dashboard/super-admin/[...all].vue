@@ -1,6 +1,6 @@
 <script setup lang="ts">
 definePageMeta({
-    layout: "student-layout",
+    layout: "super-admin-layout",
 });
 </script>
 <template>

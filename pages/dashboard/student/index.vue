@@ -1,7 +1,7 @@
 <script setup lang="ts">
 definePageMeta({
 	middleware: ["student-auth"],
-    layout:'student-layout'
+	layout:"student-layout"
 });
 
 </script>
