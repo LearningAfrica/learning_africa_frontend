@@ -1,12 +1,5 @@
 <script lang="ts" setup>
-
-export type DashboardMenuItem = {
-	href: string;
-	active: boolean;
-	label: string;
-	children: DashboardMenuItem[];
-	icon: string;
-};
+import type { DashboardMenuItem } from "~/types/dashboard";
 defineProps({
 	is_sidebar_open: {
 		type: Boolean,

@@ -5,7 +5,7 @@ import {
 } from "@vuelidate/validators";
 
 definePageMeta({
-	middleware: ["open-auth-client"]
+	middleware: ["open-auth"],
 });
 const { $openAxios, $notify } = useNuxtApp();
 type LoginUserType = {
@@ -46,14 +46,19 @@ const handleSubmit = async () => {
 		const response = await $openAxios.post("/auth/login/", form.value);
 		if (response.status === 200 || response.status === 201) {
 			console.log(response.data);
-			auth.login(response.data);
-			$notify.fire({
+			auth.login({
+				access_token: response.data.access_token,
+				refresh_token: response.data.refresh_token,
+				username: response.data.username,
+				user_role: response.data.user_role,
+			});
+			await $notify.fire({
 				title: "Success",
 				icon: "success",
 				confirmButtonText: "Close",
 				text: "Login successful"
 			});
-			await router.push(auth.dashboardUrl);
+			await router.push(auth.dashboardUrl ?? "/");
 		} else {
 			console.log(response.data);
 

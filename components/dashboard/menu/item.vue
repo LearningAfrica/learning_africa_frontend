@@ -1,11 +1,6 @@
 <script lang="ts" setup>
-export type DashboardMenuItem = {
-	href: string;
-	active: boolean;
-	label: string;
-	children: DashboardMenuItem[];
-	icon: string;
-};
+import type { DashboardMenuItem } from "~/types/dashboard";
+
 
 const props = defineProps<{
 	item: DashboardMenuItem;
@@ -23,17 +18,17 @@ const hasActiveChild = computed(() => {
 });
 </script>
 <template>
-	<a v-if="!item.children.length" :class="[
+	<nuxt-link v-if="!item.children.length" :class="[
 		'group flex w-full items-center rounded-md py-2 px-3 text-sm',
 		'hover:bg-gray-100',
 		item.active ? 'font-semibold text-gray-800' : 'font-medium text-gray-600',
 	]" :href="item.href">
-		<component :class="[
-		'mr-2 h-6 w-6 shrink-0 group-hover:text-gray-600',
+		<icon :class="[
+		'mr-2 h-8 w-8 shrink-0 group-hover:text-gray-600',
 		item.active ? 'text-gray-600' : 'text-gray-400',
-	]" :is="item.icon" v-if="item.icon"></component>
-		<span>{{ item.label }}</span>
-	</a>
+	]" :name="item.icon" v-if="item.icon"></icon>
+		<span class="text-lg">{{ item.label }}</span>
+	</nuxt-link>
 
 	<hui-disclosure v-else v-slot="{ open }" :default-open="hasActiveChild">
 		<hui-disclosure-button :class="[
@@ -45,14 +40,14 @@ const hasActiveChild = computed(() => {
 		'mr-2 h-6 w-6 shrink-0 group-hover:text-gray-600',
 		open ? 'text-gray-600' : 'text-gray-400',
 	]" :is="item.icon" v-if="item.icon"></component>
-			<span class="flex-1">{{ item.label }}</span>
+			<span class="flex-1 text-lg">{{ item.label }}</span>
 			<icon :name="'fluent:chevron-right-16-regular'" :class="[
 		'h-6 w-6 shrink-0',
 		open ? '-rotate-90 text-gray-600' : 'text-gray-400',
 	]" />
 		</hui-disclosure-button>
 
-		<hui-disclosure-panel class="ml-4">
+		<hui-disclosure-panel class="ml-2">
 			<dashboard-menu-item v-for="child in item.children" :item="child" :key="child.label"
 				:is_sidebar_open="props.is_sidebar_open"></dashboard-menu-item>
 		</hui-disclosure-panel>
