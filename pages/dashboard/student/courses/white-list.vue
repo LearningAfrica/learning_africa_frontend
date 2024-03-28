@@ -1,14 +1,13 @@
 <script lang="ts" setup>
-
 definePageMeta({
-
-	layout: "super-admin-layout"
+	middleware: ["student-auth"],
+	layout: "student-layout"
 });
 </script>
 
 <template>
   <div>
-    Page: dashboard/super-admin/index
+    Page: dashboard/student/courses/white-list
   </div>
 </template>
 
