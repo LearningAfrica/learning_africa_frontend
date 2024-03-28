@@ -1,4 +1,9 @@
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+definePageMeta({
+	middleware: ["student-auth"],
+	layout: "student-layout"
+});
+</script>
 
 <template>
   <div>

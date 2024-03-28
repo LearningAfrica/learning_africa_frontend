@@ -2,33 +2,33 @@
 
 const navItems = ref([
 	{
-		href: "#",
+		href: "/dashboard/student",
 		active: false,
 		label: "Dashboard",
 		children: [],
 		icon: "ic:baseline-home",
 	},
 	{
-		href: "#",
+		href: "/dashboard/student/courses",
 		active: false,
 		label: "Courses",
 		children: [
 			{
-				href: "#",
+				href: "/dashboard/student/courses",
 				active: false,
 				label: "All",
 				children: [],
 				icon: "clarity:checkbox-list-line",
 			},
 			{
-				href: "#",
+				href: "/dashboard/student/courses/whitelisted",
 				active: false,
 				label: "In progress",
 				children: [],
 				icon: "carbon:in-progress",
 			},
 			{
-				href: "#",
+				href: "/dashboard/student/courses",
 				active: false,
 				label: "Completed",
 				children: [],
@@ -130,7 +130,9 @@ const navItems = ref([
 </script>
 <template>
 	<dashboard-content-wrapper :menu_items="navItems" user_role="student">
-
+		<template #content>
+			<slot />
+		</template>
 	</dashboard-content-wrapper>
 </template>
 
