@@ -45,3 +45,4 @@ const { menu_items, user_role } = defineProps<{
 		</div>
 	</div>
 </template>
+~~/types/dashboard
