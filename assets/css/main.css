@@ -1,3 +1,29 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Custom CSS */
+@layer base{
+    body {
+        font-family: 'Nunito', sans-serif;
+    }
+    table {
+        @apply border border-collapse
+      }
+      
+      tr {
+        @apply border px-2 py-2
+      }
+      
+      thead {
+        @apply bg-gray-100
+      }
+      
+      th {
+        @apply px-2 py-2 border
+      }
+      
+      td {
+        @apply px-2 py-2 border text-center
+      }
+}

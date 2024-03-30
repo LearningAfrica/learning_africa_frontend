@@ -52,4 +52,4 @@ const hasActiveChild = computed(() => {
 				:is_sidebar_open="props.is_sidebar_open"></dashboard-menu-item>
 		</hui-disclosure-panel>
 	</hui-disclosure>
-</template>
+</template>~~/types/dashboard

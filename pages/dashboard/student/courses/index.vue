@@ -1,13 +1,13 @@
 <script lang="ts" setup>
+
 definePageMeta({
-	middleware: ["student-auth"],
 	layout: "student-layout"
 });
 </script>
 
 <template>
-  <div>
-    <div class="border rounded-md ">
+    <div>
+        <div class="border rounded-md ">
             <div class="border-b p-4">
                 <h1>My course list</h1>
             </div>
@@ -30,9 +30,7 @@ definePageMeta({
                             </th>
                         </thead>
                         <tbody>
-                            <tr v-for="i in 5"
-                            :key="i"
-                            >
+                            <tr v-for="i in 5" :key="i">
                                 <td>
                                     <div class="flex gap-2 items-center">
                                         <div class="flex-[4] h-20 w-full">
@@ -54,7 +52,8 @@ definePageMeta({
                                 <td>10</td>
                                 <td>
                                     <div class="flex gap-4 justify-center">
-                                      <nuxt-link :to="'/dashboard/student/courses/'+i" class="bg-primary py-1 px-4 rounded-sm">View</nuxt-link>
+                                        <nuxt-link :to="'/dashboard/student/courses/' + i"
+                                            class="bg-primary py-1 px-4 rounded-sm">View</nuxt-link>
                                         <button class="border-primary border py-1 px-4 rounded-sm">Continue</button>
                                     </div>
                                 </td>
@@ -65,7 +64,7 @@ definePageMeta({
                 </div>
             </div>
         </div>
-  </div>
+    </div>
 </template>
 <style scoped>
 table {

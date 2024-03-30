@@ -21,7 +21,7 @@ const navItems = ref([
 				icon: "carbon:category-new-each",
 			},
 			{
-				href: "/dashboard/instructor/create",
+				href: "/dashboard/instructor/categories/new",
 				active: false,
 				label: "Add new",
 				children: [],
@@ -37,20 +37,20 @@ const navItems = ref([
 		label: "Courses",
 		children: [
 			{
-				href: "#",
+				href: "/dashboard/instructor/courses",
 				active: false,
 				label: "All",
 				children: [],
 				icon: "carbon:ibm-watson-machine-learning",
 			},
 			{
-				href: "#",
+				href: "/dashboard/instructor/courses?status=draft",
 				active: false,
 				label: "Drafts",
 				children: [],
 				icon: "carbon:result-draft",
 			}, {
-				href: "#",
+				href: "/dashboard/instructor/courses/create",
 				active: false,
 				label: "Add new",
 				children: [],

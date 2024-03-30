@@ -1,5 +1,8 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
+	experimental: {
+		typedPages: true
+	},
 	devtools: {enabled: true},
 	ssr: false,
 	extends: [],
@@ -14,7 +17,7 @@ export default defineNuxtConfig({
 		"nuxt-headlessui",
 		"nuxt-lucide-icons",
 		"my-module",
-		"@nuxtjs/eslint-module",
+		"@nuxtjs/eslint-module"
 	],
 	css: ["~/assets/css/main.css", "sweetalert2/src/sweetalert2.scss"],
 	postcss: {
