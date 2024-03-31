@@ -48,7 +48,6 @@ export const useAuthStore = defineStore("auth", {
 			}
 		}
 	},
-
 	// persist: true,
 	actions: {
 		login(user: User) {
@@ -68,4 +67,8 @@ export const useAuthStore = defineStore("auth", {
 			localStorage.setItem(authKey, JSON.stringify(state_toSync));
 		}
 	}
+	// hydrate(storeState, initialState) {
+	// 	storeState.auth = initialState.auth;
+	// 	storeState.user = initialState.user;
+	// }
 });

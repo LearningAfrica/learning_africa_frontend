@@ -1,7 +1,7 @@
 <script setup lang="ts">
 const navItems = ref([
 	{
-		href: "#",
+		href: "/dashboard/super-admin",
 		active: false,
 		label: "Dashboard",
 		children: [],
@@ -10,7 +10,30 @@ const navItems = ref([
 	{
 		href: "#",
 		active: false,
+		label: "Organizations",
+		icon: "ic:baseline-article",
+		children: [
+			{
+				href: "/dashboard/super-admin/organizations",
+				active: false,
+				label: "All",
+				children: [],
+				icon: "ic:baseline-article",
+			},
+			{
+				href: "/dashboard/super-admin/organizations/new",
+				active: false,
+				label: "Add new",
+				children: [],
+				icon: "ic:baseline-add",
+			},
+		],
+	},
+	{
+		href: "#",
+		active: false,
 		label: "Categories",
+		icon: "ic:baseline-article",
 		children: [
 			{
 				href: "#",
@@ -26,20 +49,56 @@ const navItems = ref([
 				children: [],
 				icon: "ic:baseline-add",
 			},
-			// {
-			// 	href: "#",
-			// 	active: false,
-			// 	label: "Categories",
-			// 	children: [],
-			// 	icon: "ic:baseline-category",
-			// },
 		],
-		icon: "ic:baseline-article",
 	},
 	{
 		href: "#",
 		active: false,
-		label: "Courses",
+		label: "Students",
+		icon: "ic:baseline-article",
+		children: [
+			{
+				href: "#",
+				active: false,
+				label: "All",
+				children: [],
+				icon: "ic:baseline-article",
+			},
+			{
+				href: "#",
+				active: false,
+				label: "Add new",
+				children: [],
+				icon: "ic:baseline-add",
+			},
+		],
+	},
+	{
+		href: "#",
+		active: false,
+		label: "Instructors",
+		icon: "ic:baseline-article",
+		children: [
+			{
+				href: "#",
+				active: false,
+				label: "All",
+				children: [],
+				icon: "ic:baseline-article",
+			},
+			{
+				href: "#",
+				active: false,
+				label: "Add new",
+				children: [],
+				icon: "ic:baseline-add",
+			},
+		],
+	},
+	{
+		href: "#",
+		active: false,
+		label: "Users",
 		children: [
 			{
 				href: "#",
@@ -79,6 +138,7 @@ const navItems = ref([
 		],
 		icon: "ic:baseline-camera-alt",
 	},
+
 	{
 		href: "#",
 		active: false,

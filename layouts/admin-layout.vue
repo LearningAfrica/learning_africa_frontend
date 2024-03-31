@@ -7,6 +7,27 @@ const navItems = ref([
 		label: "Dashboard",
 		children: [],
 		icon: "ic:baseline-home",
+	},{
+		href: "#",
+		active: false,
+		label: "Organizations",
+		icon: "ic:baseline-article",
+		children: [
+			{
+				href: "/dashboard/admin/organizations",
+				active: false,
+				label: "All",
+				children: [],
+				icon: "ic:baseline-article",
+			},
+			{
+				href: "/dashboard/admin/organizations/new",
+				active: false,
+				label: "Add new",
+				children: [],
+				icon: "ic:baseline-add",
+			},
+		],
 	},
 	{
 		href: "#",
