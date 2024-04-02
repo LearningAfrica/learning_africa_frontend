@@ -1,15 +1,14 @@
 <script setup lang="ts">
 import { useVuelidate } from "@vuelidate/core";
 import {
-	minLength, required, helpers,
-	or
+	required, helpers
 } from "@vuelidate/validators";
 import { AxiosError } from "axios";
 definePageMeta({
 	layout: "admin-layout",
 });
 type OrganizationType = {
-  name: string;
+	name: string;
 };
 const { $API, $privateAxios, $notify } = useNuxtApp();
 
@@ -54,8 +53,11 @@ const handleSubmit = async () => {
 
 	try {
 		// const response =
-		await api.post<OrganizationType>("/organizations/", {
-    	organization: Object.fromEntries(data.entries())
+		await api.post<OrganizationType>("/organizations/", data as any, {
+			headers: {
+				"Content-Type": "multipart/form-data",
+			},
+
 		});
 		await $notify.fire({
 			title: "Success",
@@ -75,7 +77,7 @@ const handleSubmit = async () => {
 				title: "Error",
 				icon: "error",
 				confirmButtonText: "Close",
-				text: error.response.data.detail
+				text: error.response!.data.detail
 			});
 		}
 		await $notify.fire({
@@ -96,37 +98,37 @@ const handleSubmit = async () => {
 
 </script>
 <template>
-  <div>
-    <form action="" @submit.prevent.stop="handleSubmit"
-      class="bg-white p-4 rounded-lg shadow-md w-full sm:w-1/2 mx-auto mt-4 border min-h-[40vh] flex flex-col justify-center gap-4">
-      <div class="flex justify-center items-center p-4">
-        <div class="h-20 w-20 bg-slate-100 rounded-full border-1"></div>
-      </div>
-      <div class="flex flex-col gap-2 w-full">
-        <label for="name">Organization name</label>
-        <input type="text" id="name" name="name" placeholder="Organization name" v-model="form.name" />
-        <div v-if="$v.name.$error" class="text-red-500">
-          <p v-for="error of $v.name.$errors" :key="error.$uid">
-            {{ error.$message }}
-          </p>
-        </div>
-      </div>
-      <div class="flex flex-col gap-2 w-full">
-        <label for="logo">Logo url</label>
-        <input type="file" allow="image/*" id="logo" name="logo" placeholder="https://logo.png"
-          @change="handleFileChange" />
+	<div>
+		<form action="" @submit.prevent.stop="handleSubmit"
+			class="bg-white p-4 rounded-lg shadow-md w-full sm:w-1/2 mx-auto mt-4 border min-h-[40vh] flex flex-col justify-center gap-4">
+			<div class="flex justify-center items-center p-4">
+				<div class="h-20 w-20 bg-slate-100 rounded-full border-1"></div>
+			</div>
+			<div class="flex flex-col gap-2 w-full">
+				<label for="name">Organization name</label>
+				<input type="text" id="name" name="name" placeholder="Organization name" v-model="form.name" />
+				<div v-if="$v.name.$error" class="text-red-500">
+					<p v-for="error of $v.name.$errors" :key="error.$uid">
+						{{ error.$message }}
+					</p>
+				</div>
+			</div>
+			<div class="flex flex-col gap-2 w-full">
+				<label for="logo">Logo url</label>
+				<input type="file" allow="image/*" id="logo" name="logo" placeholder="https://logo.png"
+					@change="handleFileChange" />
 
-      </div>
+			</div>
 
-      <button class="bg-primary text-white p-2 rounded-lg w-full mb-4">
-        {{ api.isLoading.value ? "Loading..." : "Add organization" }}
-      </button>
-    </form>
-  </div>
+			<button class="bg-primary text-white p-2 rounded-lg w-full mb-4">
+				{{ api.isLoading.value ? "Loading..." : "Add organization" }}
+			</button>
+		</form>
+	</div>
 </template>
 
 <style scoped>
 input {
-  @apply border border-gray-300 rounded-md p-2 rounded-md
+	@apply border border-gray-300 p-2 rounded-md
 }
 </style>
