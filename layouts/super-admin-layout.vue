@@ -8,25 +8,25 @@ const navItems = ref([
 		icon: "ic:baseline-home",
 	},
 	{
-		href: "#",
+		href: "/dashboard/super-admin/organizations",
 		active: false,
 		label: "Organizations",
 		icon: "ic:baseline-article",
 		children: [
-			{
-				href: "/dashboard/super-admin/organizations",
-				active: false,
-				label: "All",
-				children: [],
-				icon: "ic:baseline-article",
-			},
-			{
-				href: "/dashboard/super-admin/organizations/new",
-				active: false,
-				label: "Add new",
-				children: [],
-				icon: "ic:baseline-add",
-			},
+			// {
+			// 	href: "/dashboard/super-admin/organizations",
+			// 	active: false,
+			// 	label: "All",
+			// 	children: [],
+			// 	icon: "ic:baseline-article",
+			// },
+			// {
+			// 	href: "/dashboard/super-admin/organizations/new",
+			// 	active: false,
+			// 	label: "Add new",
+			// 	children: [],
+			// 	icon: "ic:baseline-add",
+			// },
 		],
 	},
 	{
