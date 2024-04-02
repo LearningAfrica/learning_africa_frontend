@@ -14,12 +14,19 @@ export default defineNuxtPlugin(() => {
 			"Content-Type": "application/json"
 		}
 	});
+	const authHeader = auth.isAuthenticated
+		? {
+				Authorization: `JWT ${auth.auth.user.access_token}`
+			}
+		: {
+				"Content-Type": "application/json"
+			};
 
 	const privateAxios = axios.create({
 		baseURL: BASE_URL + "api",
 		headers: {
 			"Content-Type": "application/json",
-			Authorization: `JWT ${auth.auth.user.access_token}`
+			...authHeader
 		}
 	});
 
