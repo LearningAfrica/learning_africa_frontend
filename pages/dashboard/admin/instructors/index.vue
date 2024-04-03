@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { AxiosError } from "axios";
 
-const { $API, $privateAxios, $notify } = useNuxtApp();
+const { $API, $privateAxios } = useNuxtApp();
 
 type PaginationInfo = {
   totalDocs: number;
@@ -26,36 +26,36 @@ type InstructorType = {
 const isLoading = ref(false);
 const api = new $API<InstructorData[]>($privateAxios);
 definePageMeta({
-  title: "Instructors",
-  description: "List of instructors",
-  url: "/dashboard/admin/instructors",
-  layout: "admin-layout"
+	title: "Instructors",
+	description: "List of instructors",
+	url: "/dashboard/admin/instructors",
+	layout: "admin-layout"
 });
 const instructors = ref<InstructorData>();
 function fetchInstructors() {
-  isLoading.value = true;
-  api.get("/users/instructors/")
-    .then((feedback) => {
-      instructors.value = feedback.data;
-    })
-    .catch((error: AxiosError) => {
-      console.log(error);
-    })
-    .finally(() => {
-      isLoading.value = false;
-    });
+	isLoading.value = true;
+	api.get("/users/instructors/")
+		.then((feedback) => {
+			instructors.value = feedback.data;
+		})
+		.catch((error: AxiosError) => {
+			console.log(error);
+		})
+		.finally(() => {
+			isLoading.value = false;
+		});
 }
 
 onMounted(() => {
-  fetchInstructors();
+	fetchInstructors();
 });
 
 const editInstructor = (instructor: InstructorType) => {
-  console.log(instructor);
+	console.log(instructor);
 };
 
 const deleteInstructor = (instructor: InstructorType) => {
-  console.log(instructor);
+	console.log(instructor);
 };
 
 </script>
