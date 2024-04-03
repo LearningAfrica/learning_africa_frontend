@@ -106,7 +106,8 @@ const handleSubmit = async () => {
 			</div>
 			<div class="flex flex-col gap-2 w-full">
 				<label for="name">Organization name</label>
-				<input type="text" id="name" name="name" placeholder="Organization name" v-model="form.name" />
+				<input :disabled="isLoading" type="text" id="name" name="name" placeholder="Organization name"
+					v-model="form.name" />
 				<div v-if="$v.name.$error" class="text-red-500">
 					<p v-for="error of $v.name.$errors" :key="error.$uid">
 						{{ error.$message }}
@@ -115,13 +116,13 @@ const handleSubmit = async () => {
 			</div>
 			<div class="flex flex-col gap-2 w-full">
 				<label for="logo">Logo url</label>
-				<input type="file" allow="image/*" id="logo" name="logo" placeholder="https://logo.png"
-					@change="handleFileChange" />
+				<input :disabled="isLoading" type="file" allow="image/*" id="logo" name="logo"
+					placeholder="https://logo.png" @change="handleFileChange" />
 
 			</div>
 
-			<button class="bg-primary text-white p-2 rounded-lg w-full mb-4">
-				{{ api.isLoading.value ? "Loading..." : "Add organization" }}
+			<button :disabled="$v.$error || isLoading" class="bg-primary text-white p-2 rounded-lg w-full mb-4">
+				{{ isLoading ? "Loading..." : "Add organization" }}
 			</button>
 		</form>
 	</div>

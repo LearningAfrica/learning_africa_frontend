@@ -3,6 +3,9 @@ export default defineNuxtConfig({
 	experimental: {
 		typedPages: true
 	},
+	app: {
+		layoutTransition: {name: "layout", mode: "in-out"}
+	},
 	devtools: {
 		enabled: true,
 

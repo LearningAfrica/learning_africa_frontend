@@ -57,7 +57,7 @@ const isUpdating = ref(false);
 const handleOrganizationUpdate = async () => {
 	try {
 		// const response =
-		await api.put<{ name: string }>(`/organizations/${selectedOrganization.value?.id}/`, {
+		await api.put<{ name: string }>(`/api/organizations/${selectedOrganization.value?.id}/`, {
 			name: selectedOrganization.value!.name
 		});
 		await $notify.fire({
@@ -98,7 +98,7 @@ const handleOrganizationUpdate = async () => {
 const handleDeleteOrganization = async (organizationId: string) => {
 	isDeleting.value = true;
 	try {
-		await api.delete(`/organizations/${organizationId}/`);
+		await api.delete(`/api/organizations/${organizationId}/`);
 		organizations.value = organizations.value.filter(org => org.id !== organizationId);
 		await $notify.fire({
 			title: "Success",
