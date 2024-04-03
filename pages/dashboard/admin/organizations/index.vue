@@ -20,7 +20,7 @@ const isDeleting = ref(false);
 const fetchOrganizations = async () => {
 	isLoading.value = true;
 	try {
-		const feedback = await api.get("/organizations/");
+		const feedback = await api.get("/api/organizations/");
 		organizations.value = feedback.data;
 	} catch (error) {
 		console.log(error);
@@ -144,12 +144,55 @@ const openOrganizationForDelete = (organizationId: string) => {
 };
 
 const haveOrganizations = computed(() => organizations.value.length > 0);
+
+const isInviting = ref(false);
+const isInvitingDialogOpen = ref(false);
+const toggleInvitingDialog = (state: boolean) => {
+	isInvitingDialogOpen.value = state;
+};
+const openInvitingDialog = () => {
+	toggleInvitingDialog(true);
+};
+const closeInvitingDialog = () => {
+	toggleInvitingDialog(false);
+};
+
+const inviteUser = async () => {
+	isInviting.value = true;
+	try {
+		await api.post("/api/organizations/invite/");
+		await $notify.fire({
+			title: "Success",
+			icon: "success",
+			confirmButtonText: "Close",
+			text: "User invited successfully"
+		});
+	} catch (error) {
+		console.log(error);
+		if (error instanceof AxiosError) {
+			await $notify.fire({
+				title: "Error",
+				icon: "error",
+				confirmButtonText: "Close",
+				text: error.response!.data.detail
+			});
+		}
+		await $notify.fire({
+			title: "Error",
+			icon: "error",
+			confirmButtonText: "Close",
+			text: "An error occurred"
+		});
+	} finally {
+		isInviting.value = false;
+	}
+};
 </script>
 <template>
 	<div>
-		<div v-if="!isLoading && haveOrganizations" class="grid gap-4 grid-cols-[repeat(auto-fit,minmax(20rem,1fr))]">
+		<div v-if="!isLoading && haveOrganizations" class="grid gap-4 grid-cols-[repeat(auto-fit,minmax(18rem,1fr))] place-items-start grid-flow-row-dense">
 			<div v-for="organization of organizations" :key="organization!.name"
-				class="bg-white shadow-sm rounded border">
+				class="bg-white shadow-sm rounded border w-full">
 				<img :src="organization.logo ?? 'https://i.pinimg.com/236x/87/d7/e2/87d7e20741adb00322ab7b09122d8b79.jpg'"
 					alt="Organization logo" class="w-full h-40 object-cover rounded-tl rounded-tr">
 				<div class="p-4 flex justify-between">
@@ -204,6 +247,12 @@ const haveOrganizations = computed(() => organizations.value.length > 0);
 				404
 			</h1>
 			<p class="text-3xl opacity-60">No organizations found</p>
+			<p>
+				<nuxt-link to="/dashboard/admin/organizations/new"
+					class="text-primary hover:text-primary-700 bg-primary text-white px-4 py-2 rounded-md transition-all ease-in duration-150">
+					Add new organization
+				</nuxt-link>
+			</p>
 		</div>
 	</div>
 	<!-- hui-dialogue -->

@@ -7,7 +7,7 @@ const navItems = ref([
 		label: "Dashboard",
 		children: [],
 		icon: "ic:baseline-home",
-	},{
+	}, {
 		href: "#",
 		active: false,
 		label: "Organizations",
@@ -48,7 +48,7 @@ const navItems = ref([
 				children: [],
 				icon: "ic:baseline-add",
 			},
-			
+
 		],
 		icon: "ic:baseline-article",
 	},
@@ -94,6 +94,22 @@ const navItems = ref([
 			// },
 		],
 		icon: "ic:baseline-camera-alt",
+	}, {
+		href: "/dashboard/admin/instructors",
+		active: false,
+		label: "Instructors",
+		icon: "mdi:teacher",
+		children: [
+			// {
+			// 	href: "/dashboard/admin/instructors",
+			// 	active: false,
+			// 	label: "All",
+			// 	children: [],
+			// 	icon: "carbon:ibm-watson-machine-learning",
+			// },
+
+
+		],
 	},
 	{
 		href: "/logout",

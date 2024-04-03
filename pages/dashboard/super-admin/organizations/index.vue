@@ -16,7 +16,7 @@ const isLoading = ref(false);
 const fetchOrganizations = async () => {
 	isLoading.value = true;
 	try {
-		const feedback = await api.get("/organizations/");
+		const feedback = await api.get("/api/organizations/");
 		organizations.value = feedback.data;
 	} catch (error) {
 		console.log(error);

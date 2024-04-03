@@ -53,7 +53,7 @@ const handleSubmit = async () => {
 
 	try {
 		// const response =
-		await api.post<OrganizationType>("/organizations/", data as any, {
+		await api.post<OrganizationType>("/api/organizations/", data as any, {
 			headers: {
 				"Content-Type": "multipart/form-data",
 			},
