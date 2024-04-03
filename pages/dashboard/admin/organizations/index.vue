@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { AxiosError } from 'axios';
+import { AxiosError } from "axios";
 
 const { $API, $privateAxios, $notify } = useNuxtApp();
 
@@ -16,6 +16,7 @@ type OrganizationType = {
 	logo?: string
 }
 const isLoading = ref(false);
+const isDeleting = ref(false);
 const fetchOrganizations = async () => {
 	isLoading.value = true;
 	try {
@@ -33,18 +34,18 @@ const isEditOrganizationDialogOpen = ref(false);
 const toggleEditOrganizationDialog = (state: boolean) => {
 	console.log(isEditOrganizationDialogOpen.value);
 
-	isEditOrganizationDialogOpen.value = state
-}
+	isEditOrganizationDialogOpen.value = state;
+};
 const openOrganizationForEdit = (organizationId: string) => {
-	selectedOrganization.value = organizations.value.find(org => org.id === organizationId)
+	selectedOrganization.value = organizations.value.find(org => org.id === organizationId);
 	if (selectedOrganization.value) {
-		toggleEditOrganizationDialog(true)
+		toggleEditOrganizationDialog(true);
 	} else {
-		toggleEditOrganizationDialog(false)
+		toggleEditOrganizationDialog(false);
 	}
-}
+};
 
-const selectedOrganization = ref<OrganizationType>()
+const selectedOrganization = ref<OrganizationType>();
 // function f
 const organizations = ref<OrganizationType[]>([]);
 
@@ -52,8 +53,8 @@ onMounted(() => {
 	fetchOrganizations();
 
 });
-const isUpdating = ref(false)
-const handleOrganizationUpdate = async (e: Event) => {
+const isUpdating = ref(false);
+const handleOrganizationUpdate = async () => {
 	try {
 		// const response =
 		await api.put<{ name: string }>(`/organizations/${selectedOrganization.value?.id}/`, {
@@ -68,9 +69,9 @@ const handleOrganizationUpdate = async (e: Event) => {
 		organizations.value = organizations.value.map(org => org.id === selectedOrganization.value!.id! ? {
 			...org,
 			name: selectedOrganization.value!.name
-		} : org)!
+		} : org)!;
 
-		toggleEditOrganizationDialog(false)
+		toggleEditOrganizationDialog(false);
 	} catch (error) {
 		console.log(error);
 		if (error instanceof AxiosError) {
@@ -92,7 +93,55 @@ const handleOrganizationUpdate = async (e: Event) => {
 	} finally {
 		isLoading.value = false;
 	}
-}
+};
+
+const handleDeleteOrganization = async (organizationId: string) => {
+	isDeleting.value = true;
+	try {
+		await api.delete(`/organizations/${organizationId}/`);
+		organizations.value = organizations.value.filter(org => org.id !== organizationId);
+		await $notify.fire({
+			title: "Success",
+			icon: "success",
+			confirmButtonText: "Close",
+			text: "Organization deleted successfully"
+		});
+		organizations.value = organizations.value.filter(org => org.id !== organizationId);
+		toggleOrganizationDeleteDialog(false);
+	} catch (error) {
+		console.log(error);
+		if (error instanceof AxiosError) {
+			await $notify.fire({
+				title: "Error",
+				icon: "error",
+				confirmButtonText: "Close",
+				text: error.response!.data.detail
+			});
+		}
+		await $notify.fire({
+			title: "Error",
+			icon: "error",
+			confirmButtonText: "Close",
+			text: "An error occurred"
+		});
+	} finally {
+		isDeleting.value = false;
+	}
+};
+
+const isOrganizationDeleteDialogOpen = ref(false);
+const toggleOrganizationDeleteDialog = (state: boolean) => {
+	isOrganizationDeleteDialogOpen.value = state;
+};
+
+const openOrganizationForDelete = (organizationId: string) => {
+	selectedOrganization.value = organizations.value.find(org => org.id === organizationId);
+	if (selectedOrganization.value) {
+		toggleOrganizationDeleteDialog(true);
+	} else {
+		toggleOrganizationDeleteDialog(false);
+	}
+};
 
 const haveOrganizations = computed(() => organizations.value.length > 0);
 </script>
@@ -127,8 +176,8 @@ const haveOrganizations = computed(() => organizations.value.length > 0);
 									</button>
 								</hui-menu-item>
 								<hui-menu-item as="div">
-									<button
-										class="block px-4 py-2 text-sm hover:text-neutral-100 transition-all ease-linear duration-100 text-left hover:bg-primary w-full">
+									<button @click="openOrganizationForDelete(organization.id)"
+										class="block px-4 py-2 text-sm hover:text-neutral-100 transition-all ease-linear duration-100 text-left hover:bg-red-500 w-full">
 										<icon name="mdi:trash-can-outline" class="mr-2" />
 										Delete
 									</button>
@@ -158,6 +207,40 @@ const haveOrganizations = computed(() => organizations.value.length > 0);
 		</div>
 	</div>
 	<!-- hui-dialogue -->
+	<hui-dialog :open="isOrganizationDeleteDialogOpen" @close="toggleOrganizationDeleteDialog(false)"
+		class="fixed inset-0 z-[999] overflow-y-auto">
+		<div class="flex items-center justify-center min-h-screen w-screen bg-white bg-opacity-70 border ">
+			<div class="bg-white border p-6 rounded-lg shadow-lg  w-full min-h-[20vh] max-w-xl flex gap-4 flex-col">
+				<hui-dialog-panel>
+					<hui-dialog-title class="text-lg font-bold my-2 text-center border bg-red-500 text-white rounded">
+						Delete {{ selectedOrganization!.name }}
+					</hui-dialog-title>
+					<hui-dialog-description class="text-gray-600 ">
+
+						Are you sure you want to delete this organization?
+						This action cannot be undone. All data associated with this organization will be lost.
+					</hui-dialog-description>
+					<form action="" class="w-full"
+						@submit.prevent.stop="handleDeleteOrganization(selectedOrganization!.id)">
+						<!-- <div class="w-full">
+							<input type="text" v-model="selectedOrganization!.name"
+								class="w-full rounded border-blue-200 border-2 ">
+						</div> -->
+
+						<div class="flex justify-center mt-6 gap-4">
+							<button v-if="!isDeleting" type="button" @click="toggleOrganizationDeleteDialog(false)"
+								class="px-4 py-2 text-sm bg-gray-400 hover:bg-gray-600 border rounded-md">Cancel</button>
+							<button type="submit" :disabled="isUpdating" :class="{ 'cursor-not-allowed': isUpdating }"
+								class="px-4 py-2 
+							text-sm bg-red-500 hover:bg-red-700 transition-all ease-in duration-150 rounded-md text-white">
+								{{ isDeleting ? "Deleteing" : "Delete" }}
+							</button>
+						</div>
+					</form>
+				</hui-dialog-panel>
+			</div>
+		</div>
+	</hui-dialog>
 	<hui-dialog :open="isEditOrganizationDialogOpen" @close="toggleEditOrganizationDialog(false)"
 		class="fixed inset-0 z-[999] overflow-y-auto">
 		<div class="flex items-center justify-center min-h-screen w-screen bg-white bg-opacity-70 border ">
@@ -177,8 +260,8 @@ const haveOrganizations = computed(() => organizations.value.length > 0);
 						</div>
 
 						<div class="flex justify-start mt-6 gap-4">
-							<button v-if="!isUpdating" type="button"
-								class="px-4 py-2 text-smbg-white border rounded-md">Cancel</button>
+							<button v-if="!isUpdating" type="button" @click="toggleEditOrganizationDialog(false)"
+								class="px-4 py-2 text-sm bg-gray-400 border rounded-md">Cancel</button>
 							<button type="submit" :disabled="isUpdating" :class="{ 'cursor-not-allowed': isUpdating }"
 								class="px-4 py-2 
 							text-sm bg-primary rounded-md text-white">
