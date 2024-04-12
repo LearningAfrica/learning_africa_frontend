@@ -20,7 +20,8 @@ module.exports = {
 				secondary: {
 					100: "#E2E2D5",
 					200: "#888883"
-				}
+				},
+				dark: "#1C1F2E"
 			}
 		}
 	},

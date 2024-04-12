@@ -19,7 +19,7 @@ const hasActiveChild = computed(() => {
 </script>
 <template>
 	<nuxt-link v-if="!item.children.length" :class="[
-		'group flex w-full items-center rounded-md py-2 px-3 text-sm',
+		'capitalize group flex w-full items-center rounded-md py-2 px-3 text-sm',
 		'hover:bg-gray-100',
 		item.active ? 'font-semibold text-gray-800' : 'font-medium text-gray-600',
 	]" :href="item.href">
@@ -34,11 +34,11 @@ const hasActiveChild = computed(() => {
 		<hui-disclosure-button :class="[
 		'group flex w-full items-center rounded-md py-2 px-3 text-left text-md',
 		'hover:bg-gray-100',
-		open ? 'font-semibold text-gray-800' : 'font-medium text-gray-600',
+		open ? 'font-semibold text-gray-400' : 'font-medium text-gray-600',
 	]">
 			<component :class="[
 		'mr-2 h-6 w-6 shrink-0 group-hover:text-gray-600',
-		open ? 'text-gray-600' : 'text-gray-400',
+		open ? 'text-gray-400' : 'text-gray-200',
 	]" :is="item.icon" v-if="item.icon"></component>
 			<span class="flex-1 text-lg">{{ item.label }}</span>
 			<icon :name="'fluent:chevron-right-16-regular'" :class="[
@@ -52,4 +52,4 @@ const hasActiveChild = computed(() => {
 				:is_sidebar_open="props.is_sidebar_open"></dashboard-menu-item>
 		</hui-disclosure-panel>
 	</hui-disclosure>
-</template>~~/types/dashboard
+</template>
