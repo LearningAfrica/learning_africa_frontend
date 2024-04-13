@@ -1,38 +1,38 @@
 <script setup lang="ts">
 defineProps({
-	is_sidebar_open: {
-		type: Boolean,
-		required: true
-	},
-	logo: {
-		type: String,
-		default: ""
+    is_sidebar_open: {
+        type: Boolean,
+        required: true
+    },
+    logo: {
+        type: String,
+        default: ""
 
-	}
+    }
 });
 const auth = useAuthStore();
 
 const roleColor = (role: "admin" | "super_admin" | "instructor" | "student" | "guest") => {
-	switch (role) {
-	case "admin":
-		return "bg-red-600 text-white";
-	case "instructor":
-		return "bg-blue-600 text-white";
+    switch (role) {
+        case "admin":
+            return "bg-red-600 text-white";
+        case "instructor":
+            return "bg-blue-600 text-white";
 
-	case "student":
-		return "bg-green-600 text-white";
+        case "student":
+            return "bg-green-600 text-white";
 
-	case "super_admin":
-		return "bg-yellow-600 text-white";
+        case "super_admin":
+            return "bg-yellow-600 text-white";
 
-	case "guest":
-		return "bg-gray-600 text-white";
+        case "guest":
+            return "bg-gray-600 text-white";
 
-	default:
-		return "bg-gray-600 text-white";
+        default:
+            return "bg-gray-600 text-white";
 
 
-	}
+    }
 };
 defineEmits(["toggle-sidebar"]);
 </script>
@@ -95,7 +95,7 @@ defineEmits(["toggle-sidebar"]);
                     <img src="/" alt="" />
                 </hui-popover-panel>
             </hui-popover>
-           
+
         </div>
     </div>
 </template>

@@ -1,12 +1,9 @@
 <script lang="ts" setup>
-import type { DashboardMenuItem } from "~/types/dashboard";
+import type {  SidebarMenuItems } from "~/types/dashboard";
 defineProps<{
 	is_sidebar_open: boolean;
 	logo: string;
-	menu_items: {
-		toplinks: DashboardMenuItem[];
-		bottomLinks: DashboardMenuItem[];
-	}
+	menu_items: SidebarMenuItems
 }>(
 	// {
 	// is_sidebar_open: {

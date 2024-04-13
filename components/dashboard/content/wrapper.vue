@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { DashboardMenuItem } from "~/types/dashboard";
+import type { SidebarMenuItems } from "~/types/dashboard";
 const auth = useAuthStore();
 const is_sidebar_open = ref(true);
 const logo = ref("https://avatars.githubusercontent.com/u/150797856?s=200&v=4");
@@ -21,7 +21,7 @@ onMounted(async () => {
 	await router.push(auth.dashboardUrl);
 });
 const { menu_items, user_role } = defineProps<{
-	menu_items: DashboardMenuItem[];
+	menu_items: SidebarMenuItems;
 	user_role: "admin" | "super_admin" | "student" | "instructor"
 }>();
 </script>
@@ -45,4 +45,3 @@ const { menu_items, user_role } = defineProps<{
 		</div>
 	</div>
 </template>
-~~/types/dashboard

@@ -1,6 +1,6 @@
 <template>
-	<!-- Loader template like youtube -->
-	  <div class="min-h-[60vh] p-4 w-full">
+  <!-- Loader template like youtube -->
+  <div class="min-h-[60vh] p-4 w-full">
     <div class="grid grid-cols-[repeat(auto-fit,minmax(18rem,1fr))] gap-4">
       <div v-for="i in 8" :key="i" class="w-full border rounded-md min-h-48">
         <div class="flex justify-between p-4 gap-4 items-center">

@@ -5,3 +5,8 @@ export type DashboardMenuItem = {
 	children: DashboardMenuItem[];
 	icon: string;
 };
+
+export type SidebarMenuItems = {
+	toplinks: DashboardMenuItem[];
+	bottomLinks: DashboardMenuItem[];
+};

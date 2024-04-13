@@ -1,131 +1,138 @@
 <script setup lang="ts">
+import type { SidebarMenuItems } from '~/types/dashboard';
 
-const navItems = ref([
+
+const navItems = ref<SidebarMenuItems>(
 	{
-		href: "/dashboard/student",
-		active: false,
-		label: "Dashboard",
-		children: [],
-		icon: "ic:baseline-home",
-	},
-	{
-		href: "/dashboard/student/courses",
-		active: false,
-		label: "Courses",
-		children: [
+		toplinks: [
 			{
-				href: "/dashboard/student/courses",
+				href: "/dashboard/student",
 				active: false,
-				label: "All",
+				label: "Dashboard",
 				children: [],
-				icon: "clarity:checkbox-list-line",
-			},
-			{
-				href: "/dashboard/student/courses/whitelisted",
-				active: false,
-				label: "In progress",
-				children: [],
-				icon: "carbon:in-progress",
+				icon: "ic:baseline-home",
 			},
 			{
 				href: "/dashboard/student/courses",
 				active: false,
-				label: "Completed",
-				children: [],
-				icon: "clarity:check-circle-line",
-			},
-		],
-		icon: "ic:baseline-article",
-	},
-	{
-		href: "/dashboard/student/payment",
-		active: false,
-		label: "Payments",
-		children: [],
-		icon: "clarity:dollar-line",
-	},
-	{
-		href: "#",
-		active: false,
-		label: "Quiz",
-		children: [
-			{
-				href: "#",
-				active: false,
-				label: "All",
-				children: [],
-				icon: "clarity:number-list-line",
-			}, {
-				href: "#",
-				active: false,
-				label: "Whitelisted",
-				children: [],
-				icon: "clarity:favorite-line",
+				label: "Courses",
+				children: [
+					{
+						href: "/dashboard/student/courses",
+						active: false,
+						label: "All",
+						children: [],
+						icon: "clarity:checkbox-list-line",
+					},
+					{
+						href: "/dashboard/student/courses/whitelisted",
+						active: false,
+						label: "In progress",
+						children: [],
+						icon: "carbon:in-progress",
+					},
+					{
+						href: "/dashboard/student/courses",
+						active: false,
+						label: "Completed",
+						children: [],
+						icon: "clarity:check-circle-line",
+					},
+				],
+				icon: "ic:baseline-article",
 			},
 			{
-				href: "#",
+				href: "/dashboard/student/payment",
 				active: false,
-				label: "Done",
+				label: "Payments",
 				children: [],
-				icon: "clarity:check-circle-line",
-			}, {
-				href: "#",
-				active: false,
-				label: "Pending",
-				children: [],
-				icon: "mdi:circular-arrows",
+				icon: "clarity:dollar-line",
 			},
 			{
 				href: "#",
 				active: false,
-				label: "Upcoming",
+				label: "Quiz",
 				children: [
 					{
 						href: "#",
 						active: false,
-						label: "Subscribed",
+						label: "All",
 						children: [],
-						icon: "clarity:network-globe-line",
+						icon: "clarity:number-list-line",
 					}, {
 						href: "#",
 						active: false,
-						label: "In wait",
+						label: "Whitelisted",
 						children: [],
-						icon: "clarity:network-globe-outline-alerted",
+						icon: "clarity:favorite-line",
+					},
+					{
+						href: "#",
+						active: false,
+						label: "Done",
+						children: [],
+						icon: "clarity:check-circle-line",
+					}, {
+						href: "#",
+						active: false,
+						label: "Pending",
+						children: [],
+						icon: "mdi:circular-arrows",
+					},
+					{
+						href: "#",
+						active: false,
+						label: "Upcoming",
+						children: [
+							{
+								href: "#",
+								active: false,
+								label: "Subscribed",
+								children: [],
+								icon: "clarity:network-globe-line",
+							}, {
+								href: "#",
+								active: false,
+								label: "In wait",
+								children: [],
+								icon: "clarity:network-globe-outline-alerted",
+							},
+						],
+						icon: "ic:baseline-photo-camera",
 					},
 				],
-				icon: "ic:baseline-photo-camera",
+				icon: "ic:baseline-camera-alt",
 			},
 		],
-		icon: "ic:baseline-camera-alt",
-	},
-	{
-		href: "/dashboard/student/profile",
-		active: false,
-		label: "Profile",
-		children: [],
-		icon: "clarity:user-line",
-	}, {
-		href: "/dashboard/student/settings",
-		active: false,
-		label: "Settings",
-		children: [],
-		icon: "clarity:settings-line",
-	}, {
-		href: "/dashboard/student/conference",
-		active: false,
-		label: "Conference",
-		children: [],
-		icon: "mdi:teleconference",
-	},
-	{
-		href: "/logout",
-		active: false,
-		label: "Logout",
-		children: [],
-		icon: "clarity:logout-line",
-	}
-]);
+		bottomLinks: [
+			{
+				href: "/dashboard/student/profile",
+				active: false,
+				label: "Profile",
+				children: [],
+				icon: "clarity:user-line",
+			}, {
+				href: "/dashboard/student/settings",
+				active: false,
+				label: "Settings",
+				children: [],
+				icon: "clarity:settings-line",
+			}, {
+				href: "/dashboard/student/conference",
+				active: false,
+				label: "Conference",
+				children: [],
+				icon: "mdi:teleconference",
+			},
+			{
+				href: "/logout",
+				active: false,
+				label: "Logout",
+				children: [],
+				icon: "clarity:logout-line",
+			}
+		]
+	});
 
 </script>
 <template>
