@@ -2,7 +2,7 @@
 import moment from "moment";
 import type { PaginationData } from "~/types/response";
 const isLoading = ref(false);
-const { $API, $privateAxios} = useNuxtApp();
+const { $privateAxios} = useNuxtApp();
 
 // const api = new $API($privateAxios);
 const categories = ref<Pick<PaginationData,"categories">["categories"]>();
