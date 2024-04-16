@@ -6,10 +6,11 @@ import {
 
 const { $API, $privateAxios, $notify } = useNuxtApp();
 type Category = {
-    name: string;
+    title: string;
     organization: string;
 };
 type OrgType = {
+    id: string
     name: string
     logo?: string
 }
@@ -30,12 +31,12 @@ const api = new $API($privateAxios);
 const isLoading = ref(false);
 const router = useRouter();
 const form = ref<Category>({
-    name: "",
+    title: "",
     organization: "",
 });
 const createCategoryRules = {
-    name: {
-        required: helpers.withMessage("Category name is required", required),
+    title: {
+        required: helpers.withMessage("Category title is required", required),
     },
     organization: {
         required: helpers.withMessage("Organization is required", required),
@@ -43,7 +44,7 @@ const createCategoryRules = {
 };
 const isOrganizationLoading = ref(false);
 const $v = useVuelidate(createCategoryRules, form);
-async function createCategory(event: Event
+async function createCategory(_event: Event
 
 ) {
     $v.value.$validate();
@@ -52,9 +53,9 @@ async function createCategory(event: Event
     }
     isLoading.value = true;
     try {
-        const response = await api.post("/api/categories/", form.value as Category);
-        $notify.fire("Category created", "success");
-        await router.push({ name: 'dashboard-instructor-categories' });
+        await api.post("/api/categories/", form.value as Category);
+        await $notify.fire("Category created", "success");
+        await router.push({ name: "dashboard-instructor-categories" });
     } catch (error) {
         console.log(error);
     }
@@ -80,9 +81,9 @@ definePageMeta({
                 <label for="name">
                     Category name
                 </label>
-                <input v-model="form.name" type="text" placeholder="Category name"
+                <input v-model="form.title" type="text" placeholder="Category name"
                     class="border border-gray-300 p-2 rounded-lg w-full mb-4">
-                <div v-if="$v.name.$error" class="text-red-500">
+                <div v-if="$v.title.$error" class="text-red-500">
                     <p v-for="error of $v.name.$errors" :key="error.$uid">
                         {{ error.$message }}
                     </p>
@@ -99,8 +100,7 @@ definePageMeta({
                     <select v-model="form.organization" class="border border-gray-300 p-2 rounded-lg w-full mb-4"
                         name="organization" id="organization">
                         <option value="" disabled selected>Select organization</option>
-                        <option v-for="organization of organizations" :key="organization.name"
-                            :value="organization.name">
+                        <option v-for="organization of organizations" :key="organization.name" :value="organization.id">
                             {{ organization.name }}
                         </option>
                     </select>
@@ -110,10 +110,12 @@ definePageMeta({
                         </p>
                     </div>
                 </div>
-                <div v-else class="text-center text-gray-500">No organizations found</div>
+                <div v-else-if="!isOrganizationLoading && organizations.length < 1" class="text-center text-gray-500">No
+                    organizations found</div>
             </div>
 
-            <button class="bg-primary text-white p-2 rounded-lg w-full mb-4">Add category</button>
+            <button class="bg-primary text-white p-2 rounded-lg w-full mb-4"
+                v-if="!isOrganizationLoading && organizations.length > 0">Add category</button>
         </form>
     </div>
 </template>

@@ -1,65 +1,29 @@
 <script setup lang="ts">
+import moment from "moment";
+import type { PaginationData } from "~/types/response";
+const isLoading = ref(false);
+const { $API, $privateAxios} = useNuxtApp();
+
+// const api = new $API($privateAxios);
+const categories = ref<Pick<PaginationData,"categories">["categories"]>();
+onMounted(async () => {
+	isLoading.value = true;
+	try {
+		const feedback = await $privateAxios.get("/api/categories/");
+		categories.value = feedback.data;
+		// $notify.fire("Organizations loaded", "success")
+	} catch (error) {
+		console.log(error);
+	} finally {
+		isLoading.value = false;
+	}
+});
+
+
+
 definePageMeta({
 	layout: "instructor-layout",
 });
-const columns = [{
-	key: "id",
-	label: "ID"
-}, {
-	key: "name",
-	label: "Name",
-	sortable: true
-}, {
-	key: "title",
-	label: "Title",
-	sortable: true
-}, {
-	key: "email",
-	label: "Email",
-	sortable: true,
-	direction: "desc" as const
-}, {
-	key: "role",
-	label: "Role"
-}];
-
-const people = [{
-	id: 1,
-	name: "Lindsay Walton",
-	title: "Front-end Developer",
-	email: "lindsay.walton@example.com",
-	role: "Member"
-}, {
-	id: 2,
-	name: "Courtney Henry",
-	title: "Designer",
-	email: "courtney.henry@example.com",
-	role: "Admin"
-}, {
-	id: 3,
-	name: "Tom Cook",
-	title: "Director of Product",
-	email: "tom.cook@example.com",
-	role: "Member"
-}, {
-	id: 4,
-	name: "Whitney Francis",
-	title: "Copywriter",
-	email: "whitney.francis@example.com",
-	role: "Admin"
-}, {
-	id: 5,
-	name: "Leonard Krasner",
-	title: "Senior Designer",
-	email: "leonard.krasner@example.com",
-	role: "Owner"
-}, {
-	id: 6,
-	name: "Floyd Miles",
-	title: "Principal Designer",
-	email: "floyd.miles@example.com",
-	role: "Member"
-}];
 </script>
 <template>
 	<div class="py-4 flex flex-col gap-4">
@@ -73,36 +37,38 @@ const people = [{
 			</div>
 		</div>
 		<div>
-			<table class="w-full table border">
+			<table 
+			v-if="categories?.data"
+			class="w-full table border">
 				<thead>
 					<th>
 						Name
 					</th>
 					<th>
-						Description
+						Date created
 					</th>
 					<th>
 						Actions
 					</th>
 				</thead>
 				<tbody>
-					<tr v-for="i in 5" :key="i">
+					<tr v-for="cat of categories!.data" :key="cat.id">
 						<td>
-							<div class="flex gap-2 items-center">
-
-								<div class="flex flex-col gap-2 flex-[8]">
+							<div class="flex flex-col gap-2 flex-[8]">
 									<h1 class="text-md font-medium text-left whitespace-nowrap">
-										Building lasting relations
+										{{cat.title}}
 									</h1>
-								</div>
 							</div>
 						</td>
+						
 						<td>
-							Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum, voluptates?
+							{{ moment(cat.created).format('LLL') }}
+						</td><td>
+							{{ moment(cat.updated).format('LLL') }}
 						</td>
 						<td>
 							<div class="flex gap-4 justify-center">
-								<nuxt-link :to="'/dashboard/student/courses/' + i"
+								<nuxt-link :to="'/dashboard/student/courses/' + cat.id"
 									class="bg-primary py-1 px-4 rounded-sm">View</nuxt-link>
 								<button class="border-primary border py-1 px-4 rounded-sm">Edit</button>
 							</div>
