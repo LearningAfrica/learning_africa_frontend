@@ -24,7 +24,7 @@ export const useAuthStore = defineStore("auth", {
 	state: () => ({auth: defaultState, user: defaultState.user}),
 	getters: {
 		isAuthenticated: (state) => {
-			console.log({state: state.user});
+			// console.log({state: state.user});
 
 			const {user} = state;
 			return user && user.access_token ? true : false;

@@ -46,6 +46,8 @@ definePageMeta({
 					</th>
 					<th>
 						Date created
+					</th><th>
+						Last edited
 					</th>
 					<th>
 						Actions
