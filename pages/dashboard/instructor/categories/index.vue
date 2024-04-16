@@ -90,9 +90,10 @@ const handleUpdateCategory = async ()=>{
 					class="bg-primary text-white p-2 rounded-lg w-full mb-4">Add category</nuxt-link>
 			</div>
 		</div>
+		<partial-loader v-if="isLoading" />
 		<div>
 			<table 
-			v-if="categories?.data"
+			v-if="categories?.data && !isLoading"
 			class="w-full table border">
 				<thead>
 					<th>
