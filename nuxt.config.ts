@@ -25,9 +25,10 @@ export default defineNuxtConfig({
 		"nuxt-icon",
 		"nuxt-headlessui",
 		"nuxt-lucide-icons",
-		"my-module"
+		"my-module",
+		"shadcn-nuxt"
 	],
-	css: ["~/assets/css/main.css", "sweetalert2/src/sweetalert2.scss"],
+	css: ["~/assets/css/tailwind.css", "sweetalert2/src/sweetalert2.scss"],
 	postcss: {
 		plugins: {
 			tailwindcss: {},
@@ -53,5 +54,8 @@ export default defineNuxtConfig({
 	pinia: {
 		disableVuex: true,
 		storesDirs: ["./stores/**"]
+	},
+	shadcn: {
+		prefix: "cn"
 	}
 });

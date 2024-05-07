@@ -11,13 +11,14 @@
                         advance your career
                     </p>
                     <div class="flex gap-4">
+
                         <nuxt-link to='/login'
                             class="border px-4 py-2 bg-orange-600 text-lg rounded-md text-white font-medium">
-                        Get Started
+                            <cn-button variant="link">Get Started</cn-button>
                         </nuxt-link>
                         <nuxt-link to='/login'
                             class="border px-4 py-2 border-orange-600 text-lg rounded-md bg-white text-orange-600 font-medium">
-                        Learn more
+                            Learn more
                         </nuxt-link>
                     </div>
                 </div>

@@ -1,49 +1,41 @@
 <script lang="ts" setup>
-import { useVuelidate } from "@vuelidate/core";
-import {
-	minLength, required, helpers
-} from "@vuelidate/validators";
+import { useForm } from 'vee-validate'
+import { toTypedSchema } from '@vee-validate/zod'
+import * as z from 'zod'
+
+const loginFormSchema = toTypedSchema(z.object({
+	username_or_email: z.string().min(3).max(30),
+	password: z.string().max(20).min(6),
+	show_password: z.boolean().optional().default(false)
+}))
 
 definePageMeta({
 	middleware: ["open-auth"],
 });
 const { $openAxios, $notify } = useNuxtApp();
-type LoginUserType = {
-	username_or_email: string
-	password: string
-}
-
-const form = ref<LoginUserType>({
-	username_or_email: "",
-	password: "",
-});
-
-const rules = {
-	username_or_email: {
-		required: helpers.withMessage("Username or email is required", required),
-
+type LoginUserType = typeof loginFormSchema
+const { isSubmitting, handleSubmit, ...all } = useForm({
+	validationSchema: loginFormSchema, initialValues: {
+		password: '',
+		username_or_email: ''
 	},
-	password: {
-		required: required,
-		minLength: helpers.withMessage("Password must be at least 6 characters", minLength(6)),
-	},
-};
+	keepValuesOnUnmount: true,
+
+})
+
+
 const showPassword = ref(false);
-const $v = useVuelidate(rules, form);
+// const $v = useVuelidate(rules, form);
 const auth = useAuthStore();
 const isLoading = ref(false);
 const router = useRouter();
-const handleSubmit = async () => {
-	console.log("submitting");
+const submitForm = handleSubmit(async (values) => {
+	// delete values['show_password']
 
-	$v.value.$validate();
-	if ($v.value.$error) {
-		return;
-	}
-
-	isLoading.value = true;
+	// isLoading.value = true;
 	try {
-		const response = await $openAxios.post("/auth/login/", form.value);
+		const response = await $openAxios.post("/auth/login/", values)
+
 		if (response.status === 200 || response.status === 201) {
 			console.log(response.data);
 			auth.login({
@@ -51,6 +43,8 @@ const handleSubmit = async () => {
 				refresh_token: response.data.refresh_token,
 				username: response.data.username,
 				user_role: response.data.user_role,
+				id: response.data.id,
+				organizations: response.data.organizations ?? []
 			});
 			await $notify.fire({
 				title: "Success",
@@ -77,13 +71,13 @@ const handleSubmit = async () => {
 	} finally {
 		isLoading.value = false;
 	}
-};
+})
 </script>
 
 <template>
 	<div class="bg-gray-100 p-4 md:p-10 min-h-[100vh] flex justify-center items-center">
 		<max-width-wrapper class-name="flex items-center justify-center">
-			<form action="" @submit.prevent.stop="handleSubmit"
+			<form @submit.prevent.stop="submitForm!"
 				class="min-h-[50vh] w-full max-w-xl bg-white p-4 md:p-10 rounded-lg shadow-md gap-5 flex flex-col justify-center items-center">
 				<div>
 					<div class="flex items-center justify-center">
@@ -95,44 +89,61 @@ const handleSubmit = async () => {
 							Africa</nuxt-link>
 					</h1>
 				</div>
-				<div class="flex flex-col gap-2 w-full md:w-96">
-					<label for="username_or_email">Email/username</label>
-					<input type="text" id="email" name="username_or_email" placeholder="username/email"
-						v-model="form.username_or_email" />
-					<div v-if="$v.username_or_email.$error" class="text-red-500">
-						<p v-for="error of $v.username_or_email.$errors" :key="error.$uid">
-							{{ error.$message }}
-						</p>
-					</div>
-				</div>
+				<cn-form-field #="{ componentField }" as="div" :name="'username_or_email'"
+					class="flex flex-col gap-2 w-full md:w-96">
+					<cn-form-label for="username_or_email">Email/username</cn-form-label>
+					<cn-form-control>
+						<cn-input v-bind="componentField" name="username_or_email" placeholder="username/email" />
+					</cn-form-control>
+					<cn-form-message />
+				</cn-form-field>
 
+				<cn-form-field #="{ componentField, }" as="div" :name="'password'"
+					class="flex flex-col gap-2 w-full md:w-96 text-left">
+					<cn-label for="password" class="text-left">Password</cn-label>
+					<cn-form-control>
+
+						<cn-input v-bind="componentField" :type="showPassword ? 'text' : 'password'" id="password"
+							name="password" placeholder="********" />
+
+					</cn-form-control>
+					<cn-form-message />
+				</cn-form-field>
+
+				<cn-form-field #="{ value, handleChange }" name="show_password" :as="'div'"
+					class="flex w-full md:w-96 items-center gap-2 show-passsword-wrapper">
+					<cn-checkbox id="show_password" name="show_password" :value="value"
+						@update:checked="handleChange" />
+					<cn-label for="show_password">Show password</cn-label>
+				</cn-form-field>
 				<div class="flex flex-col gap-2 w-full md:w-96">
-					<label for="password">Password</label>
-					<input :type="showPassword ? 'text' : 'password'" id="password" name="password"
-						placeholder="********" v-model="form.password" />
-					<div v-if="$v.password.$error" class="text-red-500">
-						<p v-for="error of $v.password.$errors" :key="error.$uid">
-							{{ error.$message }}
-						</p>
-					</div>
-				</div>
-				<!-- Show password -->
-				<div class="flex w-full md:w-96 items-center gap-2 show-passsword-wrapper">
-					<input type="checkbox" id="show_password" name="show_password" v-model="showPassword" />
-					<label for="show_password">Show password</label>
-				</div>
-				<div class="flex flex-col gap-2 w-full md:w-96">
-					<button type="submit"
-						:class="isLoading ? 'bg-gray-300 cursor-not-allowed' : 'bg-primary text-white p-2 rounded-md w-full hover:bg-primary-dark transition duration-300 ease-in-out'"
+					<cn-button variant="default"
+						:class="isSubmitting ? 'bg-gray-300 cursor-not-allowed' : 'bg-primary text-white p-2 rounded-md w-full hover:bg-primary-dark transition duration-300 ease-in-out'"
 						class="bg-primary text-white p-2 rounded-md w-full hover:bg-primary-dark transition duration-300 ease-in-out">
-						{{ isLoading ? "Loading..." : "Login" }}
-					</button>
+						{{ isSubmitting ? "Loading..." : "Login" }}
+					</cn-button>
+
 				</div>
 				<p>
 					Don't have an account? <nuxt-link href="/register"
 						class="text-blue-500 hover:underline transition duration-300 ease-in-out">Register</nuxt-link>
 				</p>
 			</form>
+
+			<!-- <form class="w-2/3 space-y-6">
+				<CnFormField v-slot="{ componentField }" name="username_or_email" :validate-on-blur="!isFieldDirty">
+					<CnFormItem>
+						<CnFormLabel>Username</CnFormLabel>
+						<CnFormControl>
+							<CnInput type="text" placeholder="shadcn" v-bind="componentField" />
+						</CnFormControl>
+						<CnFormMessage />
+					</CnFormItem>
+				</CnFormField>
+				<CnButton type="submit" v-on:click="submitForm">
+					Submit
+				</CnButton>
+			</form> -->
 		</max-width-wrapper>
 	</div>
 </template>

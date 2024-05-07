@@ -35,6 +35,12 @@ const roleColor = (role: "admin" | "super_admin" | "instructor" | "student" | "g
     }
 };
 defineEmits(["toggle-sidebar"]);
+const isCollapsed = ref(false)
+const organizations = useAuthStore().auth.user.organizations
+
+const selectedOrganization = ref<string>(organizations.find(o => o.is_current)!.id)
+const selectedOrganizationData = computed(() => organizations.find(item => item.id === selectedOrganization.value))
+
 </script>
 <template>
     <div class="flex justify-between gap-6 items-center px-4 border-b sticky top-1 py-2 bg-white z-[99999]">
@@ -46,56 +52,54 @@ defineEmits(["toggle-sidebar"]);
                     </path>
                 </svg>
             </button>
-            <nuxt-link to="/">
-                <icon name="mdi:home" class="text-4xl text-primary-pk"></icon>
+            <nuxt-link to="/" class="flex items-center gap-2 border text-3xl p-1 rounded">
+                <icon name="ion:home" class="text-primary-pk"></icon>
+                <!-- <span class="uppercase">Home</span> -->
             </nuxt-link>
         </div>
-        <div class="w-full flex-1">
-            <div class="w-full">
-                <input type="text" placeholder="Search" class="border p-2 rounded w-full" />
-            </div>
+        <div class="w-full flex-1 justify-end">
+            <search />
         </div>
-        <div class="flex justify-end">
-            <hui-popover class="relative z-[599999]">
-                <hui-popover-button class="text-primary border-none outline-none">
-                    <Icon :name="'clarity:avatar-line'" class="w-12 h-12 border p-2 rounded-full border-black"></Icon>
-                </hui-popover-button>
-
-                <hui-popover-panel class="absolute z-[56666] h-fit right-0">
-                    <div class=" bg-white flex flex-col p-4 border z-[900000] rounded-md w-52 shadow-sm">
-                        <p>
-                            {{ auth.user.username }}
-                        </p>
-                        <span class="rounded-full flex items-center justify-center text-white text-xs p-1 my-2"
-                            :class="roleColor(auth.user.user_role)">
-                            {{ auth.user.user_role }}
-                        </span>
-                        <hr class="">
-                        <nuxt-link to="#" class="p-2">
-                            <Icon :name="'clarity:user-line'" class="w-6 h-6"></Icon>
-                            Profile
-                        </nuxt-link>
-
-                        <nuxt-link to="#" class="p-2">
-                            <Icon :name="'clarity:bell-outline-badged'" class="w-6 h-6"></Icon>
-                            Notifications
-                        </nuxt-link>
-                        <nuxt-link to="#" class="p-2">
-
-                            <Icon :name="'clarity:settings-line'" class="w-6 h-6"></Icon>
-                            Settings
-                        </nuxt-link>
-                        <nuxt-link to="/logout" class="p-2 border text-center rounded-md ">
-                            <Icon :name="'clarity:logout-line'" class="w-6 h-6"></Icon>
-                            Logout
-                        </nuxt-link>
-
-                    </div>
-
-                    <img src="/" alt="" />
-                </hui-popover-panel>
-            </hui-popover>
-
+        <div class="flex justify-end flex-row-reverse">
+            <cn-select v-model="selectedOrganization">
+                <cn-select-trigger aria-label="Select account" :class="cn(
+                    'flex items-center gap-2 [&>span]:line-clamp-1 [&>span]:flex [&>span]:w-full [&>span]:items-center [&>span]:gap-1 [&>span]:truncate [&_svg]:h-4 [&_svg]:w-4 [&_svg]:shrink-0',
+                    { 'flex h-9 w-9 shrink-0 items-center justify-center p-0 [&>span]:w-auto [&>svg]:hidden': isCollapsed },
+                )">
+                    <cn-select-value placeholder="Select an account">
+                        <div class="flex items-center gap-3">
+                            <!-- <Icon class="size-4" :icon="selectedEmailData!.icon" /> -->
+                            <span v-if="!isCollapsed">
+                                {{ selectedOrganizationData!.name }}
+                            </span>
+                        </div>
+                    </cn-select-value>
+                </cn-select-trigger>
+                <cn-select-content>
+                    <cn-select-item v-for="organization of organizations" :key="organization.id"
+                        :value="organization.id">
+                        <div class="flex items-center gap-3 [&_svg]:size-4 [&_svg]:shrink-0 [&_svg]:text-foreground">
+                            <!-- <Icon class="size-4" :icon="organization.icon" /> -->
+                            {{ organization.name }}
+                        </div>
+                    </cn-select-item>
+                </cn-select-content>
+            </cn-select>
+            <cn-dropdown-menu>
+                <cn-dropdown-menu-trigger>
+                    <cn-button variant="outline" class="p-2 rounded">
+                        <Icon :name="'mage:user'" :size="'40'" class="text-black" />
+                    </cn-button>
+                </cn-dropdown-menu-trigger>
+                <cn-dropdown-menu-content>
+                    <cn-dropdown-menu-label>My Account</cn-dropdown-menu-label>
+                    <cn-dropdown-menu-separator />
+                    <cn-dropdown-menu-item>Profile</cn-dropdown-menu-item>
+                    <cn-dropdown-menu-item>Billing</cn-dropdown-menu-item>
+                    <cn-dropdown-menu-item>Team</cn-dropdown-menu-item>
+                    <cn-dropdown-menu-item>Subscription</cn-dropdown-menu-item>
+                </cn-dropdown-menu-content>
+            </cn-dropdown-menu>
         </div>
     </div>
 </template>
