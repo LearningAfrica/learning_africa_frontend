@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import { useQuery } from '@tanstack/vue-query'
 const { $API, $privateAxios } = useNuxtApp();
 
 const api = new $API<OrganizationType[]>($privateAxios);
@@ -12,33 +13,32 @@ type OrganizationType = {
 	name: string
 	logo?: string
 }
-const isLoading = ref(false);
-const fetchOrganizations = async () => {
-	isLoading.value = true;
-	try {
-		const feedback = await api.get("/api/organizations/");
-		organizations.value = feedback.data;
-	} catch (error) {
-		console.log(error);
-	} finally {
-		isLoading.value = false;
-	}
-};
+// const isLoading = ref(false);
 
+const fetchOrganizations = async (): Promise<OrganizationType[]> => {
+	const feedback = await api.get("/api/organizations/");
+	return feedback.data;
+
+};
+const { data, suspense, isFetching, isPending } = useQuery({
+	queryKey: ['organizations'],
+	queryFn: fetchOrganizations,
+	initialData: [],
+	gcTime: 60000
+})
 // function f
-const organizations = ref<OrganizationType[]>([]);
 
 onMounted(() => {
-	fetchOrganizations();
-
+	suspense()
 });
 
-const haveOrganizations = computed(() => organizations.value.length > 0);
+const haveOrganizations = computed(() => data!.value!.length > 0);
 </script>
 <template>
 	<div>
-		<div v-if="!isLoading && haveOrganizations" class="grid gap-4 grid-cols-[repeat(auto-fit,minmax(20rem,1fr))]">
-			<div v-for="organization of organizations" :key="organization!.name"
+		<div v-if="!isFetching && haveOrganizations"
+			class="grid gap-4 grid-cols-[repeat(auto-fit,minmax(16rem,24rem))]">
+			<div v-for="organization of data" :key="organization!.name"
 				class="bg-white overflow-hidden shadow-sm rounded border">
 				<img :src="organization.logo ?? 'https://i.pinimg.com/236x/87/d7/e2/87d7e20741adb00322ab7b09122d8b79.jpg'"
 					alt="Organization logo" class="w-full h-40 object-cover rounded-tl rounded-tr">
@@ -47,7 +47,7 @@ const haveOrganizations = computed(() => organizations.value.length > 0);
 				</div>
 			</div>
 		</div>
-		<div v-else-if="isLoading" class="flex justify-center items-center">
+		<div v-else-if="isFetching" class="flex justify-center items-center">
 			<partial-loader />
 		</div>
 		<div v-else class="flex justify-center items-center flex-col gap-8 p-10 min-h-[60vh] ">
