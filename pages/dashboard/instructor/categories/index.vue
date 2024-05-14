@@ -98,7 +98,8 @@ const handleUpdateCategory = async () => {
 			</div>
 		</div>
 		<partial-loader v-if="isLoading" />
-		<data-table v-if="categories?.data" :columns="courseCategoriesColumns" :data="categories.data ?? []"></data-table>
+		<data-table v-if="categories?.data" :columns="courseCategoriesColumns" :search_label="'Search category...'"
+			:search-field="'title'" :data="categories.data ?? []"></data-table>
 		<hui-dialog :open="isDeleteModalOpen" @close="toggleDeleteModal(false)"
 			class="fixed inset-0 z-[999] overflow-y-auto">
 			<div class="flex items-center justify-center min-h-screen w-screen bg-white bg-opacity-70 border ">

@@ -22,7 +22,7 @@ import type { DTable } from '~/types/data-table';
 
 import type { Updater } from "@tanstack/vue-table";
 import type { Ref } from "vue";
- function valueUpdater<T extends Updater<any>>(
+function valueUpdater<T extends Updater<any>>(
 	updaterOrValue: T,
 	ref: Ref
 ) {
@@ -35,6 +35,8 @@ import type { Ref } from "vue";
 interface DataTableProps {
 	columns: ColumnDef<TableDataType, any>[]
 	data: TableDataType[],
+	search_label?: string,
+	searchField: keyof TableDataType
 	facet_options?: DTable.FacetType<TableDataType>
 }
 const props = defineProps<DataTableProps>()
@@ -69,7 +71,8 @@ const table = useVueTable({
 
 <template>
 	<div class="space-y-4 border p-2 rounded">
-		<data-table-toolbar :table="table" :facet_options="props.facet_options" />
+		<data-table-toolbar :table="table" :facet_options="props.facet_options" :search-field="props.searchField"
+			:search_label="props.search_label" />
 		<div class="rounded-md border">
 			<cn-table>
 				<cn-table-header>
