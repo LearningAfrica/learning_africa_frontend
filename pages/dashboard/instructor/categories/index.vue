@@ -2,16 +2,19 @@
 import type { ColumnDef } from "@tanstack/vue-table";
 import moment from "moment";
 import type { CategoryResponse } from "~/types/categories";
+import type { DTable } from "~/types/data-table";
 import type { PaginationData } from "~/types/response";
-
-
+import { courseCategoriesColumns } from "~/data/table-columns/categories-table-columns";
+import { statuses } from "~/data/sample-data";
+import { labels } from "~/data/sample-data";
+import { priorities } from "~/data/sample-data";
+import { tasks } from "~/data/sample-data";
+import type { CourseCategoryType } from "~/data";
 definePageMeta({
 	layout: "instructor-layout",
 });
 const isLoading = ref(false);
 const { $privateAxios, $notify } = useNuxtApp();
-
-// const api = new $API($privateAxios);
 const categories = ref<Pick<PaginationData, "categories">["categories"]>();
 onMounted(async () => {
 	isLoading.value = true;
@@ -53,25 +56,6 @@ const toggleDeleteModal = (state: boolean) => {
 	isDeleteModalOpen.value = state;
 };
 
-const columns: ColumnDef<CategoryResponse>[] = [
-	{
-		accessorKey: 'id',
-		header: 'ID',
-	},
-	{
-		id: 'Title',
-		accessorKey: 'title',
-		header: 'Title'
-	},{
-		header: 'Date Created',
-		accessorKey: 'created',
-		accessorFn: (p) => moment(p.created).format('LLL')
-	}, {
-		header: 'Date Updated',
-		accessorKey: 'updated', 
-		accessorFn: (p) => moment(p.updated).format('LLL')
-	}
-]
 
 
 const handleDeleteCategory = async () => {
@@ -114,53 +98,7 @@ const handleUpdateCategory = async () => {
 			</div>
 		</div>
 		<partial-loader v-if="isLoading" />
-		<!-- <div>
-			<table v-if="categories?.data && !isLoading" class="w-full table border">
-				<thead>
-					<th>
-						Name
-					</th>
-					<th>
-						Date created
-					</th>
-					<th>
-						Last edited
-					</th>
-					<th>
-						Actions
-					</th>
-				</thead>
-				<tbody>
-					<tr v-for="cat of categories!.data" :key="cat.id">
-						<td>
-							<div class="flex flex-col gap-2 flex-[8]">
-								<h1 class="text-md font-medium text-left whitespace-nowrap">
-									{{ cat.title }}
-								</h1>
-							</div>
-						</td>
-
-						<td>
-							{{ moment(cat.created).format('LLL') }}
-						</td>
-						<td>
-							{{ moment(cat.updated).format('LLL') }}
-						</td>
-						<td>
-							<div class="flex gap-4 justify-center">
-
-								<button class="border-primary border py-1 px-4 rounded-sm"
-									@click="selectCategoryToUpdate(cat.id)">Update</button>
-								<button class="border-red-500 border py-1 px-4 rounded-sm"
-									@click="selectCategoryToDelete(cat.id)">Delete</button>
-							</div>
-						</td>
-					</tr>
-
-				</tbody>
-			</table>
-		</div> -->
-		<data-table v-if="categories?.data" :columns="columns" :data="categories!.data ?? []"></data-table>
+		<data-table v-if="categories?.data" :columns="courseCategoriesColumns" :data="categories.data ?? []"></data-table>
 		<hui-dialog :open="isDeleteModalOpen" @close="toggleDeleteModal(false)"
 			class="fixed inset-0 z-[999] overflow-y-auto">
 			<div class="flex items-center justify-center min-h-screen w-screen bg-white bg-opacity-70 border ">

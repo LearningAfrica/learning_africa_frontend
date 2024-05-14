@@ -2,19 +2,15 @@
 import { useForm } from 'vee-validate'
 import { toTypedSchema } from '@vee-validate/zod'
 import * as z from 'zod'
+import { loginFormSchema } from '~/data/schemas/auth-schema';
 
-const loginFormSchema = toTypedSchema(z.object({
-	username_or_email: z.string().min(3).max(30),
-	password: z.string().max(20).min(6),
-	show_password: z.boolean().optional().default(false)
-}))
 
 definePageMeta({
 	middleware: ["open-auth"],
 });
 const { $openAxios, $notify } = useNuxtApp();
-type LoginUserType = typeof loginFormSchema
-const { isSubmitting, handleSubmit, ...all } = useForm({
+
+const { isSubmitting, handleSubmit} = useForm({
 	validationSchema: loginFormSchema, initialValues: {
 		password: '',
 		username_or_email: ''
