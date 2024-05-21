@@ -24,5 +24,8 @@
     "prettier.endOfLine": "lf",
     "prettier.semi": true,
     "prettier.useTabs": true,
-    "prettier.vueIndentScriptAndStyle": true
+    "prettier.vueIndentScriptAndStyle": true,
+    "cSpell.words": [
+        "Nuxt"
+    ]
 }

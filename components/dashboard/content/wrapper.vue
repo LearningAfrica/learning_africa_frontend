@@ -8,8 +8,8 @@ const toggleSidebar = () => {
 };
 const router = useRouter();
 onMounted(async () => {
-	console.log({auth});
-	
+	// console.log({ auth });
+
 	if (auth.isAuthenticated
 	) {
 		// 
@@ -19,8 +19,8 @@ onMounted(async () => {
 	}
 	if (!auth.isAuthenticated) {
 		auth.logout()
-		console.log({auth});
-		
+		// console.log({ auth });
+
 		await router.push("/login");
 	}
 	await router.push(auth.dashboardUrl);
@@ -35,11 +35,8 @@ const { menu_items, user_role } = defineProps<{
 	<div class="bg-white z-50 flex relative">
 		<dashboard-sidebar :is_sidebar_open="is_sidebar_open" @toggle-sidebar="toggleSidebar" :logo="logo"
 			:menu_items="menu_items"></dashboard-sidebar>
-
-		<div class="flex flex-col w-full h-full transition-all duration-300 p-4 relative" :class="{
-			'sm:ml-64': is_sidebar_open,
-			'ml-0': !is_sidebar_open,
-		}">
+		<div class="flex flex-col w-full h-full transition-all duration-300 p-4 relative"
+			:class="{ 'sm:ml-64': is_sidebar_open, 'ml-0': !is_sidebar_open, }">
 			<slot name="dashboard-header">
 				<dashboard-default-header :is_sidebar_open="is_sidebar_open" :logo="logo"
 					@toggle-sidebar="toggleSidebar"></dashboard-default-header>

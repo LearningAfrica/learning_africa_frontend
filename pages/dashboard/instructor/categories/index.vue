@@ -89,8 +89,8 @@ const handleUpdateCategory = async () => {
 			</div>
 		</div>
 		<partial-loader v-if="categoriesApi.is_loading.value" />
-		<data-table v-if="categoriesApi.categories.value.data" :columns="courseCategoriesColumns" :search_label="'Search category...'"
-			:search-field="'title'" :data="categoriesApi.categories.value.data ?? []"></data-table>
+		<data-table v-if="categoriesApi.data.value.data" :columns="courseCategoriesColumns" :search_label="'Search category...'"
+			:search-field="'title'" :data="categoriesApi.data.value.data ?? []"></data-table>
 		<hui-dialog :open="isDeleteModalOpen" @close="toggleDeleteModal(false)"
 			class="fixed inset-0 z-[999] overflow-y-auto">
 			<div class="flex items-center justify-center min-h-screen w-screen bg-white bg-opacity-70 border ">

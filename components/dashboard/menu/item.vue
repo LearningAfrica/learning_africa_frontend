@@ -24,27 +24,27 @@ const hasActiveChild = computed(() => {
 		item.active ? 'font-semibold text-gray-800' : 'font-medium text-gray-600',
 	]" :href="item.href">
 		<icon :class="[
-		'mr-2 h-8 w-8 shrink-0 group-hover:text-gray-600',
-		item.active ? 'text-gray-600' : 'text-gray-400',
-	]" :name="item.icon" v-if="item.icon"></icon>
+			'mr-2 h-8 w-8 shrink-0 group-hover:text-gray-600',
+			item.active ? 'text-gray-600' : 'text-gray-400',
+		]" :name="item.icon" v-if="item.icon"></icon>
 		<span class="text-lg">{{ item.label }}</span>
 	</nuxt-link>
 
 	<hui-disclosure v-else v-slot="{ open }" :default-open="hasActiveChild">
 		<hui-disclosure-button :class="[
-		'group flex w-full items-center rounded-md py-2 px-3 text-left text-md',
-		'hover:bg-gray-100',
-		open ? 'font-semibold text-gray-400' : 'font-medium text-gray-600',
-	]">
+			'group flex w-full items-center rounded-md py-2 px-3 text-left text-md',
+			'hover:bg-gray-100',
+			open ? 'font-semibold text-gray-400' : 'font-medium text-gray-600',
+		]">
 			<component :class="[
-		'mr-2 h-6 w-6 shrink-0 group-hover:text-gray-600',
-		open ? 'text-gray-400' : 'text-gray-200',
-	]" :is="item.icon" v-if="item.icon"></component>
+				'mr-2 h-6 w-6 shrink-0 group-hover:text-gray-600',
+				open ? 'text-gray-400' : 'text-gray-200',
+			]" :is="item.icon" v-if="item.icon"></component>
 			<span class="flex-1 text-lg">{{ item.label }}</span>
 			<icon :name="'fluent:chevron-right-16-regular'" :class="[
-		'h-6 w-6 shrink-0',
-		open ? '-rotate-90 text-gray-600' : 'text-gray-400',
-	]" />
+				'h-6 w-6 shrink-0',
+				open ? '-rotate-90 text-gray-600' : 'text-gray-400',
+			]" />
 		</hui-disclosure-button>
 
 		<hui-disclosure-panel class="ml-2">

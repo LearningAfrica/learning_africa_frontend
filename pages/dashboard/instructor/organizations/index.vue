@@ -1,44 +1,25 @@
 <script lang="ts" setup>
-import { useQuery } from '@tanstack/vue-query'
-const { $API, $privateAxios } = useNuxtApp();
 
-const api = new $API<OrganizationType[]>($privateAxios);
 definePageMeta({
 	title: "Organizations",
 	description: "List of organizations",
 	url: "/dashboard/instructor/organizations",
 	layout: "instructor-layout"
 });
-type OrganizationType = {
-	name: string
-	logo?: string
-}
-// const isLoading = ref(false);
 
-const fetchOrganizations = async (): Promise<OrganizationType[]> => {
-	const feedback = await api.get("/api/organizations/");
-	return feedback.data;
-
-};
-const { data, suspense, isFetching, isPending } = useQuery({
-	queryKey: ['organizations'],
-	queryFn: fetchOrganizations,
-	initialData: [],
-	gcTime: 60000
-})
-// function f
-
+const organization = useOrganizations()
 onMounted(() => {
-	suspense()
+	organization.fetchData()
 });
 
-const haveOrganizations = computed(() => data!.value!.length > 0);
+const haveOrganizations = computed(() => organization.data.value.length > 0);
 </script>
 <template>
 	<div>
-		<div v-if="!isFetching && haveOrganizations"
+		<cn-button @click="organization.reloadData">Refresh</cn-button>
+		<div v-if="!organization.is_loading.value && haveOrganizations"
 			class="grid gap-4 grid-cols-[repeat(auto-fit,minmax(16rem,24rem))]">
-			<div v-for="organization of data" :key="organization!.name"
+			<div v-for="organization of organization.data.value" :key="organization!.name"
 				class="bg-white overflow-hidden shadow-sm rounded border">
 				<img :src="organization.logo ?? 'https://i.pinimg.com/236x/87/d7/e2/87d7e20741adb00322ab7b09122d8b79.jpg'"
 					alt="Organization logo" class="w-full h-40 object-cover rounded-tl rounded-tr">
