@@ -1,32 +1,18 @@
 <script setup lang="ts">
-import type { ColumnDef } from "@tanstack/vue-table";
-import moment from "moment";
-import type { CategoryResponse } from "~/types/categories";
-import type { DTable } from "~/types/data-table";
 import type { PaginationData } from "~/types/response";
 import { courseCategoriesColumns } from "~/data/table-columns/categories-table-columns";
-import { statuses } from "~/data/sample-data";
-import { labels } from "~/data/sample-data";
-import { priorities } from "~/data/sample-data";
-import { tasks } from "~/data/sample-data";
-import type { CourseCategoryType } from "~/data";
+
 definePageMeta({
 	layout: "instructor-layout",
+	middleware:'instructor-auth'
 });
+
+const categoriesApi = useCourseCategories()
 const isLoading = ref(false);
 const { $privateAxios, $notify } = useNuxtApp();
 const categories = ref<Pick<PaginationData, "categories">["categories"]>();
 onMounted(async () => {
-	isLoading.value = true;
-	try {
-		const feedback = await $privateAxios.get("/api/categories/");
-		categories.value = feedback.data;
-		// $notify.fire("Organizations loaded", "success")
-	} catch (error) {
-		console.log(error);
-	} finally {
-		isLoading.value = false;
-	}
+	await categoriesApi.fetchData();
 });
 
 const selectedCategory = ref<Pick<PaginationData, "categories">["categories"]["data"][number]>();
@@ -91,15 +77,20 @@ const handleUpdateCategory = async () => {
 		<div class="p-4 flex justify-between border">
 			<div>
 				<h1>Categories</h1>
+				<cn-button
+				@click="categoriesApi.refreshData"
+				>
+					<icon name="material-symbols-light:refresh"/>
+				</cn-button>
 			</div>
 			<div>
 				<nuxt-link :to="{ name: 'dashboard-instructor-categories-new' }"
 					class="bg-primary text-white p-2 rounded-lg w-full mb-4">Add category</nuxt-link>
 			</div>
 		</div>
-		<partial-loader v-if="isLoading" />
-		<data-table v-if="categories?.data" :columns="courseCategoriesColumns" :search_label="'Search category...'"
-			:search-field="'title'" :data="categories.data ?? []"></data-table>
+		<partial-loader v-if="categoriesApi.is_loading.value" />
+		<data-table v-if="categoriesApi.categories.value.data" :columns="courseCategoriesColumns" :search_label="'Search category...'"
+			:search-field="'title'" :data="categoriesApi.categories.value.data ?? []"></data-table>
 		<hui-dialog :open="isDeleteModalOpen" @close="toggleDeleteModal(false)"
 			class="fixed inset-0 z-[999] overflow-y-auto">
 			<div class="flex items-center justify-center min-h-screen w-screen bg-white bg-opacity-70 border ">

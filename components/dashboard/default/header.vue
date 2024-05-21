@@ -36,14 +36,14 @@ const roleColor = (role: "admin" | "super_admin" | "instructor" | "student" | "g
 };
 defineEmits(["toggle-sidebar"]);
 const isCollapsed = ref(false)
-const organizations = useAuthStore().auth.user.organizations
+const organizations = computed(()=>auth.isAuthenticated&& auth.user&& Array.isArray(useAuthStore().auth.user.organizations)?useAuthStore().auth.user.organizations:[])
 
-const selectedOrganization = ref<string>(organizations.find(o => o.is_current)!.id)
-const selectedOrganizationData = computed(() => organizations.find(item => item.id === selectedOrganization.value))
+const selectedOrganization = computed(()=>organizations.value.length>0?organizations.value.find(o => o.is_current)!.id:null)
+const selectedOrganizationData = computed(() => organizations.value.find(item => item.id === selectedOrganization.value))
 
 </script>
 <template>
-    <div class="flex justify-between gap-6 items-center px-4 border-b sticky top-1 py-2 bg-white z-[99999]">
+    <div v-if="auth.isAuthenticated" class="flex justify-between gap-6 items-center px-4 border-b sticky top-1 py-2 bg-white z-[99999]">
         <div class="flex items-center">
             <button @click="$emit('toggle-sidebar')" class="p-2">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24"
@@ -67,7 +67,7 @@ const selectedOrganizationData = computed(() => organizations.find(item => item.
                     { 'flex h-9 w-9 shrink-0 items-center justify-center p-0 [&>span]:w-auto [&>svg]:hidden': isCollapsed },
                 )">
                     <cn-select-value placeholder="Select an account">
-                        <div class="flex items-center gap-3">
+                        <div class="flex items-center gap-3" v-if="organizations.length">
                             <!-- <Icon class="size-4" :icon="selectedEmailData!.icon" /> -->
                             <span v-if="!isCollapsed">
                                 {{ selectedOrganizationData!.name }}
@@ -76,9 +76,9 @@ const selectedOrganizationData = computed(() => organizations.find(item => item.
                     </cn-select-value>
                 </cn-select-trigger>
                 <cn-select-content>
-                    <cn-select-item v-for="organization of organizations" :key="organization.id"
+                    <cn-select-item v-if="organizations.length>0" v-for="organization of organizations" :key="organization.id"
                         :value="organization.id">
-                        <div class="flex items-center gap-3 [&_svg]:size-4 [&_svg]:shrink-0 [&_svg]:text-foreground">
+                        <div class="flex items-center gap-3 [&_svg]:size-4 [&_svg]:shrink-0 [&_svg]:text-foreground" v-if="organization">
                             <!-- <Icon class="size-4" :icon="organization.icon" /> -->
                             {{ organization.name }}
                         </div>

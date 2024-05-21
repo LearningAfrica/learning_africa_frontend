@@ -1,7 +1,7 @@
 <script setup lang="ts">
 definePageMeta({
-	
-	layout: "student-layout"
+	layout: "student-layout",
+    middleware:'student-auth'
 });
 const auth = useAuthStore();
 

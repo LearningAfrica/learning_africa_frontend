@@ -1,5 +1,7 @@
 /* eslint-disable indent */
 import {defineStore} from "pinia";
+import {jwtDecode} from "jwt-decode";
+
 type UserOrg = {
 	id: string;
 	name: string;
@@ -33,8 +35,28 @@ export const useAuthStore = defineStore("auth", {
 		isAuthenticated: (state) => {
 			// console.log({state: state.user});
 
-			const {user} = state;
-			return user && user.access_token ? true : false;
+			// const {user} = state;
+			// return user && user.access_token ? true : false;
+
+			if (!state || !state.user) return false;
+			const access_token = state.user?.["access_token"];
+
+			if (!access_token) return false;
+			// Add more checks here with jwt-decode
+			const decodedToken = jwtDecode(access_token!);
+
+			if (decodedToken) {
+				const currentTime = new Date().getTime() / 1000;
+
+				if (decodedToken.exp! < currentTime) {
+					// this.logout();
+					return false;
+				}
+
+				return !!access_token;
+			}
+
+			return !!access_token;
 		},
 		dashboardUrl: (state) => {
 			const {user} = state;
@@ -66,6 +88,8 @@ export const useAuthStore = defineStore("auth", {
 			this.syncStorage();
 		},
 		logout() {
+			console.log("Logout called");
+
 			// this.user = null;
 			localStorage.removeItem(authKey);
 		},
@@ -87,7 +111,12 @@ export const useAuthStore = defineStore("auth", {
 			this.syncStorage();
 		},
 		getOrganizations() {
-			return this.user.organizations ?? [];
+			console.log({user:this.user});
+			
+			if (Array.isArray(this.user.organizations) && this.user) {
+				return this.user.organizations;
+			}
+			return [];
 		}
 	}
 	// hydrate(storeState, initialState) {

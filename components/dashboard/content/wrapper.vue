@@ -8,6 +8,8 @@ const toggleSidebar = () => {
 };
 const router = useRouter();
 onMounted(async () => {
+	console.log({auth});
+	
 	if (auth.isAuthenticated
 	) {
 		// 
@@ -16,6 +18,9 @@ onMounted(async () => {
 		} else { await router.push(auth.dashboardUrl); }
 	}
 	if (!auth.isAuthenticated) {
+		auth.logout()
+		console.log({auth});
+		
 		await router.push("/login");
 	}
 	await router.push(auth.dashboardUrl);

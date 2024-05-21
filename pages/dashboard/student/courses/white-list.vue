@@ -1,7 +1,8 @@
 <script lang="ts" setup>
 definePageMeta({
 	
-	layout: "student-layout"
+	layout: "student-layout",
+  middleware:'student-auth'
 });
 </script>
 

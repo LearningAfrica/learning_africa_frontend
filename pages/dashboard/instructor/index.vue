@@ -1,56 +1,57 @@
 <script setup lang="ts">
 import { Chart, Grid, Line } from "vue3-charts";
 definePageMeta({
-	layout: "instructor-layout"
+  layout: "instructor-layout",
+  'middleware':'instructor-auth'
 });
 const auth = useAuthStore();
 
 const studentscoreSummary = ref([
-	{
-		value: "4.5",
-		label: "Rating",
-		icon: "fe:star"
+  {
+    value: "4.5",
+    label: "Rating",
+    icon: "fe:star"
 
-	},
-	{
-		value: "20k",
-		label: "Enrolled students",
-		icon: "fe:users"
+  },
+  {
+    value: "20k",
+    label: "Enrolled students",
+    icon: "fe:users"
 
-	},
-	{
-		value: 52,
-		label: "Courses taught",
-		icon: "fe:laptop"
+  },
+  {
+    value: 52,
+    label: "Courses taught",
+    icon: "fe:laptop"
 
-	}
+  }
 ]);
 const data = ref([
-	{ name: "Jan", pl: 1000, avg: 500, inc: 300 },
-	{ name: "Feb", pl: 2000, avg: 900, inc: 400 },
-	{ name: "Apr", pl: 400, avg: 400, inc: 500 },
-	{ name: "Mar", pl: 3100, avg: 1300, inc: 700 },
-	{ name: "May", pl: 200, avg: 100, inc: 200 },
-	{ name: "Jun", pl: 600, avg: 400, inc: 300 },
-	{ name: "Jul", pl: 500, avg: 90, inc: 100 }
+  { name: "Jan", pl: 1000, avg: 500, inc: 300 },
+  { name: "Feb", pl: 2000, avg: 900, inc: 400 },
+  { name: "Apr", pl: 400, avg: 400, inc: 500 },
+  { name: "Mar", pl: 3100, avg: 1300, inc: 700 },
+  { name: "May", pl: 200, avg: 100, inc: 200 },
+  { name: "Jun", pl: 600, avg: 400, inc: 300 },
+  { name: "Jul", pl: 500, avg: 90, inc: 100 }
 ]);
 const direction = ref("horizontal");
 const margin = ref({
-	left: 0,
-	top: 20,
-	right: 20,
-	bottom: 0
+  left: 0,
+  top: 20,
+  right: 20,
+  bottom: 0
 });
 const courseProgresStats = ref([
 
-	{ value: 7, label: "Total courses", icon: "fe:laptop" },
-	{ value: 52, label: "Total students", icon: "tdesign:fact-check" },
-	{ value: 52, label: "Enrolled Students", icon: "tdesign:fact-check" },
-	{
-		value: 8,
-		label: "Certificates issued",
-		icon: "carbon:badge"
-	}]);
+  { value: 7, label: "Total courses", icon: "fe:laptop" },
+  { value: 52, label: "Total students", icon: "tdesign:fact-check" },
+  { value: 52, label: "Enrolled Students", icon: "tdesign:fact-check" },
+  {
+    value: 8,
+    label: "Certificates issued",
+    icon: "carbon:badge"
+  }]);
 const windowWidth = ref(window.innerWidth);
 </script>
 <template>

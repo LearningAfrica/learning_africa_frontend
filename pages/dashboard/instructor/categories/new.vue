@@ -4,6 +4,7 @@ import { useForm } from "vee-validate";
 import { createCourseCategorySchema, } from "~/data";
 definePageMeta({
 	layout: "instructor-layout",
+	middleware:'instructor-auth'
 });
 const { $API, $privateAxios, $notify } = useNuxtApp();
 

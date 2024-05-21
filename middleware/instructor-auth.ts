@@ -1,18 +1,23 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-export default defineNuxtRouteMiddleware(async (to, from) => {
-	const auth = useAuthStore();
-	if (!auth.isAuthenticated) {
-		return await navigateTo("/login");
-	}
-	// console.log({_to, _from, auth: auth.isAuthenticated});
-	if (auth.user.user_role == "instructor") {
-		if (to.path !== "/") {
-			console.log("Going to path: ", to.path);
+export default defineNuxtRouteMiddleware(async (to) => {
+	// return await navigateTo(auth.dashboardUrl ?? "/");
+	const { isAuthenticated, dashboardUrl, user } = storeToRefs(useAuthStore()); // make authenticated state reactive
 
-			return await navigateTo(to.path);
-		}
+	// if token exists and url is /login redirect to homepage
+	if (
+		isAuthenticated.value &&
+		to?.name === "login" &&
+		user.value.user_role === "instructor"
+	) {
+		return navigateTo(dashboardUrl.value ?? { name: "index" });
 	}
-	console.log("Last call to path: ", auth.dashboardUrl ?? "/");
+	if (isAuthenticated.value && to?.name === "login") {
+		return navigateTo({ name: "index" });
+	}
 
-	return await navigateTo(auth.dashboardUrl ?? "/");
+	// if token doesn't exist redirect to log in
+	if (!isAuthenticated.value && to?.name !== "login") {
+		abortNavigation();
+		return navigateTo("/login");
+	}
 });

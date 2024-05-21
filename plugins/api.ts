@@ -1,4 +1,8 @@
-import axios, {type AxiosInstance} from "axios";
+import axios, {
+	AxiosHeaders,
+	type AxiosInstance,
+	type AxiosRequestConfig
+} from "axios";
 export default defineNuxtPlugin(() => {
 	const auth = useAuthStore();
 	async function refreshToken() {
@@ -16,11 +20,11 @@ export default defineNuxtPlugin(() => {
 	});
 	const authHeader = auth.isAuthenticated
 		? {
-			Authorization: `JWT ${auth.auth.user.access_token}`
-		}
+				Authorization: `JWT ${auth.auth.user.access_token}`
+			}
 		: {
-			"Content-Type": "application/json"
-		};
+				"Content-Type": "application/json"
+			};
 
 	const privateAxios = axios.create({
 		baseURL: BASE_URL,
@@ -29,6 +33,8 @@ export default defineNuxtPlugin(() => {
 			...authHeader
 		}
 	});
+
+	// privateAxios.get()
 
 	privateAxios.interceptors.response.use(
 		(response) => {
@@ -71,7 +77,7 @@ export default defineNuxtPlugin(() => {
 			url: string,
 			method: "GET" | "POST" | "PUT" | "DELETE",
 			data?: T,
-			params?: D
+			params?: AxiosRequestConfig<D>
 		) {
 			return this.axios.request({
 				url,
@@ -89,20 +95,24 @@ export default defineNuxtPlugin(() => {
 			return this._error;
 		}
 
-		get<T, D = unknown>(url: string, params?: D) {
-			return this.privateRequest<T, D>(url, "GET", undefined, params);
+		get<T, D = unknown>(url: string, config?: AxiosRequestConfig<D>) {
+			return this.privateRequest<T, D>(url, "GET", undefined, config!);
 		}
 
-		post<T, D = unknown>(url: string, data: T, params?: D) {
-			return this.privateRequest<T, D>(url, "POST", data, params);
+		post<T, D = unknown>(
+			url: string,
+			data: T,
+			config?: AxiosRequestConfig<any>
+		) {
+			return this.privateRequest<T, D>(url, "POST", data, config);
 		}
 
-		put<T, D = unknown>(url: string, data: T, params?: D) {
-			return this.privateRequest<T, D>(url, "PUT", data, params);
+		put<T, D = unknown>(url: string, data: T, config?: AxiosRequestConfig) {
+			return this.privateRequest<T, D>(url, "PUT", data, config);
 		}
 
-		delete<T, D = unknown>(url: string, params?: D) {
-			return this.privateRequest<T, D>(url, "DELETE", undefined, params);
+		delete<T, D = unknown>(url: string, config?: AxiosRequestConfig) {
+			return this.privateRequest<T, D>(url, "DELETE", undefined, config);
 		}
 
 		get isLoading() {
