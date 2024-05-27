@@ -11,7 +11,7 @@ defineProps<{
 </script>
 
 <template>
-	<div class="border-r p-4 bg-dark fixed z-[9999999999] h-screen transition-all duration-300 flex flex-col gap-4 justify-between"
+	<div class="border-r p-4 bg-white fixed z-[9999999999] h-screen transition-all duration-300 flex flex-col gap-4 justify-between"
 		:class="{ 'w-64': is_sidebar_open, '-left-[100%]': !is_sidebar_open }">
 		<button
 			class="flex sm:hidden justify-center items-center p-1 rounded-full hover:bg-stone-500 border w-fit absolute -right-4 bg-white"
