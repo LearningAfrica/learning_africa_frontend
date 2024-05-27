@@ -1,43 +1,40 @@
-import { AxiosError } from "axios";
-import type { PaginationData } from "~/types/response";
+import {AxiosError} from "axios";
+import type {PaginationData} from "~/types/response";
 
-type Data = Pick<PaginationData, "categories">["categories"];
+type Data = Pick<PaginationData, "courses">["courses"];
 type Meta = Pick<Pick<Data, "meta">["meta"], "limit" | "page">;
 
-export const useCourseCategories = () => {
-	const { $privateAxios } = useNuxtApp();
-	const categories = useState("course-categories-data", () => ({}) as Data);
+export const useCourses = () => {
+	const {$privateAxios} = useNuxtApp();
+	const categories = useState("courses-data", () => ({}) as Data);
 	const fetch_error = useState<AxiosError | Error | null>(
-		"course-categories-fetch-error",
+		"courses-fetch-error",
 		() => null
 	);
-	const has_error = useState<boolean>(
-		"categories-courses-loading",
-		() => false
-	);
-	const is_loading = useState<boolean>(
-		"categories-courses-loading",
-		() => false
-	);
-	const cache = useState<{ [key: string]: Data }>(
-		"course-categories-cache",
-		() => ({})
-	);
-	const page_options = useState<Meta & { total_items?: number }>(
-		"current-categories-page-options",
-		() => ({ limit: 20, page: 1 }) as Meta
+	const has_error = useState<boolean>("courses-loading", () => false);
+	const is_loading = useState<boolean>("courses-loading", () => false);
+	const cache = useState<{[key: string]: Data}>("course-cache", () => ({}));
+	const page_options = useState<Meta & {total_items?: number}>(
+		"current-course-page-options",
+		() => ({limit: 20, page: 1}) as Meta
 	);
 
-	const fetchData = async (options: Meta = page_options.value, bypass_cache: boolean = false) => {
-		const limit = 'limit' in options ? options['limit'] : page_options.value.limit
-		const page = 'page' in options ? options['page'] : page_options.value.page
+	const fetchData = async (
+		options: Meta = page_options.value,
+		bypass_cache: boolean = false
+	) => {
+		const limit =
+			"limit" in options ? options["limit"] : page_options.value.limit;
+		const page =
+			"page" in options ? options["page"] : page_options.value.page;
 
 		const cacheKey = `page=${page}&limit=${limit}`;
 		// console.log({ options, page, limit });
 
 		is_loading.value = true;
 		try {
-			if (!bypass_cache) {// Check if the data is already in the cache
+			if (!bypass_cache) {
+				// Check if the data is already in the cache
 				if (cache.value[cacheKey]) {
 					console.log("Returning cached data for", cacheKey);
 					categories.value = cache.value[cacheKey];
@@ -48,7 +45,7 @@ export const useCourseCategories = () => {
 			}
 
 			// Fetch data from the API
-			const response = await $privateAxios.get("/api/categories/", {
+			const response = await $privateAxios.get("/api/courses/", {
 				params: options
 			});
 
@@ -79,11 +76,13 @@ export const useCourseCategories = () => {
 
 	const refreshData = async (options: Meta) => {
 		// Update the current page options state
-		const limit = 'limit' in options ? options['limit'] : page_options.value.limit
-		const page = 'page' in options ? options['page'] : page_options.value.page
+		const limit =
+			"limit" in options ? options["limit"] : page_options.value.limit;
+		const page =
+			"page" in options ? options["page"] : page_options.value.page;
 
 		// Fetch new data with updated options
-		await fetchData({ page, limit });
+		await fetchData({page, limit});
 	};
 
 	return {

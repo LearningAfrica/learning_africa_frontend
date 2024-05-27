@@ -7,6 +7,7 @@ export const createCourseSchema = toTypedSchema(
 		category: z.number(),
 		title: z.string(),
 		overview: z.string(),
+		tags:z.string().default(''),
 		is_premium: z.boolean().default(false),
 		price: z.number().default(0),
 		is_private: z.boolean().default(false),

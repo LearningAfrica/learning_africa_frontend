@@ -77,11 +77,11 @@ const handleUpdateCategory = async () => {
 		<div class="p-4 flex justify-between border">
 			<div>
 				<h1>Categories</h1>
-				<cn-button
+				<!-- <cn-button
 				@click="categoriesApi.refreshData"
 				>
 					<icon name="material-symbols-light:refresh"/>
-				</cn-button>
+				</cn-button> -->
 			</div>
 			<div>
 				<nuxt-link :to="{ name: 'dashboard-instructor-categories-new' }"

@@ -42,7 +42,7 @@ const submitForm = handleSubmit(async (values) => {
 				"Content-Type": 'multipart/form-data'
 			}
 		});
-		await $notify.fire("Category created", "success");
+		await $notify.fire("Course created successfully", "success");
 		imageUpload.clearFiles()
 		await router.push({ name: "dashboard-instructor-courses" });
 	} catch (error) {
@@ -167,6 +167,13 @@ const submitForm = handleSubmit(async (values) => {
 				<cn-select>
 				</cn-select>
 			</div>
+			<cn-form-field #="{ componentField }" as="div" :name="'tags'" class="flex flex-col gap-2 w-full">
+				<cn-form-label for="title">Tags (comma separated)</cn-form-label>
+				<cn-form-control>
+					<cn-input v-bind="componentField" name="tags" placeholder="e.g course,new course" />
+				</cn-form-control>
+				<cn-form-message />
+			</cn-form-field>
 			<cn-form-field #="{ componentField }" as="div" :name="'overview'" class="flex flex-col gap-2 w-full">
 				<cn-form-label for="overview">Course Overview</cn-form-label>
 				<cn-form-control>

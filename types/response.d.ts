@@ -1,4 +1,5 @@
 import type {CategoryResponse} from "./categories";
+import type {CoursesResponse} from "./courses";
 
 export type PaginatedResponse<T = unknown> = {
 	data: T[];
@@ -16,5 +17,5 @@ export type PaginatedResponse<T = unknown> = {
 
 export type PaginationData = {
 	categories: PaginatedResponse<CategoryResponse>;
-	organizations:
+	courses: PaginatedResponse<CoursesResponse>;
 };

@@ -1,64 +1,134 @@
 <script lang="ts" setup>
+import type { ColumnDef } from '@tanstack/vue-table';
+import { Checkbox } from '~/components/ui/checkbox';
+import type { TableColumnType } from '~/data/table-data-types';
+import type { CoursesResponse } from '~/types/courses';
+import DataTableColumnHeader from "@/components/data/table/column/header.vue";
+import DataTableRowActions from "@/components/data/table/row/actions.vue";
+import moment from 'moment';
 definePageMeta({
 	layout: "instructor-layout",
-	middleware:'instructor-auth'
+	middleware: 'instructor-auth'
 });
 
+const course =
+	useCourses()
+onMounted(() => {
+	course.fetchData()
+})
+const courseColumns: ColumnDef<CoursesResponse>[] = [
+	{
+		id: "select",
+		header: ({ table }) =>
+			h(Checkbox, {
+				checked:
+					table.getIsAllPageRowsSelected() ||
+					(table.getIsSomePageRowsSelected() && "indeterminate"),
+				"onUpdate:checked": (value) =>
+					table.toggleAllPageRowsSelected(!!value),
+				ariaLabel: "Select all",
+				class: "translate-y-0.5"
+			}),
+		cell: ({ row }) =>
+			h(Checkbox, {
+				checked: row.getIsSelected(),
+				"onUpdate:checked": (value) => row.toggleSelected(!!value),
+				ariaLabel: "Select row",
+				class: "translate-y-0.5"
+			}),
+		enableSorting: false,
+		enableHiding: false
+	},
+	{
+		id: "index",
+		header: "#",
+		cell: ({ row }) => h("div", {}, row.index + 1)
+	},
+	// {
+	// 	id: "id",
+	// 	header: ({column}) =>
+	// 		h(DataTableColumnHeader, {
+	// 			column: column as TableColumnType,
+	// 			title: "ID"
+	// 		}),
+	// 	cell: ({row}) => h("div", {class: ""}, row.getValue("id")),
+	// 	enableSorting: true,
+	// 	enableHiding: true,
+	// 	accessorKey: "id"
+	// },
+	{
+		id: "title",
+		header: ({ column }) =>
+			h(DataTableColumnHeader, {
+				column: column as TableColumnType,
+				title: "Title"
+			}),
+		cell: ({ row }) => h("div", { class: "" }, row.getValue("title")),
+		enableSorting: true,
+		enableHiding: false,
+		accessorKey: "title"
+	},
+
+	{
+		id: "created",
+		header: ({ column }) =>
+			h(DataTableColumnHeader, {
+				column: column as TableColumnType,
+				title: "Date Created"
+			}),
+		cell: ({ row }) =>
+			h(
+				"div",
+				{ class: "" },
+				moment(row.getValue("")).format("LLL")
+			),
+		enableSorting: true,
+		enableHiding: true,
+		accessorKey: "created"
+	},
+	{
+		id: "updated",
+		header: ({ column }) =>
+			h(DataTableColumnHeader, {
+				column: column as TableColumnType,
+				title: "Date Updated"
+			}),
+		cell: ({ row }) =>
+			h(
+				"div",
+				{ class: "" },
+				moment(row.getValue("updated")).format("LLL")
+			),
+		enableSorting: true,
+		enableHiding: true,
+		accessorKey: "updated"
+	},
+	{
+		id: "actions",
+		cell: ({ row }) => h(DataTableRowActions, { row: row as TableRowType })
+	}
+];
 </script>
 
 <template>
-  <div class="py-4 flex flex-col gap-4">
-    <div class="p-4 flex justify-between border">
-      <div>
-        <h1>Courses</h1>
-      </div>
-      <div>
-        <nuxt-link :to="{ name: 'dashboard-instructor-courses-create' }"
-          class="bg-primary text-white p-2 rounded-lg w-full mb-4">Add course</nuxt-link>
-      </div>
-    </div>
-    <div>
-      <table class="w-full table border">
-        <thead>
-          <th>
-            Title
-          </th>
-          <th>
-            Description
-          </th>
-          <th>
-            Actions
-          </th>
-        </thead>
-        <tbody>
-          <tr v-for="i in 5" :key="i">
-            <td>
-              <div class="flex gap-2 items-center">
+	<div class="py-4 flex flex-col gap-4">
+		<partial-loader v-if="course.is_loading.value" />
+		<div class="p-4 flex justify-between border">
+			<div>
+				<h1>Courses</h1>
+			</div>
+			<div>
+				<nuxt-link :to="{ name: 'dashboard-instructor-courses-create' }"
+					class="bg-primary text-white p-2 rounded-lg w-full mb-4">Add course</nuxt-link>
+			</div>
+		</div>
+		<div>
+			<data-table v-if="course.data.value.data" :columns="courseColumns"
+				:search_label="'Search category...'" :search-field="'title'"
+				:data="course.data.value.data ?? []"></data-table>
+		</div>
 
-                <div class="flex flex-col gap-2 flex-[8]">
-                  <h1 class="text-md font-medium text-left whitespace-nowrap">
-                    Building lasting relations
-                  </h1>
-                </div>
-              </div>
-            </td>
-            <td>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum, voluptates?
-            </td>
-            <td>
-              <div class="flex gap-4 justify-center">
-                <nuxt-link :to="'/dashboard/student/courses/' + i"
-                  class="bg-primary py-1 px-4 rounded-sm">View</nuxt-link>
-                <button class="border-primary border py-1 px-4 rounded-sm">Edit</button>
-              </div>
-            </td>
-          </tr>
-
-        </tbody>
-      </table>
-    </div>
-
-  </div>
+	</div>
 </template>
 
 <style scoped></style>

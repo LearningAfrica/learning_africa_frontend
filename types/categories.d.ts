@@ -7,3 +7,4 @@ export type CategoryResponse = {
 	created: Date;
 	updated: Date;
 };
+
