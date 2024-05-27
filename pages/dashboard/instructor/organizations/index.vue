@@ -16,7 +16,7 @@ const haveOrganizations = computed(() => organization.data.value.length > 0);
 </script>
 <template>
 	<div>
-		<cn-button @click="organization.reloadData">Refresh</cn-button>
+		<!-- <cn-button @click="organization.reloadData">Refresh</cn-button> -->
 		<div v-if="!organization.is_loading.value && haveOrganizations"
 			class="grid gap-4 grid-cols-[repeat(auto-fit,minmax(16rem,24rem))]">
 			<div v-for="organization of organization.data.value" :key="organization!.name"

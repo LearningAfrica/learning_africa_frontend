@@ -2,7 +2,7 @@
 import { useForm } from 'vee-validate'
 import { toTypedSchema } from '@vee-validate/zod'
 import * as z from 'zod'
-import { loginFormSchema } from '~/data/schemas/auth-schema';
+import { loginFormSchema, type LoginUserFormType } from '~/data/schemas/auth-schema';
 
 
 definePageMeta({
@@ -10,10 +10,11 @@ definePageMeta({
 });
 const { $openAxios, $notify } = useNuxtApp();
 
-const { isSubmitting, handleSubmit} = useForm({
+const { isSubmitting, handleSubmit } = useForm<LoginUserFormType>({
 	validationSchema: loginFormSchema, initialValues: {
 		password: '',
-		username_or_email: ''
+		username_or_email: '',
+		show_password: false
 	},
 	keepValuesOnUnmount: true,
 
@@ -26,21 +27,22 @@ const auth = useAuthStore();
 const isLoading = ref(false);
 const router = useRouter();
 const submitForm = handleSubmit(async (values) => {
-	// delete values['show_password']
+	delete values['show_password']
 
 	// isLoading.value = true;
 	try {
-		const response = await $openAxios.post("/auth/login/", values)
+		const { data, status ,statusText} = await $openAxios.post("/auth/login/", values)
+		console.log({ data,status,statusText });
 
-		if (response.status === 200 || response.status === 201) {
-			console.log(response.data);
+		if (status === 200 || status === 201) {
+			console.log(data);
 			auth.login({
-				access_token: response.data.access_token,
-				refresh_token: response.data.refresh_token,
-				username: response.data.username,
-				user_role: response.data.user_role,
-				id: response.data.id,
-				organizations: response.data.organizations ?? []
+				access_token: data.access_token,
+				refresh_token: data.refresh_token,
+				username: data.username,
+				user_role: data.user_role,
+				id: data.id,
+				organizations: data.organizations ?? []
 			});
 			await $notify.fire({
 				title: "Success",
@@ -50,7 +52,7 @@ const submitForm = handleSubmit(async (values) => {
 			});
 			await router.push(auth.dashboardUrl ?? "/");
 		} else {
-			console.log(response.data);
+			// console.log(response.data);
 
 		}
 		// eslint-disable-next-line @typescript-eslint/no-explicit-any

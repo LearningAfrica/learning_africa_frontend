@@ -26,6 +26,8 @@
     "prettier.useTabs": true,
     "prettier.vueIndentScriptAndStyle": true,
     "cSpell.words": [
+        "Axios",
+        "humbleicons",
         "Nuxt"
     ]
 }

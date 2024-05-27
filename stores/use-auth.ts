@@ -80,11 +80,11 @@ export const useAuthStore = defineStore("auth", {
 	// persist: true,
 	actions: {
 		login(user: User) {
-			console.log({user});
-
 			this.auth = {user};
 			this.user = user;
-			this.switchCurrentOrg(user.organizations[0].id);
+			this.switchCurrentOrg(
+				user.organizations.length > 0 ? user.organizations[0].id : ""
+			);
 			this.syncStorage();
 		},
 		logout() {
@@ -111,8 +111,8 @@ export const useAuthStore = defineStore("auth", {
 			this.syncStorage();
 		},
 		getOrganizations() {
-			console.log({user:this.user});
-			
+			console.log({user: this.user});
+
 			if (Array.isArray(this.user.organizations) && this.user) {
 				return this.user.organizations;
 			}

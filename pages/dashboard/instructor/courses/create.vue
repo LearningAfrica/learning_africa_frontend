@@ -1,6 +1,12 @@
 <script lang="ts" setup>
+import { AxiosError } from 'axios';
 import { useForm } from 'vee-validate';
-import { createCourseSchema } from '~/data/schemas/course-schema';
+import { createCourseSchema, type CreateCourseType } from '~/data/schemas/course-schema';
+
+
+const { $privateAxios, $notify } = useNuxtApp()
+const router = useRouter()
+// const api = new $API($privateAxios)
 const category = useCourseCategories()
 const organization = useOrganizations()
 const imageUpload =
@@ -10,49 +16,61 @@ onMounted(async () => {
 	organization.fetchData()
 })
 
+const isLoading = ref(false)
+
 
 definePageMeta({
 	layout: "instructor-layout",
 	middleware: 'instructor-auth'
 });
 
-const { isSubmitting, handleSubmit } = useForm({
+const { isSubmitting, handleSubmit, values: formValues } = useForm<CreateCourseType>({
 	validationSchema: createCourseSchema,
-	keepValuesOnUnmount: true,
+
+
 })
 const submitForm = handleSubmit(async (values) => {
+	console.log({ values });
 
-	// isLoading.value = true;
-	// try {
-	//   await api.post("/api/courses//", values);
-	//   await $notify.fire("Category created", "success");
-	//   await router.push({ name: "dashboard-instructor-categories" });
-	// } catch (error) {
-	//   if (error instanceof AxiosError) {
-	//     $notify.fire({
-	//       title: '',
-	//       text: error.response?.data.detail,
-	//       timer: 2000,
-	//     })
-	//   }
-	// } finally {
-	//   isLoading.value = false;
-	// }
+	isLoading.value = true;
+	try {
+		if (imageUpload.has_files.value) {
+			(values as any)['course_image'] = imageUpload.uploaded_files.value['create-course-image'][0]
+		}
+		await $privateAxios.post("/api/courses/", values, {
+			headers: {
+				"Content-Type": 'multipart/form-data'
+			}
+		});
+		await $notify.fire("Category created", "success");
+		imageUpload.clearFiles()
+		await router.push({ name: "dashboard-instructor-courses" });
+	} catch (error) {
+		if (error instanceof AxiosError) {
+			$notify.fire({
+				title: '',
+				text: error.response?.data.detail ?? 'Something went wrong!',
+				timer: 2000,
+			})
+		}
+	} finally {
+		isLoading.value = false;
+	}
 })
 </script>
 
 <template>
 	<div class="w-full flex items-start">
-		<form action="" @submit.prevent="submitForm"
+		<form @submit.prevent="submitForm"
 			class="bg-white p-4 md:p-10 rounded-lg  w-full max-w-6xl mx-auto mt-4 min-h-[40vh] flex flex-col gap-4 justify-center">
 			<div class="flex justify-center items-center p-4">
 				<div class=" bg-slate-100 rounded-full border-1">
-					<img v-if="!imageUpload.has_previews.value"
+					<img v-if="imageUpload.has_previews.value"
 						src="https://avatars.githubusercontent.com/u/150797856?s=200&v=4" alt="logo"
 						class="h-20 w-20 object-cover rounded-full">
-					<img v-if="imageUpload.has_previews.value"
+					<!-- <img v-if="imageUpload.has_previews.value"
 						:src="imageUpload.uploaded_previews.value['create-course-image'][0].preview"
-						class="max-w-52 max-h-52 w-full h-full object-cover border" />
+						class="max-w-80 max-h-80 w-full h-full object-cover border" /> -->
 				</div>
 			</div>
 			<cn-form-field #="{ componentField }" as="div" :name="'title'" class="flex flex-col gap-2 w-full">
@@ -119,8 +137,8 @@ const submitForm = handleSubmit(async (values) => {
 							</cn-form-control>
 							<cn-select-content>
 								<cn-select-group>
-									<cn-select-item value="true">Yes
-									</cn-select-item><cn-select-item value="false">No</cn-select-item>
+									<cn-select-item :value="true">Yes
+									</cn-select-item><cn-select-item :value="false">No</cn-select-item>
 								</cn-select-group>
 							</cn-select-content>
 						</cn-select>
@@ -138,8 +156,8 @@ const submitForm = handleSubmit(async (values) => {
 							</cn-form-control>
 							<cn-select-content>
 								<cn-select-group>
-									<cn-select-item value="true">Yes
-									</cn-select-item><cn-select-item value="false">No</cn-select-item>
+									<cn-select-item :value="true">Yes
+									</cn-select-item><cn-select-item :value="false">No</cn-select-item>
 								</cn-select-group>
 							</cn-select-content>
 						</cn-select>
@@ -156,27 +174,31 @@ const submitForm = handleSubmit(async (values) => {
 				</cn-form-control>
 				<cn-form-message />
 			</cn-form-field>
-			<cn-form-field #="{ componentField }" as="div" :name="'overview'" class="flex flex-col gap-2 w-full">
+			<!-- <cn-form-field #="{ componentField }" as="div" :name="'overview'" class="flex flex-col gap-2 w-full">
 				<cn-form-label for="overview">Course Overview</cn-form-label>
 				<cn-form-control>
 					<cn-textarea v-bind="componentField" name="overview" placeholder="Course Overview" />
 				</cn-form-control>
 				<cn-form-message />
-			</cn-form-field>
-
+			</cn-form-field> -->
+			<div class="flex justify-center">
+				<img v-if="imageUpload.has_previews.value"
+					:src="imageUpload.uploaded_previews.value['create-course-image'][0].preview"
+					class="max-w-52 max-h-52" />
+			</div>
 			<label for="course_image"
-				class="w-full p-8 border-4 rounded-lg border-primary border-dotted flex justify-center items-center">
+				class="w-full p-4 border-4 rounded-lg border-gray-500 border-dotted flex justify-center items-center">
 				<input name="course_image" id="course_image" type="file" accept="image/*" hidden
 					@change="imageUpload.handleFileUpload">
-				<div v-if="!imageUpload.has_previews.value">
-					<Icon :name="'humbleicons:upload'" class="text-8xl border text-slate-400 rounded-full" />
+				<div class="flex flex-col justify-center items-center">
+					<Icon :name="'humbleicons:upload'" class="text-3xl text-slate-400 rounded-full" />
+
+					<span class="">
+						Click to upload
+					</span>
 				</div>
-				<div v-else class="border p-2 rounded-md">
-					{{ imageUpload.uploaded_files.value['create-course-image'][0].name }}
-				</div>
-				<!-- <img v-if="imageUpload.has_previews.value"
-					:src="imageUpload.uploaded_previews.value['create-course-image'][0].preview"
-					class="max-w-52 max-h-52" /> -->
+
+
 			</label>
 
 			<cn-button class="bg-primary text-white p-2 rounded-lg w-full mb-4" :disabled="isSubmitting"
