@@ -1,11 +1,121 @@
 <script setup lang="ts">
 import type { PaginationData } from "~/types/response";
-import { courseCategoriesColumns } from "~/data/table-columns/categories-table-columns";
+import type { ColumnDef, ColumnFiltersState, Row, SortingState, VisibilityState } from "@tanstack/vue-table";
+import type { CourseCategoryType } from "~/data";
+import { Checkbox } from "@/components/ui/checkbox";
+import DataTableColumnHeader from "@/components/data/table/column/header.vue";
+import DataTableRowActions from "@/components/dashboard/course/table/column/actions.vue"
+import type { TableColumnType, TableRowType } from "~/data/table-data-types";
+import moment from "moment";
 
 definePageMeta({
 	layout: "instructor-layout",
-	middleware:'instructor-auth'
+	middleware: 'instructor-auth'
 });
+
+const tableFilters = ref<ColumnFiltersState>([])
+const columnVisibility = ref<VisibilityState>({})
+const selection = ref({})
+const sorting = ref<SortingState>([])
+
+const handleDelete = (row: Row<CourseCategoryType>) => {
+	console.log({ 'delete': row.original });
+
+}
+const handleEdit = (row: Row<CourseCategoryType>) => {
+	console.log({ 'edit': row.original });
+
+}
+const courseCategoriesColumns: ColumnDef<CourseCategoryType>[] = [
+	{
+		id: "select",
+		header: ({ table }) =>
+			h(Checkbox, {
+				checked:
+					table.getIsAllPageRowsSelected() ||
+					(table.getIsSomePageRowsSelected() && "indeterminate"),
+				"onUpdate:checked": (value) => {
+					console.log({ value, selection: selection.value });
+					return table.toggleAllPageRowsSelected(!!value)
+				},
+				ariaLabel: "Select all",
+				class: "translate-y-0.5"
+			}),
+		cell: ({ row }) =>
+			h(Checkbox, {
+				checked: row.getIsSelected(),
+				"onUpdate:checked": (value) => {
+					console.log({ value, selection: selection.value });
+
+					return row.toggleSelected(!!value)
+				},
+				ariaLabel: "Select row",
+				class: "translate-y-0.5"
+			}),
+		enableSorting: false,
+		enableHiding: false
+	},
+	{
+		id: "index",
+		header: "#",
+		cell: ({ row }) => h("div", {}, row.index + 1)
+	},
+
+	{
+		id: "title",
+		header: ({ column }) =>
+			h(DataTableColumnHeader, {
+				column: column as TableColumnType,
+				title: "Title"
+			}),
+		cell: ({ row }) => h("div", { class: "" }, row.getValue("title")),
+		enableSorting: true,
+		enableHiding: false,
+		accessorKey: "title"
+	},
+
+	{
+		id: "created",
+		header: ({ column }) =>
+			h(DataTableColumnHeader, {
+				column: column as TableColumnType,
+				title: "Date Created"
+			}),
+		cell: ({ row }) =>
+			h(
+				"div",
+				{ class: "" },
+				moment(row.getValue("created")).format("LLL")
+			),
+		enableSorting: true,
+		enableHiding: true,
+		accessorKey: "created"
+	},
+	{
+		id: "updated",
+		header: ({ column }) =>
+			h(DataTableColumnHeader, {
+				column: column as TableColumnType,
+				title: "Date Updated"
+			}),
+		cell: ({ row }) =>
+			h(
+				"div",
+				{ class: "" },
+				moment(row.getValue("updated")).format("LLL")
+			),
+		enableSorting: true,
+		enableHiding: true,
+		accessorKey: "updated"
+	},
+	{
+		id: "actions",
+		header: 'Actions',
+
+		cell: ({ row }) => h(DataTableRowActions, { row: row, onDeleteRow: handleDelete, onEditRow: handleEdit })
+	}
+];
+
 
 const categoriesApi = useCourseCategories()
 const isLoading = ref(false);
@@ -71,6 +181,14 @@ const handleUpdateCategory = async () => {
 		toggleUpdateModal(false);
 	}
 };
+
+
+watch(selection, (newData, old) => {
+	console.log('Changed');
+
+	console.log({ newData, old });
+
+})
 </script>
 <template>
 	<div class="py-4 flex flex-col gap-4">
@@ -89,8 +207,12 @@ const handleUpdateCategory = async () => {
 			</div>
 		</div>
 		<partial-loader v-if="categoriesApi.is_loading.value" />
-		<data-table v-if="categoriesApi.data.value.data" :columns="courseCategoriesColumns" :search_label="'Search category...'"
-			:search-field="'title'" :data="categoriesApi.data.value.data ?? []"></data-table>
+		<data-table v-if="categoriesApi.data.value.data" :filters="toRef(tableFilters)" :sorting="toRef(sorting)"
+			:visibility="toRef(columnVisibility)" :selection="toRef(selection)" :columns="courseCategoriesColumns"
+			:search_label="'Search category...'"
+			:pagination="toRef({pageIndex:categoriesApi.page_defaults.value.page-1,pageSize:categoriesApi.page_defaults.value.limit})"
+			 :search-field="'title'"
+			:data="categoriesApi.data.value.data ?? []"></data-table>
 		<hui-dialog :open="isDeleteModalOpen" @close="toggleDeleteModal(false)"
 			class="fixed inset-0 z-[999] overflow-y-auto">
 			<div class="flex items-center justify-center min-h-screen w-screen bg-white bg-opacity-70 border ">

@@ -2,6 +2,7 @@
 import type {
 	ColumnDef,
 	ColumnFiltersState,
+	PaginationDefaultOptions,
 	SortingState,
 	VisibilityState,
 } from '@tanstack/vue-table'
@@ -16,7 +17,6 @@ import {
 	useVueTable,
 } from '@tanstack/vue-table'
 import { ref } from 'vue'
-// import type { Task } from '../data/schema'
 import type { TableDataType } from '~/data/table-data-types'
 import type { DTable } from '~/types/data-table';
 
@@ -24,7 +24,7 @@ import type { Updater } from "@tanstack/vue-table";
 import type { Ref } from "vue";
 function valueUpdater<T extends Updater<any>>(
 	updaterOrValue: T,
-	ref: Ref
+	ref: Ref<T>
 ) {
 	ref.value =
 		typeof updaterOrValue === "function"
@@ -32,34 +32,57 @@ function valueUpdater<T extends Updater<any>>(
 			: updaterOrValue;
 }
 
+type PageOptions = {
+	pageSize: number;
+	pageIndex: number;
+};
+
 interface DataTableProps {
 	columns: ColumnDef<TableDataType, any>[]
 	data: TableDataType[],
 	search_label?: string,
 	searchField: keyof TableDataType
-	facet_options?: DTable.FacetType<TableDataType>
+	facet_options?: DTable.FacetType<TableDataType>,
+	sorting: Ref<SortingState>,
+	filters: Ref<ColumnFiltersState>,
+	visibility: Ref<VisibilityState>,
+	selection: Ref<{ [k: string]: boolean }>,
+	pagination: Ref<PageOptions>
 }
-const props = defineProps<DataTableProps>()
+const props = withDefaults(defineProps<DataTableProps>(), {
+	columns: () => [], data: () => [],
+	facet_options: () => ({} as any),
+	filters: () => ref<ColumnFiltersState>([]),
+	search_label: () => 'Search...',
+	searchField: () => 'title',
+	selection: () => ref({}),
+	sorting: () => ref<SortingState>([]),
+	visibility: () => ref<VisibilityState>({}),
+	pagination: () => ref<PageOptions>({ pageIndex:0,pageSize:100})
+})
 
-const sorting = ref<SortingState>([])
-const columnFilters = ref<ColumnFiltersState>([])
-const columnVisibility = ref<VisibilityState>({})
-const rowSelection = ref({})
+// const sorting = ref<SortingState>([])
+// const columnFilters = ref<ColumnFiltersState>([])
+// const columnVisibility = ref<VisibilityState>({})
+// const rowSelection = ref({})
+
 
 const table = useVueTable({
 	get data() { return props.data },
 	get columns() { return props.columns },
 	state: {
-		get sorting() { return sorting.value },
-		get columnFilters() { return columnFilters.value },
-		get columnVisibility() { return columnVisibility.value },
-		get rowSelection() { return rowSelection.value },
+		get sorting() { return props.sorting.value },
+		get columnFilters() { return props.filters.value },
+		get columnVisibility() { return props.visibility.value },
+		get rowSelection() { return props.selection.value },
+		get pagination() { return props.pagination.value }
 	},
 	enableRowSelection: true,
-	onSortingChange: updaterOrValue => valueUpdater(updaterOrValue, sorting),
-	onColumnFiltersChange: updaterOrValue => valueUpdater(updaterOrValue, columnFilters),
-	onColumnVisibilityChange: updaterOrValue => valueUpdater(updaterOrValue, columnVisibility),
-	onRowSelectionChange: updaterOrValue => valueUpdater(updaterOrValue, rowSelection),
+	onSortingChange: (updaterOrValue => valueUpdater(updaterOrValue, props.sorting)),
+	onPaginationChange: updaterOrValue => valueUpdater(updaterOrValue, props.pagination),
+	onColumnFiltersChange: updaterOrValue => valueUpdater(updaterOrValue, props.filters),
+	onColumnVisibilityChange: updaterOrValue => valueUpdater(updaterOrValue, props.visibility),
+	onRowSelectionChange: updaterOrValue => valueUpdater(updaterOrValue, props.selection),
 	getCoreRowModel: getCoreRowModel(),
 	getFilteredRowModel: getFilteredRowModel(),
 	getPaginationRowModel: getPaginationRowModel(),

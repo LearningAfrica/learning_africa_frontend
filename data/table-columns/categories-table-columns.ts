@@ -38,18 +38,7 @@ export const courseCategoriesColumns: ColumnDef<CourseCategoryType>[] = [
 		header: "#",
 		cell: ({row}) => h("div", {}, row.index + 1)
 	},
-	// {
-	// 	id: "id",
-	// 	header: ({column}) =>
-	// 		h(DataTableColumnHeader, {
-	// 			column: column as TableColumnType,
-	// 			title: "ID"
-	// 		}),
-	// 	cell: ({row}) => h("div", {class: ""}, row.getValue("id")),
-	// 	enableSorting: true,
-	// 	enableHiding: true,
-	// 	accessorKey: "id"
-	// },
+	
 	{
 		id: "title",
 		header: ({column}) =>
