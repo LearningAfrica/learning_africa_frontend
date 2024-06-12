@@ -71,7 +71,8 @@ const courseColumns: ColumnDef<CoursesResponse>[] = [
 		enableSorting: true,
 		enableHiding: false,
 		accessorKey: "title"
-	},{
+	},
+	{
 		id: "instructor",
 		header: "instructor",
 		cell: ({ row }) => h("div", { class: "" }, row.original.instructor.first_name+' '+row.original.instructor.last_name),
@@ -91,7 +92,7 @@ const courseColumns: ColumnDef<CoursesResponse>[] = [
 			h(
 				"div",
 				{ class: "" },
-				moment(row.getValue("")).format("LLL")
+				moment(row.getValue("")).format("LL")
 			),
 		enableSorting: true,
 		enableHiding: true,
@@ -108,7 +109,7 @@ const courseColumns: ColumnDef<CoursesResponse>[] = [
 			h(
 				"div",
 				{ class: "" },
-				moment(row.getValue("updated")).format("LLL")
+				moment(row.getValue("updated")).format("LL")
 			),
 		enableSorting: true,
 		enableHiding: true,
