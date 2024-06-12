@@ -13,7 +13,7 @@ definePageMeta({
 type OrganizationType = {
 	id: string
 	name: string
-	logo?: string
+	logo_url: string
 }
 const isLoading = ref(false);
 const isDeleting = ref(false);
@@ -193,8 +193,8 @@ const inviteUser = async () => {
 		<div v-if="!isLoading && haveOrganizations" class="flex gap-4 flex-wrap">
 			<div v-for="organization of organizations" :key="organization!.name"
 				class="bg-white shadow-sm rounded border w-full flex-[1_1_18rem] max-w-72">
-				<img :src="organization.logo ?? 'https://i.pinimg.com/236x/87/d7/e2/87d7e20741adb00322ab7b09122d8b79.jpg'"
-					alt="Organization logo" class="w-full h-40 object-cover rounded-tl rounded-tr">
+				<img :src="organization.logo_url ?? 'https://i.pinimg.com/236x/87/d7/e2/87d7e20741adb00322ab7b09122d8b79.jpg'"
+					alt="Organization logo" class="w-full h-48 object-cover rounded-tl rounded-tr">
 				<div class="p-4 flex justify-between">
 					<div>
 
