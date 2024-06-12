@@ -13,6 +13,7 @@ type OrgType = {
 	name: string
 	logo?: string
 }
+const categoriesApi = useCourseCategories()
 const organizations = ref<OrgType[]>([]);
 onMounted(async () => {
 	isOrganizationLoading.value = true;
@@ -41,6 +42,7 @@ const submitForm = handleSubmit(async (values) => {
 	try {
 		await api.post("/api/categories/", values);
 		await $notify.fire("Category created", "success");
+		categoriesApi.refreshData()
 		await router.push({ name: "dashboard-instructor-categories" });
 	} catch (error) {
 		if (error instanceof AxiosError) {

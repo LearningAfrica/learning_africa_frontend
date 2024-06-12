@@ -44,18 +44,22 @@ const courseColumns: ColumnDef<CoursesResponse>[] = [
 		header: "#",
 		cell: ({ row }) => h("div", {}, row.index + 1)
 	},
-	// {
-	// 	id: "id",
-	// 	header: ({column}) =>
-	// 		h(DataTableColumnHeader, {
-	// 			column: column as TableColumnType,
-	// 			title: "ID"
-	// 		}),
-	// 	cell: ({row}) => h("div", {class: ""}, row.getValue("id")),
-	// 	enableSorting: true,
-	// 	enableHiding: true,
-	// 	accessorKey: "id"
-	// },
+	{
+		id: "course_image_url",
+		header: 'Image',
+		accessorKey: "course_image_url",
+		
+		cell: ({ row }) =>h('img', {
+			src: row.getValue('course_image_url'),
+			alt: row.getValue('course_image_url'),
+			class:'rounded-md h-20 w-20 object-cover',
+			
+		},)
+		
+		,
+		enableSorting: false,
+		enableHiding: false,
+	},
 	{
 		id: "title",
 		header: ({ column }) =>
@@ -67,6 +71,13 @@ const courseColumns: ColumnDef<CoursesResponse>[] = [
 		enableSorting: true,
 		enableHiding: false,
 		accessorKey: "title"
+	},{
+		id: "instructor",
+		header: "instructor",
+		cell: ({ row }) => h("div", { class: "" }, row.original.instructor.first_name+' '+row.original.instructor.last_name),
+		enableSorting: true,
+		enableHiding: true,
+		// accessorKey: "title"
 	},
 
 	{
@@ -123,9 +134,8 @@ const courseColumns: ColumnDef<CoursesResponse>[] = [
 			</div>
 		</div>
 		<div>
-			<data-table v-if="course.data.value.data" :columns="courseColumns"
-				:search_label="'Search category...'" :search-field="'title'"
-				:data="course.data.value.data ?? []"></data-table>
+			<data-table v-if="course.data.value.data" :columns="courseColumns" :search_label="'Search category...'"
+				:search-field="'title'" :data="course.data.value.data ?? []"></data-table>
 		</div>
 
 	</div>

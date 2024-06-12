@@ -77,13 +77,13 @@ export const useCourseCategories = () => {
 		await refreshData(newData);
 	});
 
-	const refreshData = async (options: Meta) => {
+	const refreshData = async (options: Meta={} as Meta) => {
 		// Update the current page options state
 		const limit = 'limit' in options ? options['limit'] : page_options.value.limit
 		const page = 'page' in options ? options['page'] : page_options.value.page
 
 		// Fetch new data with updated options
-		await fetchData({ page, limit });
+		await fetchData({ page, limit },true);
 	};
 
 	return {
