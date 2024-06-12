@@ -190,7 +190,7 @@ const inviteUser = async () => {
 </script>
 <template>
 	<div>
-		<div v-if="!isLoading && haveOrganizations" class="grid gap-4 grid-cols-[repeat(auto-fit,minmax(18rem,1fr))] place-items-start grid-flow-row-dense">
+		<div v-if="!isLoading && haveOrganizations" class="grid gap-4 grid-cols-[repeat(auto-fit,minmax(16rem,20rem))] place-items-start grid-flow-row-dense">
 			<div v-for="organization of organizations" :key="organization!.name"
 				class="bg-white shadow-sm rounded border w-full">
 				<img :src="organization.logo ?? 'https://i.pinimg.com/236x/87/d7/e2/87d7e20741adb00322ab7b09122d8b79.jpg'"

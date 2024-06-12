@@ -9,8 +9,8 @@ export default defineNuxtPlugin(() => {
 
 		// refresh token
 	}
-	const BASE_URL =
-		"https://learning-africa-backend-afd4f3383186.herokuapp.com/";
+	const BASE_URL ='https://backend.learningafrica.com/'
+		// "https://learning-africa-backend-afd4f3383186.herokuapp.com/";
 	const openAxios = axios.create({
 		baseURL: BASE_URL,
 		headers: {
