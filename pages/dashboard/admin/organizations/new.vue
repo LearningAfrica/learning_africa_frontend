@@ -4,6 +4,8 @@ import {
 	required, helpers
 } from "@vuelidate/validators";
 import { AxiosError } from "axios";
+const imageUpload =
+	useUseImageUpload('create-organization-image', 'single')
 definePageMeta({
 	layout: "admin-layout",
 });
@@ -29,15 +31,6 @@ const rules = {
 
 };
 
-const logo = ref<File | null>(null);
-
-const handleFileChange = (e: Event) => {
-	const target = e.target as HTMLInputElement;
-	const file = target.files?.[0];
-	if (file) {
-		logo.value = file;
-	}
-};
 const router = useRouter();
 
 const $v = useVuelidate(rules, form);
@@ -50,10 +43,12 @@ const handleSubmit = async () => {
 	isLoading.value = true;
 	const data = new FormData();
 	data.append("name", form.value.name);
+	if (imageUpload.has_files.value)
+		data.append("logo", imageUpload.uploaded_files.value['create-organization-image'][0]);
 
 	try {
 		// const response =
-		await api.post<OrganizationType>("/api/organizations/", data as any, {
+		await $privateAxios.post<OrganizationType>("/api/organizations/", data, {
 			headers: {
 				"Content-Type": "multipart/form-data",
 			},
@@ -66,7 +61,7 @@ const handleSubmit = async () => {
 			text: "Organization added successfully"
 		});
 		form.value.name = "";
-		logo.value = null;
+		imageUpload.clearFiles()
 
 		await router.push({ name: "dashboard-admin-organizations" });
 	} catch (error) {
@@ -115,9 +110,9 @@ const handleSubmit = async () => {
 				</div>
 			</div>
 			<div class="flex flex-col gap-2 w-full">
-				<label for="logo">Logo url</label>
+				<label for="logo">Logo</label>
 				<input :disabled="isLoading" type="file" allow="image/*" id="logo" name="logo"
-					placeholder="https://logo.png" @change="handleFileChange" />
+					placeholder="https://logo.png" @change="imageUpload.handleFileUpload" />
 
 			</div>
 
