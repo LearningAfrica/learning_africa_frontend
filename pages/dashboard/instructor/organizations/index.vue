@@ -21,7 +21,7 @@ const haveOrganizations = computed(() => organization.data.value.length > 0);
 			class="grid gap-4 grid-cols-[repeat(auto-fit,minmax(16rem,24rem))]">
 			<div v-for="organization of organization.data.value" :key="organization!.name"
 				class="bg-white overflow-hidden shadow-sm rounded border">
-				<img :src="organization.logo ?? 'https://i.pinimg.com/236x/87/d7/e2/87d7e20741adb00322ab7b09122d8b79.jpg'"
+				<img :src="organization.logo_url ?? 'https://i.pinimg.com/236x/87/d7/e2/87d7e20741adb00322ab7b09122d8b79.jpg'"
 					alt="Organization logo" class="w-full h-40 object-cover rounded-tl rounded-tr">
 				<div class="p-4">
 					<h2 class="text-lg font-bold mt-2">{{ organization.name }}</h2>

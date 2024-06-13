@@ -2,7 +2,7 @@ import { AxiosError } from "axios";
 type OrganizationType = {
 	id: string
 	name: string
-	logo?: string
+	logo_url?: string
 }
 
 export const useOrganizations = () => {
