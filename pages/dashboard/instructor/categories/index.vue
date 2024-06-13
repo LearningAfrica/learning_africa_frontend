@@ -4,7 +4,7 @@ import type { ColumnDef, ColumnFiltersState, Row, SortingState, VisibilityState 
 import type { CourseCategoryType } from "~/data";
 import { Checkbox } from "@/components/ui/checkbox";
 import DataTableColumnHeader from "@/components/data/table/column/header.vue";
-import DataTableRowActions from "@/components/dashboard/course/table/column/actions.vue"
+import DataTableRowActions from "@/components/dashboard/course/category/table/column/actions.vue"
 import type { TableColumnType, TableRowType } from "~/data/table-data-types";
 import moment from "moment";
 

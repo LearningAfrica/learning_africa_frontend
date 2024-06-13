@@ -4,7 +4,7 @@ import { Checkbox } from '~/components/ui/checkbox';
 import type { TableColumnType } from '~/data/table-data-types';
 import type { CoursesResponse } from '~/types/courses';
 import DataTableColumnHeader from "@/components/data/table/column/header.vue";
-import DataTableRowActions from "@/components/data/table/row/actions.vue";
+import DataTableRowActions from "@/components/dashboard/course/table/column/actions.vue"
 import moment from 'moment';
 definePageMeta({
 	layout: "instructor-layout",

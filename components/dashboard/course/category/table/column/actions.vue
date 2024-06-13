@@ -1,23 +1,23 @@
 <script setup lang="ts">
 import type { Row } from '@tanstack/vue-table'
-import type { CoursesResponse } from '~/types/courses';
+import type { CourseCategoryType } from '~/data';
 
 interface DataTableRowActionsProps {
-  row: Row<CoursesResponse>,
+  row: Row<CourseCategoryType>,
 
 }
 const props = defineProps<DataTableRowActionsProps>()
 
 // const task = computed(() => courseCategorySchema.parse(props.row.original))
 const emit = defineEmits<{
-  (e: 'delete-row', value: Row<CoursesResponse>): void,
-  (e: 'edit-row', value: Row<CoursesResponse>): void
-  (e: 'view-course', value: Row<CoursesResponse>): void
+  (e: 'delete-row', value: Row<CourseCategoryType>): void,
+  (e: 'edit-row', value: Row<CourseCategoryType>): void
+  (e: 'view-course', value: Row<CourseCategoryType>): void
 }>()
 // defineEmits<
 // {
-//   'update-row':[row:Row<CoursesResponse>],
-//     (e:'delete-row',value:Row<CoursesResponse>):void
+//   'update-row':[row:Row<CourseCategoryType>],
+//     (e:'delete-row',value:Row<CourseCategoryType>):void
 // }>()
 </script>
 
