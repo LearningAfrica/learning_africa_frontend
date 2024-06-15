@@ -66,15 +66,15 @@ const courseColumns: ColumnDef<CoursesResponse>[] = [
 	},
 	{
 		id: "title",
+		accessorKey: "title",
 		header: ({ column }) =>
 			h(DataTableColumnHeader, {
-				column: column as TableColumnType<CoursesResponse>,
+				column,
 				title: "Title"
 			}),
 		cell: ({ row }) => h("div", { class: "" }, row.getValue("title")),
 		enableSorting: true,
 		enableHiding: false,
-		accessorKey: "title"
 	},
 	{
 		id: "instructor",
@@ -89,14 +89,14 @@ const courseColumns: ColumnDef<CoursesResponse>[] = [
 		id: "created",
 		header: ({ column }) =>
 			h(DataTableColumnHeader, {
-				column: column as TableColumnType,
+				column: column,
 				title: "Date Created"
 			}),
 		cell: ({ row }) =>
 			h(
 				"div",
 				{ class: "" },
-				moment(row.getValue("")).format("LL")
+				moment(row.getValue("created")).format("LL")
 			),
 		enableSorting: true,
 		enableHiding: true,
@@ -106,7 +106,7 @@ const courseColumns: ColumnDef<CoursesResponse>[] = [
 		id: "updated",
 		header: ({ column }) =>
 			h(DataTableColumnHeader, {
-				column: column as TableColumnType,
+				column: column ,
 				title: "Date Updated"
 			}),
 		cell: ({ row }) =>
@@ -121,7 +121,7 @@ const courseColumns: ColumnDef<CoursesResponse>[] = [
 	},
 	{
 		id: "actions",
-		cell: ({ row }) => h(DataTableRowActions, { row: row as TableRowType })
+		cell: ({ row }) => h(DataTableRowActions, { row: row })
 	}
 ];
 </script>
