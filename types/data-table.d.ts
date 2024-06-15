@@ -24,7 +24,10 @@ declare namespace DTable {
 			}[];
 		};
 	};
-
+	export type PageOptions = {
+		pageSize: number;
+		pageIndex: number;
+	};
 	export type DataFacetOptions<T> = {
 		[KEY in keyof T]?: DTable.FacetType<T>[KEY];
 	};

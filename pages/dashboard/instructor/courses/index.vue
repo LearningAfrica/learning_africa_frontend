@@ -1,7 +1,7 @@
 <script lang="ts" setup>
-import type { ColumnDef } from '@tanstack/vue-table';
+import type { ColumnDef, ColumnFiltersState, SortingState, VisibilityState } from '@tanstack/vue-table';
 import { Checkbox } from '~/components/ui/checkbox';
-import type { TableColumnType } from '~/data/table-data-types';
+import type { TableColumnType, TableRowType } from '~/data/table-data-types';
 import type { CoursesResponse } from '~/types/courses';
 import DataTableColumnHeader from "@/components/data/table/column/header.vue";
 import DataTableRowActions from "@/components/dashboard/course/table/column/actions.vue"
@@ -10,6 +10,10 @@ definePageMeta({
 	layout: "instructor-layout",
 	middleware: 'instructor-auth'
 });
+const tableFilters = ref<ColumnFiltersState>([])
+const columnVisibility = ref<VisibilityState>({})
+const selection = ref({})
+const sorting = ref<SortingState>([])
 
 const course =
 	useCourses()
@@ -64,7 +68,7 @@ const courseColumns: ColumnDef<CoursesResponse>[] = [
 		id: "title",
 		header: ({ column }) =>
 			h(DataTableColumnHeader, {
-				column: column as TableColumnType,
+				column: column as TableColumnType<CoursesResponse>,
 				title: "Title"
 			}),
 		cell: ({ row }) => h("div", { class: "" }, row.getValue("title")),
@@ -135,8 +139,16 @@ const courseColumns: ColumnDef<CoursesResponse>[] = [
 			</div>
 		</div>
 		<div>
-			<data-table v-if="course.data.value.data" :columns="courseColumns" :search_label="'Search category...'"
-				:search-field="'title'" :data="course.data.value.data ?? []"></data-table>
+			<data-table v-if="course.data.value.data" 
+			:columns="courseColumns" 
+			:search_label="'Search category...'"
+			:search_field="'title'"
+			:filters="toRef(tableFilters)"
+			:selection="toRef(selection)"
+			:sorting="toRef(sorting)"
+			:visibility="toRef(columnVisibility)"
+			:pagination="toRef({pageIndex:1,pageSize:20})"
+			:data="course.data.value.data ?? []"></data-table>
 		</div>
 
 	</div>

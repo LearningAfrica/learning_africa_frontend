@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup lang="ts" generic="Data extends {[k:string]:any}">
 import type {
 	ColumnDef,
 	ColumnFiltersState,
@@ -38,16 +38,16 @@ type PageOptions = {
 };
 
 interface DataTableProps {
-	columns: ColumnDef<TableDataType, any>[]
-	data: TableDataType[],
+	columns: ColumnDef<Data, any>[]
+	data: Data[],
 	search_label?: string,
-	searchField: keyof TableDataType
+	search_field: string,
 	facet_options?: DTable.FacetType<TableDataType>,
-	sorting: Ref<SortingState>,
-	filters: Ref<ColumnFiltersState>,
-	visibility: Ref<VisibilityState>,
-	selection: Ref<{ [k: string]: boolean }>,
-	pagination: Ref<PageOptions>
+	sorting?: Ref<SortingState>,
+	filters?: Ref<ColumnFiltersState>,
+	visibility?: Ref<VisibilityState>,
+	selection?: Ref<{ [k: string]: boolean }>,
+	pagination?: Ref<PageOptions>
 }
 const props = withDefaults(defineProps<DataTableProps>(), {
 	columns: () => [], data: () => [],
@@ -94,8 +94,11 @@ const table = useVueTable({
 
 <template>
 	<div class="space-y-4 border p-2 rounded">
-		<data-table-toolbar :table="table" :facet_options="props.facet_options" :search-field="props.searchField"
-			:search_label="props.search_label" />
+		<data-table-toolbar 
+		:table="table as any" 
+		:facet_options="props.facet_options" 
+		:search-field="props.searchField"
+		:search_label="props.search_label" />
 		<div class="rounded-md border">
 			<cn-table>
 				<cn-table-header>
@@ -125,6 +128,6 @@ const table = useVueTable({
 			</cn-table>
 		</div>
 
-		<DataTablePagination :table="table" />
+		<data-table-pagination :table="table as any" />
 	</div>
 </template>

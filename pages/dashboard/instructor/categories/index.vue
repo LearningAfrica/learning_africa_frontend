@@ -26,7 +26,7 @@ const handleEdit = (row: Row<CourseCategoryType>) => {
 	console.log({ 'edit': row.original });
 
 }
-const courseCategoriesColumns: ColumnDef<CourseCategoryType>[] = [
+const courseCategoriesColumns  = reactive<ColumnDef<CourseCategoryType>[]>([
 	{
 		id: "select",
 		header: ({ table }) =>
@@ -65,7 +65,7 @@ const courseCategoriesColumns: ColumnDef<CourseCategoryType>[] = [
 		id: "title",
 		header: ({ column }) =>
 			h(DataTableColumnHeader, {
-				column: column as TableColumnType,
+				column: column,
 				title: "Title"
 			}),
 		cell: ({ row }) => h("div", { class: "" }, row.getValue("title")),
@@ -78,7 +78,7 @@ const courseCategoriesColumns: ColumnDef<CourseCategoryType>[] = [
 		id: "created",
 		header: ({ column }) =>
 			h(DataTableColumnHeader, {
-				column: column as TableColumnType,
+				column: column,
 				title: "Date Created"
 			}),
 		cell: ({ row }) =>
@@ -95,7 +95,7 @@ const courseCategoriesColumns: ColumnDef<CourseCategoryType>[] = [
 		id: "updated",
 		header: ({ column }) =>
 			h(DataTableColumnHeader, {
-				column: column as TableColumnType,
+				column: column,
 				title: "Date Updated"
 			}),
 		cell: ({ row }) =>
@@ -114,7 +114,7 @@ const courseCategoriesColumns: ColumnDef<CourseCategoryType>[] = [
 
 		cell: ({ row }) => h(DataTableRowActions, { row: row, onDeleteRow: handleDelete, onEditRow: handleEdit })
 	}
-];
+]);
 
 
 const categoriesApi = useCourseCategories()
@@ -208,10 +208,12 @@ watch(selection, (newData, old) => {
 		</div>
 		<partial-loader v-if="categoriesApi.is_loading.value" />
 		<data-table v-if="categoriesApi.data.value.data" :filters="toRef(tableFilters)" :sorting="toRef(sorting)"
-			:visibility="toRef(columnVisibility)" :selection="toRef(selection)" :columns="courseCategoriesColumns"
+			:visibility="toRef(columnVisibility)" 
+			:selection="toRef(selection)" 
+			:columns="courseCategoriesColumns"
 			:search_label="'Search category...'"
 			:pagination="toRef({pageIndex:categoriesApi.page_defaults.value.page-1,pageSize:categoriesApi.page_defaults.value.limit})"
-			 :search-field="'title'"
+			:search_field="'title'"
 			:data="categoriesApi.data.value.data ?? []"></data-table>
 		<hui-dialog :open="isDeleteModalOpen" @close="toggleDeleteModal(false)"
 			class="fixed inset-0 z-[999] overflow-y-auto">
