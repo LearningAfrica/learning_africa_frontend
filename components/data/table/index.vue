@@ -42,7 +42,7 @@ interface DataTableProps {
 	data: Data[],
 	search_label?: string,
 	search_field: string,
-	facet_options?: DTable.FacetType<TableDataType>,
+	facet_options?: DTable.FacetType<Data>,
 	sorting?: Ref<SortingState>,
 	filters?: Ref<ColumnFiltersState>,
 	visibility?: Ref<VisibilityState>,
@@ -54,7 +54,7 @@ const props = withDefaults(defineProps<DataTableProps>(), {
 	facet_options: () => ({} as any),
 	filters: () => ref<ColumnFiltersState>([]),
 	search_label: () => 'Search...',
-	searchField: () => 'title',
+	search_field: () => 'title',
 	selection: () => ref({}),
 	sorting: () => ref<SortingState>([]),
 	visibility: () => ref<VisibilityState>({}),
@@ -66,6 +66,7 @@ const props = withDefaults(defineProps<DataTableProps>(), {
 // const columnVisibility = ref<VisibilityState>({})
 // const rowSelection = ref({})
 
+console.log(props);
 
 const table = useVueTable({
 	get data() { return props.data },
@@ -95,9 +96,10 @@ const table = useVueTable({
 <template>
 	<div class="space-y-4 border p-2 rounded">
 		<data-table-toolbar 
-		:table="table as any" 
+		
+		:table="table" 
 		:facet_options="props.facet_options" 
-		:search-field="props.searchField"
+		:search-field="props.search_field"
 		:search_label="props.search_label" />
 		<div class="rounded-md border">
 			<cn-table>

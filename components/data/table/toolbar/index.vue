@@ -10,7 +10,7 @@ import type { DTable } from '~/types/data-table';
 interface DataTableToolbarProps {
 	table: Table<T>,
 	search_label?: string,
-	searchField: keyof TableDataType
+	search_field: keyof TableDataType
 	facet_options?: { [K in keyof TableDataType]: {
 		title: string;
 		column_id_name: K;
@@ -34,9 +34,9 @@ const isFiltered = computed(() => props.table.getState().columnFilters.length > 
 	<div class="flex items-center justify-between">
 		<div class="flex flex-1 items-center space-x-2">
 			<cn-input :placeholder="props.search_label ?? 'Search...'"
-				:model-value="(table.getColumn(props.searchField)?.getFilterValue() as string) ?? ''"
+				:model-value="(table.getColumn(props.search_field)?.getFilterValue() as string) ?? ''"
 				class="h-8 w-[150px] lg:w-[250px]"
-				@input="table.getColumn(props.searchField)?.setFilterValue($event.target.value)" />
+				@input="table.getColumn(props.search_field)?.setFilterValue($event.target.value)" />
 			<div v-for="value of filterOptions" :key="value.column_id_name">
 				<data-table-faceted-filter v-if="table.getColumn(value.column_id_name)"
 					:column="table.getColumn(value!.column_id_name!)!" :title="value.title" :options="value.options" />

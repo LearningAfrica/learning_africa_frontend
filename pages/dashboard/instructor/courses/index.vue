@@ -147,7 +147,7 @@ const courseColumns: ColumnDef<CoursesResponse>[] = [
 			:selection="toRef(selection)"
 			:sorting="toRef(sorting)"
 			:visibility="toRef(columnVisibility)"
-			:pagination="toRef({pageIndex:1,pageSize:20})"
+			
 			:data="course.data.value.data ?? []"></data-table>
 		</div>
 

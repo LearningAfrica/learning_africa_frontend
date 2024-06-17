@@ -22,7 +22,7 @@ const emit = defineEmits<{
 </script>
 
 <template>
-  <cn-dropdown-menu>
+  <!-- <cn-dropdown-menu>
     <cn-dropdown-menu-trigger as-child>
       <cn-button variant="ghost" class="flex h-8 w-8 p-0 data-[state=open]:bg-muted">
         <icon :name="'humbleicons:dots-horizontal'" class="h-4 w-4" />
@@ -40,14 +40,34 @@ const emit = defineEmits<{
           class="bg-gray-200 text-black w-full py-[1px] hover:bg-primary hover:text-white">
           View
         </cn-button>
-        <!-- <cn-dropdown-menu-shortcut>⌘⌫</cn-dropdown-menu-shortcut> -->
+         <cn-dropdown-menu-shortcut>⌘⌫</cn-dropdown-menu-shortcut> 
       </cn-dropdown-menu-item><cn-dropdown-menu-item>
         <cn-button @click="$emit('delete-row', row)"
           class="bg-gray-200 text-black w-full py-[1px] hover:bg-red-500 hover:text-white">
           Delete
         </cn-button>
-        <!-- <cn-dropdown-menu-shortcut>⌘⌫</cn-dropdown-menu-shortcut> -->
+        <cn-dropdown-menu-shortcut>⌘⌫</cn-dropdown-menu-shortcut> 
       </cn-dropdown-menu-item>
     </cn-dropdown-menu-content>
-  </cn-dropdown-menu>
+  </cn-dropdown-menu> -->
+  <div class="flex items-center gap-2">
+		<nuxt-link :to="{
+			name:'dashboard-instructor-courses-id',
+			params: { id: row.original.id.toString() }
+			}"
+		
+		 class="p-1 border hover:bg-transparent h-fit bg-transparent">
+			<icon :name="'lucide:eye'" :size="'20'" class="text-black"/>
+		</nuxt-link>
+		<cn-button
+		@click="$emit('edit-row', row)"
+		class="p-1 border hover:bg-transparent h-fit bg-transparent">
+			<icon :name="'lucide:pencil'"  :size="'20'" class="text-black" />
+		</cn-button>
+		<cn-button
+		@click="$emit('delete-row', row)"
+		 class="p-1 border hover:bg-transparent h-fit bg-transparent">
+			<icon :name="'lucide:trash-2'" :size="'20'" class="text-black" />
+		</cn-button>
+	</div>
 </template>
