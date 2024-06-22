@@ -27,8 +27,8 @@
 		<div v-else-if="!course.is_loading.value && course.data.value"
 			class="mx-auto gap-4  w-full p-4 grid lg:grid-cols-1 ">
 			<div class="flex flex-col gap-2 shadow border p-4 rounded">
-				<div class="max-h-72 overflow-hidden">
-					<img class="w-full h-full object-fill aspect-auto" :src="courseInfo.value.course_image_url" />
+				<div class="max-h-80 overflow-hidden">
+					<img class="w-full h-full object-scale-down aspect-auto" :src="courseInfo.value.course_image_url" />
 				</div>
 				<h1 class="font-bold text-3xl">
 					{{ courseInfo.value.title }}
