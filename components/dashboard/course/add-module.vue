@@ -65,7 +65,7 @@ onUnmounted(() => {
 
 
 					</hui-dialog-description>
-					<form v-if="!isLoading" action="" class="w-full h-full border p-4 flex flex-col gap-4"
+					<form v-if="!isLoading" action="" class="w-full h-full p-4 flex flex-col gap-4"
 						@submit.prevent.stop="submitForm">
 						<cn-form-field #="{ componentField }" as="div" :name="'title'"
 							class="flex flex-col gap-2 w-full">

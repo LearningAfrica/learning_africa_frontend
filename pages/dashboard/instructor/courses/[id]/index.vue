@@ -25,8 +25,8 @@
 		<partial-loader v-if="course.is_loading.value" />
 
 		<div v-else-if="!course.is_loading.value && course.data.value"
-			class="max-w-7xl mx-auto gap-4  w-full p-4 grid lg:grid-cols-2">
-			<div class="flex flex-col gap-2">
+			class="mx-auto gap-4  w-full p-4 grid lg:grid-cols-1 ">
+			<div class="flex flex-col gap-2 shadow border p-4 rounded">
 				<div class="max-h-72 overflow-hidden">
 					<img class="w-full h-full object-fill aspect-auto" :src="courseInfo.value.course_image_url" />
 				</div>
@@ -58,14 +58,17 @@
 				Date created:	{{ moment(courseInfo.value.created).format('LL') }}
 				</p>
 			</div>
-			<div>
-				<div class="flex flex-col border px-4 py-2 rounded">
+			<div class="border shadow rounded">
+				<div class="flex flex-col px-4 py-2 rounded">
 					<div class="flex justify-between items-center">
-						<h1>Modules</h1> <cn-button
+						<h1 class="font-bold uppercase underline">Modules</h1> <cn-button
 						@click="toggleAddModule(true)"
-						class="bg-primary text-white p-2 rounded-lg w-fit gap-2 text-sm"
+						class="bg-primary text-white p-2 rounded-lg w-fit gap-1 px-4 h-fit text-sm"
 					>
-						<icon :name="'flowbite:file-pen-outline'" size="30"/>
+						<icon :name="'flowbite:file-pen-outline'" size="20"/>
+						<span>
+							Add
+						</span>
 					</cn-button>
 					</div>
 					<div>
