@@ -13,6 +13,7 @@ type RegisterForm = {
 	password: string;
 	confirm_password: string;
 	is_student: boolean;
+	is_instructor: boolean;
 };
 const { $openAxios, $notify } = useNuxtApp();
 const form = ref<RegisterForm>({
@@ -22,7 +23,8 @@ const form = ref<RegisterForm>({
 	email: "",
 	password: "",
 	confirm_password: "",
-	is_student: true
+	is_student: false,
+	is_instructor: true,
 });
 const rules = {
 	first_name: {

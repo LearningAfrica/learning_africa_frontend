@@ -6,17 +6,26 @@
 	});
 	const router = useRoute('dashboard-instructor-courses-id')
 	const course = useSingleCourse()
+
+	// const modules = 
 	onMounted(() => {
 		course.fetchData(Number(router.params.id))
 	})
 	const courseInfo = computed(() => course.data)
+	const addModuleOpen = ref(false)
+	const toggleAddModule = (state:boolean) => {
+		addModuleOpen.value = state
+	}
+
+	
+
 </script>
 <template>
 	<main>
 		<partial-loader v-if="course.is_loading.value" />
 
 		<div v-else-if="!course.is_loading.value && course.data.value"
-			class="max-w-7xl mx-auto  w-full p-4 grid lg:grid-cols-2">
+			class="max-w-7xl mx-auto gap-4  w-full p-4 grid lg:grid-cols-2">
 			<div class="flex flex-col gap-2">
 				<div class="max-h-72 overflow-hidden">
 					<img class="w-full h-full object-fill aspect-auto" :src="courseInfo.value.course_image_url" />
@@ -32,7 +41,10 @@
 					</span>
 				</div>
 				<p class="whitespace-pre-wrap">
-					{{ courseInfo.value.overview }}
+					<show-more
+					:max_length="350"
+					 :content="courseInfo.value.overview" ></show-more>
+					<!-- {{ courseInfo.value.overview }} -->
 				</p>
 				<p>
 					<strong>
@@ -47,7 +59,14 @@
 				</p>
 			</div>
 			<div>
-				
+				<div class="flex justify-between border items-center px-4 py-2 rounded">
+					<h1>Modules</h1> <cn-button
+						@click="toggleAddModule(true)"
+						class="bg-primary text-white p-2 rounded-lg w-fit gap-2 text-sm"
+					>
+						<icon :name="'mdi:folder-plus-outline'"/>
+					</cn-button>
+				</div>
 			</div>
 		</div>
 		<div v-else>
@@ -55,6 +74,11 @@
 				Something went wrong!
 			</h1>
 		</div>
+		<dashboard-course-add-module
+		v-if="courseInfo.value"
+		 :course_id="courseInfo.value.id" :is_create_module_dialog_open="addModuleOpen" @close="toggleAddModule" />
+		
+		
 	</main>
 </template>
 
