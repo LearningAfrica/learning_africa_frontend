@@ -15,3 +15,14 @@ export type CoursesResponse = {
 	};
 	tags: string[];
 };
+type CourseModule = {
+	id: number;
+	course: number;
+	title: string;
+	description: string;
+	contents: [];
+};
+
+export type SingleCourseResponse = CoursesResponse & {
+	modules: CourseModule[];
+};

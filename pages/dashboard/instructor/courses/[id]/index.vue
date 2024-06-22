@@ -59,13 +59,26 @@
 				</p>
 			</div>
 			<div>
-				<div class="flex justify-between border items-center px-4 py-2 rounded">
-					<h1>Modules</h1> <cn-button
+				<div class="flex flex-col border px-4 py-2 rounded">
+					<div class="flex justify-between items-center">
+						<h1>Modules</h1> <cn-button
 						@click="toggleAddModule(true)"
 						class="bg-primary text-white p-2 rounded-lg w-fit gap-2 text-sm"
 					>
-						<icon :name="'mdi:folder-plus-outline'"/>
+						<icon :name="'flowbite:file-pen-outline'" size="30"/>
 					</cn-button>
+					</div>
+					<div>
+						<!-- modules -->
+						<div v-for="module in courseInfo.value.modules" class="border p-2 rounded-lg my-2">
+							<h1 class="font-bold text-lg">
+								{{ module.title }}
+							</h1>
+							<p>
+								{{ module.description }}
+							</p>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>

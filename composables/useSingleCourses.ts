@@ -1,7 +1,8 @@
 import {AxiosError} from "axios";
+import type { SingleCourseResponse } from "~/types/courses";
 import type {PaginationData} from "~/types/response";
 
-type Data = Pick<PaginationData, "courses">["courses"]["data"][number];
+type Data = SingleCourseResponse// Pick<PaginationData, "courses">["courses"]["data"][number];
 
 export const useSingleCourse = () => {
 	const {$privateAxios} = useNuxtApp();
