@@ -29,5 +29,15 @@
         "Axios",
         "humbleicons",
         "Nuxt"
-    ]
+    ],"vue-formatter.format_need": [
+		"html",
+		"js",
+		"css"
+	],
+	"vue-formatter.attr_end_with_gt": true,
+	"vue-formatter.attr_end_with_bracket": true,
+	"vue-formatter.break_attr_limit": -1,
+	"vue-formatter.pug-beautify": {
+		"fill_tab": false
+	}
 }

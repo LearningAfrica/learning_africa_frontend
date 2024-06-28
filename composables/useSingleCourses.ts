@@ -13,7 +13,7 @@ export const useSingleCourse = () => {
 	);
 	const has_error = useState<boolean>("single-course-loading", () => false);
 	const is_loading = useState<boolean>("single-course-loading", () => false);
-	const cache = useState<{[key: string]: Data}>("course-cache", () => ({}));
+	const cache = useState<{[key: string]: Data}>("single-course-cache", () => ({}));
 
 	const fetchData = async (
 		course_id: number,
