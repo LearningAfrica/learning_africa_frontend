@@ -1,4 +1,4 @@
-<script lang="ts">
+<script lang="ts" setup>
 import moment from 'moment';
 definePageMeta({
     layout: "instructor-layout",

@@ -7,15 +7,35 @@ import { createCourseContentSchema } from '~/data';
 const props = defineProps<{
 	course_id: number,
 	module_id: number,
-	is_create_content_dialog_open: boolean
 }>()
+const fileUpload = useUseImageUpload('create-course-content-file', 'single')
+const imageUpload = useUseImageUpload('create-course-content-image', 'single')
+const router = useRouter()
+const content_types = [{
+	value:
+		"file",
+	label: "File type"
+}, {
+	value:
+		"image",
+	label: "Image type"
+}, {
+	value:
+		"text",
+	label: "Text type"
+}, {
+	value:
+		"video",
+	label:
+		"video type"
+}]
 const { $privateAxios, $notify } = useNuxtApp()
 const isLoading = ref(false)
 const form = useForm<CreateCourseContentType>({ validationSchema: createCourseContentSchema })
 const controller = ref<AbortController>()
-const emit = defineEmits<{
-	(event: 'close', value: boolean): void
-}>()
+// const emit = defineEmits<{
+// 	(event: 'close', value: boolean): void
+// }>()
 const submitForm = form.handleSubmit(async (values) => {
 	isLoading.value = true
 	controller.value = new AbortController()
@@ -24,7 +44,10 @@ const submitForm = form.handleSubmit(async (values) => {
 			signal: controller.value.signal
 		})
 		await $notify.fire("Module created successfully", "success");
-		emit('close', false)
+		imageUpload.clearFiles()
+		fileUpload.clearFiles()
+		await router.push({ name: 'dashboard-instructor-courses-id-module_id', params: { id: props.course_id, module_id: props.module_id } })
+		// emit('close', false)
 		// emit('close', response.data)
 
 	} catch (error) {
@@ -54,49 +77,125 @@ onUnmounted(() => {
 </script>
 <template>
 	<div>
-		<hui-dialog :open="props.is_create_content_dialog_open" @close="emit('close', false)"
-			class="fixed inset-0 z-[999] overflow-y-auto">
-			<div class="flex items-center justify-center min-h-screen w-screen bg-white bg-opacity-70 border ">
-				<div class="bg-white border p-6 rounded-lg shadow-lg  w-full min-h-[20vh] max-w-xl">
-					<hui-dialog-panel>
-						<hui-dialog-title class="text-lg font-bold my-2">
-							Create Module
-						</hui-dialog-title>
-						<hui-dialog-description class="text-gray-600">
+		<div class="flex items-center justify-center min-h-screen w-screen bg-white bg-opacity-70 border ">
+			<div class="bg-white border p-6 rounded-lg shadow-lg  w-full min-h-[20vh] max-w-2xl">
+				<h1>
 
-						</hui-dialog-description>
-						<form v-if="!isLoading" action="" class="w-full h-full p-4 flex flex-col gap-4"
-							@submit.prevent.stop="submitForm">
-							<cn-form-field #="{ componentField }" as="div" :name="'title'"
-								class="flex flex-col gap-2 w-full">
-								<cn-form-label for="title">Title</cn-form-label>
+					Create Module Content
+				</h1>
+				{{ form }}
+
+				<form v-if="!isLoading" action="" class="w-full h-full p-4 flex flex-col gap-4"
+					@submit.prevent.stop="submitForm">
+					<!-- Title -->
+					<cn-form-field #="{ componentField }" as="div" :name="'title'" class="flex flex-col gap-2 w-full">
+						<cn-form-label for="title">Title</cn-form-label>
+						<cn-form-control>
+							<cn-input v-bind="componentField" name="title" placeholder="Module title" />
+						</cn-form-control>
+						<cn-form-message />
+					</cn-form-field>
+					<!-- Content type -->
+					<cn-form-field #="{ componentField }" as="div" :name="'content_type'"
+						class="flex flex-col gap-2 w-full  z-[9999999999]">
+						<cn-form-item>
+							<cn-form-label for="content_type">Content type</cn-form-label>
+							<cn-select v-bind="componentField">
 								<cn-form-control>
-									<cn-input v-bind="componentField" name="title" placeholder="Module title" />
+									<cn-select-trigger>
+										<cn-select-value :placeholder="'Select content type'" />
+									</cn-select-trigger>
 								</cn-form-control>
-								<cn-form-message />
-							</cn-form-field>
-							<cn-form-field #="{ componentField }" as="div" :name="'description'"
-								class="flex flex-col gap-2 w-full">
-								<cn-form-label for="description">Description</cn-form-label>
-								<cn-form-control>
-									<cn-textarea v-bind="componentField" name="description"
-										placeholder="Module description" />
-								</cn-form-control>
-								<cn-form-message />
-							</cn-form-field>
-							<cn-button type="submit" class="bg-primary text-white p-2 rounded-lg w-full gap-2 text-sm">
-								<icon :name="'fa-regular:save'" />
-								<span>
-									Save
+								<cn-select-content>
+									<cn-select-group class=" z-[9999999999]">
+										<cn-select-item :value="cat.value" :key="cat.value"
+											v-for="cat of content_types">{{
+												cat.label
+											}}</cn-select-item>
+									</cn-select-group>
+								</cn-select-content>
+							</cn-select>
+							<cn-form-message />
+						</cn-form-item>
+					</cn-form-field>
+					<!-- Url -->
+					<cn-form-field v-if="form.values.content_type === 'video'" #="{ componentField }" as="div"
+						:name="'url'" class="flex flex-col gap-2 w-full">
+						<cn-form-label for="url">Video Url</cn-form-label>
+						<cn-form-control>
+							<cn-input v-bind="componentField" type="url" name="url" placeholder="video url" />
+						</cn-form-control>
+						<cn-form-message />
+					</cn-form-field>
+					<!-- Text -->
+					<cn-form-field v-if="form.values.content_type === 'text'" #="{ componentField }" as="div"
+						:name="'text'" class="flex flex-col gap-2 w-full">
+						<cn-form-label for="text">Text</cn-form-label>
+						<cn-form-control>
+							<cn-textarea v-bind="componentField" name="text" placeholder="Content text" />
+						</cn-form-control>
+						<cn-form-message />
+					</cn-form-field>
+					<!-- Image -->
+					<div v-if="form.values.content_type === 'image'" class="flex flex-col gap-2 w-full">
+
+
+						<div class="flex justify-center">
+							<img v-if="imageUpload.has_previews.value"
+								:src="imageUpload.uploaded_previews.value['create-course-content-image'][0].preview"
+								class="max-w-52 max-h-52" />
+						</div>
+						<label for="image"
+							class="w-full p-4 border-4 rounded-lg border-gray-500 border-dotted flex justify-center items-center">
+							<input name="image" id="image" type="file" accept="image/*" hidden
+								@change="imageUpload.handleFileUpload">
+							<div class="flex flex-col justify-center items-center">
+								<Icon :name="'humbleicons:upload'" class="text-3xl text-slate-400 rounded-full" />
+
+								<span class="">
+									Click to upload
 								</span>
-							</cn-button>
-						</form>
-						<spin-loader :controller="controller!" :on-abort-request="abortRequest" :is_loading="isLoading"
-							v-if="isLoading" />
+							</div>
 
-					</hui-dialog-panel>
-				</div>
+
+						</label>
+					</div>
+					<!-- File -->
+					<div v-if="form.values.content_type === 'file'" class="flex flex-col gap-2 w-full">
+
+						<!-- 
+								<div class="flex justify-center">
+									<img v-if="fileUpload.has_previews.value"
+										:src="fileUpload.uploaded_previews.value['create-course-content-file'][0].preview"
+										class="max-w-52 max-h-52" />
+								</div> -->
+						<label for="file"
+							class="w-full p-4 border-4 rounded-lg border-gray-500 border-dotted flex justify-center items-center">
+							<input name="file" id="file" type="file" accept="image/*" hidden
+								@change="fileUpload.handleFileUpload">
+							<div class="flex flex-col justify-center items-center">
+								<Icon :name="'humbleicons:upload'" class="text-3xl text-slate-400 rounded-full" />
+
+								<span class="">
+									Click to upload
+								</span>
+							</div>
+
+
+						</label>
+					</div>
+					<!-- Submit button -->
+					<cn-button type="submit" class="bg-primary text-white p-2 rounded-lg w-full gap-2 text-sm">
+						<icon :name="'fa-regular:save'" />
+						<span>
+							Save
+						</span>
+					</cn-button>
+				</form>
+				<spin-loader :controller="controller!" :on-abort-request="abortRequest" :is_loading="isLoading"
+					v-if="isLoading" />
+
 			</div>
-		</hui-dialog>
+		</div>
 	</div>
 </template>

@@ -1,6 +1,7 @@
 type UploadNumberOption = "multi" | "single";
 
-type Images = "create-course-image" | "create-organization-image";
+type Images = "create-course-image" | "create-organization-image"|
+'create-course-content-image' | 'create-course-content-file' | 'create-course-content-video';
 
 export const useUseImageUpload = (
 	files_key: Images,

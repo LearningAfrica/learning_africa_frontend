@@ -128,7 +128,7 @@ const courseColumns: ColumnDef<CoursesResponse>[] = [
 
 <template>
 	<div class="py-4 flex flex-col gap-4">
-		<partial-loader v-if="course.is_loading.value" />
+		<partial-loader v-if="course && course.is_loading.value" />
 		<div class="p-4 flex justify-between border">
 			<div>
 				<h1>Courses</h1>
