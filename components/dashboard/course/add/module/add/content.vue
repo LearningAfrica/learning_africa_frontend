@@ -40,7 +40,7 @@ const submitForm = form.handleSubmit(async (values) => {
 	isLoading.value = true
 	controller.value = new AbortController()
 	try {
-		await $privateAxios.post(`/api/courses/${props.course_id}/modules/${props.module_id}/contents/`, values, {
+		await $privateAxios.post(`/api/courses/${Number(props.course_id)}/modules/${Number(props.module_id)}/contents/`, values, {
 			signal: controller.value.signal
 		})
 		await $notify.fire("Module created successfully", "success");
@@ -83,7 +83,7 @@ onUnmounted(() => {
 
 					Create Module Content
 				</h1>
-				{{ form }}
+				<!-- {{ form.errors }} -->
 
 				<form v-if="!isLoading" action="" class="w-full h-full p-4 flex flex-col gap-4"
 					@submit.prevent.stop="submitForm">
