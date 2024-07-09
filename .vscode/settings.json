@@ -39,5 +39,6 @@
 	"vue-formatter.break_attr_limit": -1,
 	"vue-formatter.pug-beautify": {
 		"fill_tab": false
-	}
+    },
+    "vue3snippets.enable-compile-vue-file-on-did-save-code": true
 }

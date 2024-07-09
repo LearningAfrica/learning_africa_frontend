@@ -1,5 +1,9 @@
       
 <script lang="ts" setup>
+definePageMeta({
+    layout: "instructor-layout",
+    middleware: 'instructor-auth'
+});
       const router = useRoute('dashboard-instructor-courses-id-module_id-add-content')
 </script>
 <template>

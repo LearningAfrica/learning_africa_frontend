@@ -33,7 +33,8 @@ export default defineNuxtConfig({
 		"shadcn-nuxt"
 	],
 
-	css: ["~/assets/css/tailwind.css", "sweetalert2/src/sweetalert2.scss"],
+	css: ["~/assets/css/tailwind.css", "sweetalert2/src/sweetalert2.scss", '@vueup/vue-quill/dist/vue-quill.snow.css'
+	],
 
 	postcss: {
 		plugins: {

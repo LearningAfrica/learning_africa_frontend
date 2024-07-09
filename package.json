@@ -13,6 +13,14 @@
     "format": "prettier --write --ext .js,.ts,.vue ."
   },
   "dependencies": {
+    "@iconify-json/carbon": "^1.1.36",
+    "@iconify-json/fa-regular": "^1.1.8",
+    "@iconify-json/fluent": "^1.1.58",
+    "@iconify-json/ion": "^1.1.18",
+    "@iconify-json/mage": "^1.1.0",
+    "@iconify-json/uil": "^1.1.8",
+    "@iconify-json/uit": "^1.1.8",
+    "@iconify-json/uiw": "^1.1.12",
     "@nuxt/icon": "^1.0.0",
     "@radix-icons/vue": "^1.0.0",
     "@tanstack/vue-query": "5.49.1",
@@ -20,6 +28,7 @@
     "@vee-validate/zod": "4.13.1",
     "@vuelidate/core": "^2.0.3",
     "@vuelidate/validators": "^2.0.4",
+    "@vueup/vue-quill": "^1.2.0",
     "@vueuse/core": "10.11.0",
     "axios": "1.7.2",
     "class-variance-authority": "^0.7.0",
