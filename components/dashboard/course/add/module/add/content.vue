@@ -200,7 +200,6 @@ onUnmounted(() => {
             </cn-form-control>
             <cn-form-message />
           </cn-form-field> -->
-          {{ text }}
           <div class="border">
             <quill-editor
               v-if="form.values.content_type === 'text'"
