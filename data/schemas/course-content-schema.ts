@@ -8,7 +8,7 @@ export const createCourseContentSchema = toTypedSchema(
 		.object({
 			title: z.string({message: "Title is required"}),
 			text: z.string({message: "Text is required"}).optional(),
-			url: z.string({message: "URL is required"}).optional(),
+			video_url: z.string({message: "URL is required"}).optional(),
 			content_type: contentSchema,
 			file: z
 				.any()

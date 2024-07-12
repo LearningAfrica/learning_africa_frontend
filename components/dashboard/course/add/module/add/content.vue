@@ -67,14 +67,28 @@ const [text] = form.useFieldModel(["text"]);
 const submitForm = form.handleSubmit(async (values) => {
   isLoading.value = true;
   controller.value = new AbortController();
+  if (values["content_type"] == "image") {
+    values["image"] = imageUpload.uploaded_files.value["create-course-content-image"][0];
+  }
+  if (values["content_type"] == "file") {
+    values["image"] = fileUpload.uploaded_files.value["create-course-content-file"][0];
+  }
   try {
     await $privateAxios.post(
       `/api/courses/${Number(props.course_id)}/modules/${Number(
         props.module_id
       )}/contents/`,
       values,
+
       {
         signal: controller.value.signal,
+        ...(["image", "file"].includes(values.content_type)
+          ? {
+              headers: {
+                "Content-Type": "multipart/form-data",
+              },
+            }
+          : {}),
       }
     );
     await $notify.fire("Module created successfully", "success");
@@ -97,10 +111,11 @@ const submitForm = form.handleSubmit(async (values) => {
   } finally {
     isLoading.value = false;
   }
-  console.log({ values });
+  // console.log({ values });
 });
 const abortRequest = () => {
   controller.value?.abort();
+  isLoading.value = false;
   // is_loading.value = false
 };
 
@@ -168,15 +183,15 @@ onUnmounted(() => {
             v-if="form.values.content_type === 'video'"
             #="{ componentField }"
             as="div"
-            :name="'url'"
+            :name="'video_url'"
             class="flex flex-col gap-2 w-full"
           >
-            <cn-form-label for="url">Video Url</cn-form-label>
+            <cn-form-label for="video_url">Video Url</cn-form-label>
             <cn-form-control>
               <cn-input
                 v-bind="componentField"
                 type="url"
-                name="url"
+                name="video_url"
                 placeholder="video url"
               />
             </cn-form-control>
