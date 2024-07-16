@@ -74,7 +74,7 @@ const toggleAddModule = (state: boolean) => {
 								:name="'flowbite:file-pen-outline'"
 								size="20"
 							/>
-							<span> Add </span>
+							<span> Add course module </span>
 						</cn-button>
 					</div>
 					<div>
