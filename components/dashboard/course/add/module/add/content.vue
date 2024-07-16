@@ -93,7 +93,7 @@ const submitForm = form.handleSubmit(async (values) => {
 					: {})
 			}
 		);
-		await $notify.fire("Module created successfully", "success");
+		await $notify.fire("Module content created successfully", "success");
 		imageUpload.clearFiles();
 		fileUpload.clearFiles();
 		await router.push({
