@@ -14,6 +14,7 @@ export type CoursesResponse = {
 		title: string;
 	};
 	tags: string[];
+	modules:CourseModule[]
 };
 type CourseModule = {
 	id: number;

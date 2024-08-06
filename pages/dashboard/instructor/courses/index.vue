@@ -1,129 +1,14 @@
 <script lang="ts" setup>
-import type { ColumnDef, ColumnFiltersState, SortingState, VisibilityState } from '@tanstack/vue-table';
-import { Checkbox } from '~/components/ui/checkbox';
-import type { TableColumnType, TableRowType } from '~/data/table-data-types';
-import type { CoursesResponse } from '~/types/courses';
-import DataTableColumnHeader from "@/components/data/table/column/header.vue";
-import DataTableRowActions from "@/components/dashboard/course/table/column/actions.vue"
-import moment from 'moment';
 definePageMeta({
 	layout: "instructor-layout",
 	middleware: 'instructor-auth'
 });
-const tableFilters = ref<ColumnFiltersState>([])
-const columnVisibility = ref<VisibilityState>({})
-const selection = ref({})
-const sorting = ref<SortingState>([])
-
 const course =
 	useCourses()
 onMounted(() => {
 	course.fetchData()
 })
-const courseColumns: ColumnDef<CoursesResponse>[] = [
-	{
-		id: "select",
-		header: ({ table }) =>
-			h(Checkbox, {
-				checked:
-					table.getIsAllPageRowsSelected() ||
-					(table.getIsSomePageRowsSelected() && "indeterminate"),
-				"onUpdate:checked": (value) =>
-					table.toggleAllPageRowsSelected(!!value),
-				ariaLabel: "Select all",
-				class: "translate-y-0.5"
-			}),
-		cell: ({ row }) =>
-			h(Checkbox, {
-				checked: row.getIsSelected(),
-				"onUpdate:checked": (value) => row.toggleSelected(!!value),
-				ariaLabel: "Select row",
-				class: "translate-y-0.5"
-			}),
-		enableSorting: false,
-		enableHiding: false
-	},
-	{
-		id: "index",
-		header: "#",
-		cell: ({ row }) => h("div", {}, row.index + 1)
-	},
-	{
-		id: "course_image_url",
-		header: 'Image',
-		accessorKey: "course_image_url",
-		
-		cell: ({ row }) =>h('img', {
-			src: row.getValue('course_image_url'),
-			alt: row.getValue('course_image_url'),
-			class:'rounded-md h-20 w-20 object-cover',
-			
-		},)
-		
-		,
-		enableSorting: false,
-		enableHiding: false,
-	},
-	{
-		id: "title",
-		accessorKey: "title",
-		header: ({ column }) =>
-			h(DataTableColumnHeader, {
-				column,
-				title: "Title"
-			}),
-		cell: ({ row }) => h("div", { class: "" }, row.getValue("title")),
-		enableSorting: true,
-		enableHiding: false,
-	},
-	{
-		id: "instructor",
-		header: "instructor",
-		cell: ({ row }) => h("div", { class: "" }, row.original.instructor.first_name+' '+row.original.instructor.last_name),
-		enableSorting: true,
-		enableHiding: true,
-		// accessorKey: "title"
-	},
 
-	{
-		id: "created",
-		header: ({ column }) =>
-			h(DataTableColumnHeader, {
-				column: column,
-				title: "Date Created"
-			}),
-		cell: ({ row }) =>
-			h(
-				"div",
-				{ class: "" },
-				moment(row.getValue("created")).format("LL")
-			),
-		enableSorting: true,
-		enableHiding: true,
-		accessorKey: "created"
-	},
-	{
-		id: "updated",
-		header: ({ column }) =>
-			h(DataTableColumnHeader, {
-				column: column ,
-				title: "Date Updated"
-			}),
-		cell: ({ row }) =>
-			h(
-				"div",
-				{ class: "" },
-				moment(row.getValue("updated")).format("LL")
-			),
-		enableSorting: true,
-		enableHiding: true,
-		accessorKey: "updated"
-	},
-	{
-		id: "actions",
-		cell: ({ row }) => h(DataTableRowActions, { row: row })
-	}
-];
 </script>
 
 <template>
@@ -138,8 +23,8 @@ const courseColumns: ColumnDef<CoursesResponse>[] = [
 					class="bg-primary text-white p-2 rounded-lg w-full mb-4">Add course</nuxt-link>
 			</div>
 		</div>
-		<div>
-			<data-table v-if="course.data.value.data" 
+		<div class="grid grid-cols-[repeat(auto-fit,minmax(18rem,1fr))] gap-2">
+		<!--	<data-table v-if="course.data.value.data" 
 			:columns="courseColumns" 
 			:search_label="'Search category...'"
 			:search_field="'title'"
@@ -149,6 +34,26 @@ const courseColumns: ColumnDef<CoursesResponse>[] = [
 			:visibility="toRef(columnVisibility)"
 			
 			:data="course.data.value.data ?? []"></data-table>
+		-->
+			<div v-for="({category,course_image_url,title,overview,tags,instructor,modules,id},index) of course.data.value.data" class="border rounded w-full">
+			<div class="h-80">
+				<img :src="course_image_url" alt="" class="h-full w-full object-cover">
+			</div>
+			<div class="p-2 ">
+				<h2 class="font-bold text-xl">{{title}}</h2>
+				<div>
+					{{ modules.length }} Module(s)
+				</div>
+				<div class="grid grid-cols-3 gap-2">
+					<nuxt-link :to="{
+			name:'dashboard-instructor-courses-id',
+			params: { id}
+			}" class="p-2 bg-gray-500 rounded text-white flex items-center gap-2"><icon :name="'hugeicons:view'"></icon> View</nuxt-link>
+				<button class="p-2 bg-blue-500 rounded text-white flex items-center gap-2"><icon :name="'icon-park-outline:edit-one'"></icon> Edit</button>
+				<button class="p-2 bg-red-500 rounded text-white flex items-center gap-2"><icon :name="'solar:trash-bin-2-outline'"></icon> Remove</button>
+				</div>
+			</div>
+			</div>
 		</div>
 
 	</div>
