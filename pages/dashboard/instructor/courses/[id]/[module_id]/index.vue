@@ -172,25 +172,12 @@ const submitUpdateCourseModuleForm = handleSubmit(async (values) => {
 							</form>
 							<spin-loader :controller="controller!" :on-abort-request="abortRequest"
 								:is_loading="is_update_module_loading" v-if="is_update_module_loading" />
-
-							<!-- <div class="mt-4">
-								<button type="button"
-									class="inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
-									@click="toggleEditModule(false)">
-									Got it, thanks!
-								</button>
-							</div> -->
 						</hui-dialog-panel>
 					</hui-transition-child>
 				</div>
 			</hui-dialog>
 		</hui-transition-root>
-		<!-- <dashboard-course-add-module-add-content
-            v-if="courseModule.data.value && is_add_content_dialog_open"
-        :course_id="Number(router.params.id)"
-            :module_id="Number(router.params.module_id)" :is_create_content_dialog_open="is_add_content_dialog_open"
-            @close="toggleAddContent" /> -->
-		<!-- <dashboard-course-add -->
+		
 	</div>
 </template>
 
