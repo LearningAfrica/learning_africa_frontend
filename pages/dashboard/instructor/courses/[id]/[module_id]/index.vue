@@ -71,7 +71,10 @@ const submitUpdateCourseModuleForm = handleSubmit(async (values) => {
 				timer: 2000,
 			});
 		}
-	} 
+	} finally{
+
+		is_update_module_loading.value = false;
+	}
 
 });
 </script>

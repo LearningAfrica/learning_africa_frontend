@@ -73,6 +73,7 @@ const handleSubmit = () => {
 
   <div class="bg-gray-100 p-4 md:p-10 min-h-[100vh] flex justify-center items-center">
     <max-width-wrapper class-name="flex items-center justify-center">
+
       <form @submit.prevent.stop="handleSubmit"
         class="min-h-[50vh] w-full max-w-xl bg-white p-4 md:p-10 rounded-lg shadow-md gap-5 flex flex-col justify-center items-center">
         <div>

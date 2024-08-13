@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 definePageMeta({
 	layout: "base"
 });
@@ -6,9 +6,9 @@ definePageMeta({
 </script>
 
 <template>
-  <div>
-    <homepage-banner />
-    <homepage-services />
-    <homepage-stats />
-  </div>
+	<div>
+		<homepage-banner />
+		<homepage-services />
+		<homepage-stats />
+	</div>
 </template>
