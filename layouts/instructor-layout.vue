@@ -7,13 +7,13 @@ const navItems = ref({
 			active: false,
 			label: "Dashboard",
 			children: [],
-			icon: "carbon:dashboard-reference",
+			icon: "heroicons:adjustments-horizontal-16-solid",
 		}, {
 			href: "/dashboard/instructor/organizations",
 			active: false,
 			label: "organizations",
 			children: [],
-			icon: "uit:create-dashboard",
+			icon: "heroicons:squares-plus",
 		},
 		{
 			href: "#",

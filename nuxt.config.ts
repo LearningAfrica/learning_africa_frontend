@@ -70,5 +70,7 @@ export default defineNuxtConfig({
 
 	shadcn: {
 		prefix: "cn"
-	}
+	},
+
+	compatibilityDate: "2024-08-12"
 });

@@ -53,7 +53,8 @@ defineProps<DataTablePaginationProps>()
           @click="table.setPageIndex(0)"
         >
           <span class="sr-only">Go to first page</span>
-          <icon :name="'hugeicons:arrow-left-double'" class="h-4 w-4" />
+          <!-- <IconArrowLeftSquare  class="h-4 w-4"></IconArrowLeftSquare> -->
+          <icon :name="'heroicons:chevron-double-left'" class="h-4 w-4" />
         </cn-button>
         <cn-button
           variant="outline"
@@ -62,7 +63,7 @@ defineProps<DataTablePaginationProps>()
           @click="table.previousPage()"
         >
           <span class="sr-only">Go to previous page</span>
-          <icon :name="'codicon:chevron-left'" class="h-4 w-4" />
+          <icon :name="'heroicons:chevron-left'" class="h-4 w-4" />
         </cn-button>
         <cn-button
           variant="outline"
@@ -71,7 +72,7 @@ defineProps<DataTablePaginationProps>()
           @click="table.nextPage()"
         >
           <span class="sr-only">Go to next page</span>
-          <icon :name="'codicon:chevron-right'" class="h-4 w-4" />
+          <icon :name="'heroicons:chevron-right'" class="h-4 w-4" />
         </cn-button>
         <cn-button
           variant="outline"
@@ -80,7 +81,7 @@ defineProps<DataTablePaginationProps>()
           @click="table.setPageIndex(table.getPageCount() - 1)"
         >
           <span class="sr-only">Go to last page</span>
-          <icon :name="'hugeicons:arrow-right-double'" class="h-4 w-4" />
+          <icon :name="'heroicons:chevron-double-right'" class="h-4 w-4" />
         </cn-button>
       </div>
     </div>

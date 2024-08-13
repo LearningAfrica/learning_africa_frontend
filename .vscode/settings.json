@@ -1,5 +1,4 @@
 {
-    "prettier.enable": true,
     "editor.indentSize": "tabSize",
     "eslint.enable": true,
     "eslint.format.enable": true,
@@ -9,36 +8,12 @@
     "editor.quickSuggestions": {
         "strings": true
     },
-    "tailwindCSS.classAttributes": [
-        "class",
-        "className",
-        "ngClass",
-        "ui",
-        "cx",
-        "tw",
-        "class-name",
-        "class_name"
-    ],
-    "prettier.requireConfig": true,
-    "prettier.tabWidth": 4,
-    "prettier.endOfLine": "lf",
-    "prettier.semi": true,
-    "prettier.useTabs": true,
-    "prettier.vueIndentScriptAndStyle": true,
-    "cSpell.words": [
-        "Axios",
-        "humbleicons",
-        "Nuxt"
-    ],"vue-formatter.format_need": [
-		"html",
-		"js",
-		"css"
-	],
-	"vue-formatter.attr_end_with_gt": true,
-	"vue-formatter.attr_end_with_bracket": true,
-	"vue-formatter.break_attr_limit": -1,
-	"vue-formatter.pug-beautify": {
-		"fill_tab": false
-    },
-    "vue3snippets.enable-compile-vue-file-on-did-save-code": true
+    "javascript.inlayHints.propertyDeclarationTypes.enabled": true,
+    "javascript.inlayHints.variableTypes.enabled": true,
+    "javascript.inlayHints.parameterTypes.enabled": true,
+    "javascript.inlayHints.functionLikeReturnTypes.enabled": true,
+    "javascript.inlayHints.enumMemberValues.enabled": true,
+    "editor.stickyScroll.enabled": false,
+    "workbench.tree.enableStickyScroll": false,
+    "terminal.integrated.stickyScroll.enabled": false
 }
