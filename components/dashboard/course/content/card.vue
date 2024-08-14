@@ -17,23 +17,23 @@ defineProps<{
         {{ index + 1 }}
       </div>
     </div>
-    <div>
+    <nuxt-link :to="{name:'dashboard-instructor-courses-id-module_id-content_id',}">
       <h1 class="font-semibold text-2xl">
         {{ title }}
       </h1>
-      <div v-if="content_type === 'text'">
-        <div v-html="text ?? ''"></div>
-      </div>
-      <div v-if="content_type === 'image'">
-        {{ image }}
-        <LazyNuxtImg :src="image!" />
-      </div>
-      <div v-if="content_type === 'video'">
-        <object type="video/mp4" :data="video_url" width="100%">
-          <!-- <img src="path/image.jpg" alt="useful image description" /> -->
-        </object>
-      </div>
-    </div>
+<!--      <div v-if="content_type === 'text'">-->
+<!--        <div v-html="text ?? ''"></div>-->
+<!--      </div>-->
+<!--      <div v-if="content_type === 'image'">-->
+<!--        {{ image }}-->
+<!--        <LazyNuxtImg :src="image!" />-->
+<!--      </div>-->
+<!--      <div v-if="content_type === 'video'">-->
+<!--        <object type="video/mp4" :data="video_url" width="100%">-->
+<!--          &lt;!&ndash; <img src="path/image.jpg" alt="useful image description" /> &ndash;&gt;-->
+<!--        </object>-->
+<!--      </div>-->
+    </nuxt-link>
   </div>
 </template>
 
