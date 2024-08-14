@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { SidebarMenuItems } from "~/types/dashboard";
 const auth = useAuthStore();
-const is_sidebar_open = ref(true);
+const is_sidebar_open = ref(false);
 const logo = ref("https://avatars.githubusercontent.com/u/150797856?s=200&v=4");
 const toggleSidebar = () => {
 	is_sidebar_open.value = !is_sidebar_open.value;

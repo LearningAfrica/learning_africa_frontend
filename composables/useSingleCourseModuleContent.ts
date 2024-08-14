@@ -1,4 +1,4 @@
-import {AxiosError} from "axios";
+import { AxiosError } from "axios";
 // import type { SingleCourseResponse } from "~/types/courses";
 // import type {PaginationData} from "~/types/response";
 type Module = {
@@ -7,13 +7,13 @@ type Module = {
 	"content_type": "text",
 	"text": string,
 	"file": null,
-	"video_url":string| null,
-	"image":string| null
+	"video_url": string | null,
+	"image": string | null
 };
 type Data = Module; // Pick<PaginationData, "courses">["courses"]["data"][number];
 
 export const useSingleCourseModuleContent = () => {
-	const {$privateAxios} = useNuxtApp();
+	const { $privateAxios } = useNuxtApp();
 	const singleCourseModuleContentData = useState(
 		"single-course-module-content-data",
 		() => ({}) as Data
@@ -30,7 +30,7 @@ export const useSingleCourseModuleContent = () => {
 		"single-course-module-content-loading",
 		() => false
 	);
-	const cache = useState<{[key: string]: Data}>(
+	const cache = useState<{ [key: string]: Data }>(
 		"course-module-content-cache",
 		() => ({})
 	);
@@ -41,7 +41,7 @@ export const useSingleCourseModuleContent = () => {
 	};
 
 	const fetchData = async (
-		{course_id, module_id,content_id}: Params,
+		{ course_id, module_id, content_id }: Params,
 		bypass_cache: boolean = false
 	) => {
 		const cacheKey = `data:course_id=${course_id}&module_id=${module_id}&content_id=${content_id}`;

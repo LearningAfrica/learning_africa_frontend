@@ -39,12 +39,14 @@ const loadCourse = async () => {
 			title,
 			overview,
 			course_image_url,
-			is
+			is_premium,is_private
 		} = course.data.value;
 		setFieldValue("title", title);
 		setFieldValue("tags", tags.join(","));
 		setFieldValue("overview", overview);
 		setFieldValue("category", category.id);
+		setFieldValue("is_premium", is_premium);
+		setFieldValue("is_private", is_private);
 	}
 };
 

@@ -9,6 +9,8 @@ export type CoursesResponse = {
 	overview: string;
 	course_image_url: string;
 	created: Date;
+	is_premium:boolean
+	is_private:boolean
 	category: {
 		id: number;
 		title: string;
