@@ -263,7 +263,7 @@ onMounted(async () => {
           organization.data.value
         "
 					:disabled="isSubmitting"
-					class="bg-primary text-white p-2 rounded-lg w-full mb-4">Add
+					class="bg-primary text-white p-2 rounded-lg w-full mb-4">Update
 					course
 				</cn-button>
 			</form>
