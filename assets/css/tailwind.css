@@ -70,3 +70,19 @@
     font-family: "Source Sans 3", sans-serif;
   }
 }
+.instructor-course-content img{
+  width:100%;
+  border-radius:20px 20px;
+}
+.instructor-course-content video{
+  width:100%;
+}
+.instructor-course-content h1,
+.instructor-course-content h2,
+.instructor-course-content h3{
+  width:100%;
+  padding:10px 0px;
+}
+.instructor-course-content p{
+  padding: 10px 0;
+}

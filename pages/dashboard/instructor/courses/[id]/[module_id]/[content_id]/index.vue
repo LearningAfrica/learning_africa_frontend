@@ -47,7 +47,7 @@ const toggleEditModuleContent = (state: boolean) => {
 
 			</div>
 		</div>
-		<div v-if="!content.has_error.value&&!content.is_loading.value">
+		<div v-if="!content.has_error.value&&!content.is_loading.value" class="instructor-course-content">
 			<h1 class="font-semibold text-2xl">
 				{{ contentData.title }}
 			</h1>
@@ -59,7 +59,7 @@ const toggleEditModuleContent = (state: boolean) => {
 				<LazyNuxtImg :src="contentData.image!" />
 			</div>
 			<div v-if="contentData.content_type === 'video'">
-				<object :data="contentData.video_url" type="video/mp4"
+				<object :data="contentData.video_url!" type="video/mp4"
 						width="100%">
 					<!-- <img src="path/image.jpg" alt="useful image description" /> -->
 				</object>
