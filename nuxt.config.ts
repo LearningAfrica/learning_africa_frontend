@@ -5,7 +5,10 @@ export default defineNuxtConfig({
 	},
 
 	app: {
-		layoutTransition: { name: "layout", mode: "in-out" }
+		layoutTransition: { name: "layout", mode: "in-out" },
+		head:{
+			script:[{ src: 'coi-serviceworker.js', }]
+		}
 	},
 
 	devtools: {
@@ -70,6 +73,15 @@ export default defineNuxtConfig({
 
 	shadcn: {
 		prefix: "cn"
+	},
+	runtimeConfig: {
+		ZoomVideoSDKKey: process.env.ZOOM_SDK_KEY,
+		ZoomVideoSDKSecret: process.env.ZOOM_SDK_SECRET,
+	},
+	vue: {
+		compilerOptions: {
+			isCustomElement: (tag) => tag === 'video-player-container'
+		}
 	},
 
 	compatibilityDate: "2024-08-12"

@@ -1,6 +1,5 @@
 {
     "recommendations": [
-        "editorconfig.editorconfig",
-        "vue.vscode-typescript-vue-plugin"
+        "editorconfig.editorconfig"
     ]
 }

@@ -2512,6 +2512,11 @@
   dependencies:
     "@types/node" "*"
 
+"@types/jsrsasign@^10.5.14":
+  version "10.5.14"
+  resolved "https://registry.yarnpkg.com/@types/jsrsasign/-/jsrsasign-10.5.14.tgz#61d1dbd791ecd11db556c1ca5d82453fc7207338"
+  integrity sha512-lppSlfK6etu+cuKs40K4rg8As79PH6hzIB+v55zSqImbSH3SE6Fm8MBHCiI91cWlAP3Z4igtJK1VL3fSN09blQ==
+
 "@types/node@*":
   version "20.11.30"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-20.11.30.tgz#9c33467fc23167a347e73834f788f4b9f399d66f"
@@ -2969,6 +2974,11 @@
   integrity sha512-fyNoIXEq3PfX1L3NkNhtVQUSRtqYwJtJg+Bp9rIzculIZWHTkKSysujrOk2J+NrRulLTQH9+3gGSfYLWSEWU1A==
   dependencies:
     vue-demi ">=0.14.8"
+
+"@zoom/videosdk@^1.12.1":
+  version "1.12.1"
+  resolved "https://registry.yarnpkg.com/@zoom/videosdk/-/videosdk-1.12.1.tgz#3ff6b636835892bb100ac5d19d13324f1ade447b"
+  integrity sha512-7xouWDOAJ6+5RqNtDRWlHRDu7uHvlsvmel4o4n7ylGqCTF4EoDC2BDmwagN6OIeHZp/iZaUUuA/k+PVvWu967g==
 
 abbrev@1:
   version "1.1.1"
@@ -5388,6 +5398,11 @@ jsonfile@^6.0.1:
     universalify "^2.0.0"
   optionalDependencies:
     graceful-fs "^4.1.6"
+
+jsrsasign@^11.1.0:
+  version "11.1.0"
+  resolved "https://registry.yarnpkg.com/jsrsasign/-/jsrsasign-11.1.0.tgz#195e788102731102fbf3e36b33fde28936f4bf57"
+  integrity sha512-Ov74K9GihaK9/9WncTe1mPmvrO7Py665TUfUKvraXBpu+xcTWitrtuOwcjf4KMU9maPaYn0OuaWy0HOzy/GBXg==
 
 jwt-decode@^4.0.0:
   version "4.0.0"
