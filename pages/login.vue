@@ -1,7 +1,5 @@
 <script lang="ts" setup>
 import { useForm } from 'vee-validate'
-import { toTypedSchema } from '@vee-validate/zod'
-import * as z from 'zod'
 import { loginFormSchema, type LoginUserFormType } from '~/data/schemas/auth-schema';
 
 
@@ -10,7 +8,7 @@ definePageMeta({
 });
 const { $openAxios, $notify } = useNuxtApp();
 
-const { isSubmitting, handleSubmit } = useForm<LoginUserFormType>({
+const { isSubmitting, handleSubmit ,values:formValue} = useForm<LoginUserFormType>({
 	validationSchema: loginFormSchema, initialValues: {
 		password: '',
 		username_or_email: '',
@@ -31,11 +29,10 @@ const submitForm = handleSubmit(async (values) => {
 
 	// isLoading.value = true;
 	try {
-		const { data, status ,statusText} = await $openAxios.post("/auth/login/", values)
-		console.log({ data,status,statusText });
+		const { data, status } = await $openAxios.post("/auth/login/", values)
+		// console.log({ data,status,statusText });
 
 		if (status === 200 || status === 201) {
-			console.log(data);
 			auth.login({
 				access_token: data.access_token,
 				refresh_token: data.refresh_token,
@@ -101,7 +98,7 @@ const submitForm = handleSubmit(async (values) => {
 					<cn-label for="password" class="text-left">Password</cn-label>
 					<cn-form-control>
 
-						<cn-input v-bind="componentField" :type="showPassword ? 'text' : 'password'" id="password"
+						<cn-input v-bind="componentField" :type="formValue.show_password ? 'text' : 'password'" id="password"
 							name="password" placeholder="********" />
 
 					</cn-form-control>
@@ -109,7 +106,7 @@ const submitForm = handleSubmit(async (values) => {
 				</cn-form-field>
 
 				<cn-form-field #="{ value, handleChange }" name="show_password" :as="'div'"
-					class="flex w-full md:w-96 items-center gap-2 show-passsword-wrapper">
+					class="flex w-full md:w-96 items-center gap-2 show-password-wrapper">
 					<cn-checkbox id="show_password" name="show_password" :value="value"
 						@update:checked="handleChange" />
 					<cn-label for="show_password">Show password</cn-label>
@@ -127,21 +124,6 @@ const submitForm = handleSubmit(async (values) => {
 						class="text-blue-500 hover:underline transition duration-300 ease-in-out">Register</nuxt-link>
 				</p>
 			</form>
-
-			<!-- <form class="w-2/3 space-y-6">
-				<CnFormField v-slot="{ componentField }" name="username_or_email" :validate-on-blur="!isFieldDirty">
-					<CnFormItem>
-						<CnFormLabel>Username</CnFormLabel>
-						<CnFormControl>
-							<CnInput type="text" placeholder="shadcn" v-bind="componentField" />
-						</CnFormControl>
-						<CnFormMessage />
-					</CnFormItem>
-				</CnFormField>
-				<CnButton type="submit" v-on:click="submitForm">
-					Submit
-				</CnButton>
-			</form> -->
 		</max-width-wrapper>
 	</div>
 </template>
@@ -155,11 +137,11 @@ label {
 	@apply text-gray-600 uppercase text-sm;
 }
 
-.show-passsword-wrapper {
+.show-password-wrapper {
 	/* @apply w-full; */
 }
 
-.show-passsword-wrapper input {
+.show-password-wrapper input {
 	@apply border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent h-5 w-5;
 }
 </style>
