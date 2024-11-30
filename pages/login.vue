@@ -2,7 +2,6 @@
 import { useForm } from 'vee-validate'
 import { loginFormSchema, type LoginUserFormType } from '~/data/schemas/auth-schema';
 
-
 definePageMeta({
 	middleware: ["open-auth"],
 });
@@ -15,22 +14,16 @@ const { isSubmitting, handleSubmit ,values:formValue} = useForm<LoginUserFormTyp
 		show_password: false
 	},
 	keepValuesOnUnmount: true,
-
 })
 
-
-const showPassword = ref(false);
-// const $v = useVuelidate(rules, form);
 const auth = useAuthStore();
 const isLoading = ref(false);
 const router = useRouter();
 const submitForm = handleSubmit(async (values) => {
 	delete values['show_password']
 
-	// isLoading.value = true;
 	try {
-		const { data, status } = await $openAxios.post("/auth/login/", values)
-		// console.log({ data,status,statusText });
+		const { data, status } = await $openAxios.post("/auth/login/", values);
 
 		if (status === 200 || status === 201) {
 			auth.login({
